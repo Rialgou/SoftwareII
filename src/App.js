@@ -1,25 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+
+import BarraSuperior from './componentes/BarraSuperior';
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import Home from './Paginas/Home';
+import ComoFunciona from './Paginas/ComoFunciona';
+import HistorialCuenta from './Paginas/HistorialCuenta';
+import Ajustes from './Paginas/Ajustes';
+import SalirCuenta from './Paginas/SalirCuenta';
+import AcercaDeNosotros from './Paginas/AcercaDeNosotros';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <div>iodhasuidhsa</div>
-        <div>diasdihasudhasuhsuidhasui</div>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <div>
+          <BarraSuperior />
+        </div>
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/como-funciona" element={<ComoFunciona />} />
+            <Route path="/historial-cuenta" element={<HistorialCuenta />} />
+            <Route path="/ajustes" element={<Ajustes />} />
+            <Route path="/salir-cuenta" element={<SalirCuenta />} />
+            <Route path="/acerca-de-nosotros" element={<AcercaDeNosotros />} />
+          </Routes>
+        </main>
+      </Router>
     </div>
   );
 }
