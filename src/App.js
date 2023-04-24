@@ -10,6 +10,8 @@ import HistorialCuenta from './Paginas/HistorialCuenta';
 import Ajustes from './Paginas/Ajustes';
 import SalirCuenta from './Paginas/SalirCuenta';
 import AcercaDeNosotros from './Paginas/AcercaDeNosotros';
+import Usuario from './Paginas/Usuario';
+import Administrador from './Paginas/Administrador';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
             <Route path="/ajustes" element={<Ajustes />} />
             <Route path="/salir-cuenta" element={<SalirCuenta />} />
             <Route path="/acerca-de-nosotros" element={<AcercaDeNosotros />} />
+            <Route path="/Administrador" element={<Administrador/>} />
+            <Route path="/Usuario" element={<Usuario/>} />
           </Routes>
         </main>
       </Router>

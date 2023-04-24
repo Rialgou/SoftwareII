@@ -1,51 +1,46 @@
-import '../App.css';
+import React from 'react';
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
-import Lista from '../componentes/Lista';
-import RadioButton from '../componentes/RadioButton'
-import Filtrado  from '../componentes/Filtrado';
+const Home = () => {
+  const navigate = useNavigate();
 
-import { Container, Row, Col , Badge } from 'react-bootstrap';
+  const handleAdminButtonClick = () => {
+    navigate('/administrador');
+  };
 
-import { useState } from 'react';
-
-function Home() {
-
-  const [radioValue, setRadioValue] = useState('1');
-  const [showCol, setShowCol] = useState(true); // Mostrar por defecto cuando se carga la página
-
+  const handleUserButtonClick = () => {
+    navigate('/usuario');
+  };
 
   return (
-
-      <main>
-        <Container>
-          <Row className="fila-principal">
-            <Col className="columna-1">
-              <div className="contenedor-centered">
-                <RadioButton 
-                  radioValue={radioValue}
-                  setRadioValue={setRadioValue} 
-                ></RadioButton>
-              </div>
-            </Col>
-            {showCol && radioValue === '1' && (
-            <Col className="columna-2">
-              <div className='contenedor-columna-2'>
-                <h2 className="titulo" >Nuevos <Badge bg='primary'>bugs</Badge></h2>
-                <br></br>
-                <div className="contenedor-boton">
-                 <Filtrado></Filtrado>
-                </div>
-                <br></br>
-                  <div className="contenedor-lista">
-                    <Lista></Lista>
-                  </div>
-              </div>
-            </Col>
-             )}
-          </Row>
-        </Container>
-      </main>
+    <Container>
+      <Row className="justify-content-md-center mt-5">
+        <Col md="auto">
+          <h1 className="text-center mb-4">BugFixer</h1>
+          <p>
+            Bienvenido a BugFixer, la plataforma que facilita la comunicación entre usuarios y
+            administradores para reportar, gestionar y solucionar problemas en el software. Nuestro
+            objetivo es mejorar la calidad y eficiencia en la detección y corrección de errores,
+            permitiendo un proceso de desarrollo de software más ágil y efectivo.
+          </p>
+        </Col>
+      </Row>
+      <Row className="justify-content-md-center mt-5">
+        <Col md="auto">
+          <Button variant="primary" onClick={handleAdminButtonClick}>
+            Administrador
+          </Button>
+        </Col>
+        <Col md="auto">
+          <Button variant="secondary" onClick={handleUserButtonClick}>
+            Usuario
+          </Button>
+        </Col>
+      </Row>
+    </Container>
   );
-}
+};
 
 export default Home;
+
