@@ -17,6 +17,12 @@
     background-color: antiquewhite;
     height: 100vh;
   }
+
+
+   .App {
+      background-color: rgba(136, 197, 210, 0.49);
+    };
+
   
   .fila-principal {
     height: 0;
@@ -90,3 +96,4 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
   }
+
