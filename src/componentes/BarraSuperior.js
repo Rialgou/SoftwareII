@@ -1,4 +1,4 @@
-import { Container, Nav, Navbar, NavDropdown, Image } from 'react-bootstrap';
+import { Container, Nav, Navbar, NavDropdown, Image ,Stack} from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
 
 import logo from '../Imagenes/logo2.png';
@@ -20,8 +20,9 @@ const BarraSuperior = () => {
               </Nav.Link>
             </Nav>
 
+            <Stack direction='horizontal' gap={5}>
             <Nav className="Barra-usuario">
-              <Image src={logo} alt="Logo" roundedCircle className="logo" />
+              <Image src={logo} alt='imagen-logo' className='logo' roundedCircle ></Image>
               <NavDropdown title={"Jose Toledo"} id="collasible-nav-dropdown">
                 <NavDropdown.Item as={NavLink} to="/historial-cuenta">
                   Historial cuenta
@@ -38,6 +39,7 @@ const BarraSuperior = () => {
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
+            </Stack>
           </Navbar.Collapse>
         </Container>
       </Navbar>

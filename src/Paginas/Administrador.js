@@ -5,6 +5,7 @@ import '../App.css';
 import Lista from '../componentes/Lista';
 import RadioButton from '../componentes/RadioButton'
 import Filtrado  from '../componentes/Filtrado';
+import BarraLateral from '../componentes/BarraLateral';
 
 
 import { Container, Row, Col , Badge } from 'react-bootstrap';
@@ -20,6 +21,10 @@ function Home() {
   return (
 
       <main>
+        <div>
+          <BarraLateral></BarraLateral>
+        </div>
+        
         <Container>
           <Row className="fila-principal">
             <Col className="columna-1">

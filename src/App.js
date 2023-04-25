@@ -18,7 +18,7 @@ function App() {
     <div className="App">
       <Router>
         <div >
-          <BarraSuperior />
+          <BarraSuperior/>
         </div>
         <main>
           <Routes>
