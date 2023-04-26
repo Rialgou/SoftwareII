@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
-import { DatosBarraLateral } from './DatosBarraLateral';
+import { DatosBarraLateral } from './DatosBarraLateral.js';
 import SubMenu from './SubMenu';
 import { IconContext } from 'react-icons/lib';
 import { Link } from 'react-router-dom';

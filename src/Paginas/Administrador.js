@@ -1,11 +1,9 @@
 
 
-import '../App.css';
 
-import Lista from '../componentes/Lista';
 import RadioButton from '../componentes/RadioButton'
-import Filtrado  from '../componentes/Filtrado';
 import BarraLateral from '../componentes/BarraLateral';
+import BugsPendientes from '../componentes/BugsPendientes';
 
 
 import { Container, Row, Col , Badge } from 'react-bootstrap';
@@ -21,35 +19,29 @@ function Home() {
   return (
 
       <main>
+
         <div>
           <BarraLateral></BarraLateral>
         </div>
         
-        <Container>
-          <Row className="fila-principal">
-            <Col className="columna-1">
-              <div className="contenedor-centered">
+        <Container className="d-flex  my-5 justify-content-center align-items-center ">
+          <Row className="mb-3 justify-content-center align-items-center">
+            <Col className="">
                 <RadioButton 
                   radioValue={radioValue}
                   setRadioValue={setRadioValue} 
                 ></RadioButton>
-              </div>
             </Col>
             {showCol && radioValue === '1' && (
-            <Col className="columna-2">
-              <div className='contenedor-columna-2'>
-                <h2 className="titulo" >Nuevos <Badge bg='primary'>bugs</Badge></h2>
-                <br></br>
-                <div className="contenedor-boton">
-                 <Filtrado></Filtrado>
-                </div>
-                <br></br>
-                  <div className="contenedor-lista">
-                    <Lista></Lista>
-                  </div>
-              </div>
+            <Col className="mx-5">
+              <BugsPendientes></BugsPendientes>
             </Col>
              )}
+             {showCol && radioValue === '2' && (
+              <Col className='mx-5'>
+                <h2>hola </h2>
+              </Col>
+            )}
           </Row>
         </Container>
       </main>

@@ -15,9 +15,9 @@ function RadioButton({radioValue,setRadioValue}) {
   ];
 
   return (
-    <Container fluid className="contenedor">
-      <Row >
-        <Col xs={6}> 
+    <Container  className="d-flex justify-content-center align-items-center contenedor">
+      <Row className="justify-content-center">
+        <Col> 
           <ButtonGroup vertical>
           {radios.map((radio, idx) => (
           <ToggleButton
@@ -31,7 +31,8 @@ function RadioButton({radioValue,setRadioValue}) {
             onChange={(e) => {
               setRadioValue(e.currentTarget.value)}
             }
-            className="botones"
+            className="botones my-4"
+            style={{ flex: 1}}
           >
             {radio.name}
           </ToggleButton>

@@ -19,11 +19,11 @@ const Home = () => {
 
   return (
     <Container className="home">
+
       <Row className="justify-content-md-center mt-5 ">
-        <Col md="auto">
-          <br></br>
+        <Col md="auto" className='mt-5 mb-2'>
           <h1 className="text-center mb-4 "><Badge bg="dark">BugFixer</Badge></h1>
-          <p>
+          <p className='parrafo'>
             Bienvenido a <strong> BugFixer </strong>, la plataforma que facilita la comunicación entre usuarios y
             administradores para reportar, gestionar y solucionar problemas en el software. Nuestro
             objetivo es mejorar la calidad y eficiencia en la detección y corrección de errores,
@@ -31,7 +31,8 @@ const Home = () => {
           </p>
         </Col>
       </Row>
-      <Row className="justify-content-md-center mt-5 ">
+
+      <Row className="justify-content-md-center mt-3 mb-5 ">
         <Col md="auto">
           <Button variant= "light" className='botones-0' onClick={handleAdminButtonClick}>
             Administrador
@@ -43,10 +44,10 @@ const Home = () => {
           </Button>
         </Col>
       </Row>
-      <br></br>
+
       <Row >
-        <Col className="d-flex justify-content-center columna">
-          <Image thumbnail  src={Imagen} className='imagen' />
+        <Col className="d-flex justify-content-center mt-2 mb-5 ">
+          <Image   rounded  src={Imagen} className='imagen' />
         </Col>
       </Row>
     </Container>
