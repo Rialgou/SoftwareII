@@ -32,7 +32,7 @@ const ReportesUsuarios = () => {
   return (
     
     <div>
-      <div>Aqui va la lista de reportes</div>  
+      <div>Reportes</div>  
       <div className='container card '>
         <div className='card-body'>
           {
@@ -40,6 +40,7 @@ const ReportesUsuarios = () => {
               return <div key={list.id}>
                 <p>Reporte: {list.descripcionUsuario}</p>
                 <p>Estado: {list.estado}</p>
+                <hr />
               </div>
             })
           }
