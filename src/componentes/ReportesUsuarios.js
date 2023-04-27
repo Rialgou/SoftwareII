@@ -5,11 +5,37 @@ import {collection, getDocs, getDoc, deleteDoc} from 'firebase/firestore'
 import { db } from '../firebaseConfig/firebase'
 
 const ReportesUsuarios = () => {
-  //1 configuracion hooks
+  // id del usuario estandar
+  const usuarioId = "QNUiIgSYQoVpJVD6I2Zm";
+  // configuracion hooks
+  const [listaReportesUsuario, setListaReportesUsuario] =  useState([]);
   const [listaReportes, setListaReportes] = useState( [] );
-  //2 referenciamos a la db firestore
+  // referenciamos a la db firestore
+  const proyectosCollection = collection(db, "proyectos");
   const reportesCollection = collection(db, "reportes");
-  //3 funcion para mostrar todos los docs
+  // funcion para mostrar todos los docs
+  proyectosCollection.where("usuario",  "==", usuarioId).get()
+              .then((querySnapshot) =>{
+                // obtenemos todos los ids asociados al usuario
+                const proyectosIds = [];
+                // almacenamos los ids en un arreglo
+                querySnapshot.forEach((doc) => {
+                  const proyectoID = doc.id;
+                  proyectosIds.push(proyectoID)
+                });
+                //obtenemos los reportes asociados a esos proyectos
+                reportesCollection.where("proyecto", "==", proyectosIds)
+                                  .get()
+                                  .then((querySnapshot) => {
+                                    querySnapshot.forEach((doc) => {
+                                      // Los campos que necesito del reporte
+                                      const reporte = doc.data().descripcionUsuario;
+                                      const estado = doc.data().estado;
+
+                                      console.log(`reporte: ${reporte}, estado: ${estado}`);
+                                    });
+                                  });
+              });
   const getReportes = async() => {
     try{
       const querySnapshot = await getDocs(reportesCollection)
