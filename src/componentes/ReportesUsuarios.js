@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react'
 
 import {Link} from 'react-router-dom'
-import {collection, getDocs, getDoc, deleteDoc} from 'firebase/firestore'
+import {collection,where, query, getDocs, getDoc, get, deleteDoc} from 'firebase/firestore'
 import { db } from '../firebaseConfig/firebase'
 
 const ReportesUsuarios = () => {
@@ -14,7 +14,7 @@ const ReportesUsuarios = () => {
   const proyectosCollection = collection(db, "proyectos");
   const reportesCollection = collection(db, "reportes");
   // funcion para mostrar todos los docs
-  proyectosCollection.where("usuario",  "==", usuarioId).get()
+  /*proyectosCollection.where("usuario",  "==", usuarioId).get()
               .then((querySnapshot) =>{
                 // obtenemos todos los ids asociados al usuario
                 const proyectosIds = [];
@@ -35,7 +35,7 @@ const ReportesUsuarios = () => {
                                       console.log(`reporte: ${reporte}, estado: ${estado}`);
                                     });
                                   });
-              });
+              });*/
   const getReportes = async() => {
     try{
       const querySnapshot = await getDocs(reportesCollection)
