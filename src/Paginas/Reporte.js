@@ -2,18 +2,15 @@
 import React from 'react';
 import BarraLateral from '../componentes/BarraLateral';
 import DynamicCard from '../componentes/DynamicCard';
-import { DatePicker } from '@material-ui/pickers';
 
 import "../hojas-de-estilo/Reporte.css";
 
 import { Container,Row,Col,Badge,Stack,Button} from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
 
 const Reporte = () => {
 
   const {index} = useParams();
-  const[fechaSeleccionada, cambiarFechaSelecionada] = useState(new Date());
 
   return (
     <>  
@@ -59,12 +56,7 @@ const Reporte = () => {
               <Row className='fila-botones '>
                 <Col className='d-flex justify-content-center align-items-center mt-5 '>
                   <Stack direction='horizontal' gap={5}>
-                    <div className = 'contenedor'>
-                    <div className = 'grupo'>
-                    <label>Fecha de entrega</label>
-                    <DatePicker value = {fechaSeleccionada} onChange = {cambiarFechaSelecionada}></DatePicker>
-                    </div>
-                    </div>
+                    <Button className="botones-stack" variant='dark' > Fecha de entrega </Button>
                     <Button className="botones-stack" variant='dark' > Asignar Prioridad </Button>
                   </Stack>
                 </Col>

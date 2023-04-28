@@ -25,6 +25,7 @@ function Home() {
         <div>
           <BarraLateral></BarraLateral>
         </div>
+        
         <Container className="d-flex  my-5 justify-content-center align-items-center ">
           <Row className="mb-3 justify-content-center align-items-center">
             <Col className="">

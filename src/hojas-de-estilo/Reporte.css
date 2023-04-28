@@ -84,37 +84,3 @@
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.89); 
 
 }
-
-.contenedor {
-    max-height: 125px;
-	width: 0%;
-	max-width: 200px;
-	margin: 50px auto;
-	text-align: center;
-	background: #fff;
-	box-shadow: 0px 0px 20px 0px rgba(209, 209, 209, 0.5);
-	padding: 10px;
-	border-radius: 5px;
-	display: flex;
-	gap: 20px;
-}
-
-label {
-    font-family: 'Roboto', sans-serif;
-	width: 100%;
-	font-size: 14px;
-	color:#000000;
-}
-
-.grupo {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-}
-
-.MuiInputBase-input.MuiInput-input {
-	text-align: center;
-	padding: 20px;
-	font-size: 18px;
-	text-transform: uppercase;
-}
