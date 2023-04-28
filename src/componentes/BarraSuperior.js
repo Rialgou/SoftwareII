@@ -1,6 +1,6 @@
 import { Container, Nav, Navbar, NavDropdown, Image ,Stack} from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
-
+import React from 'react';
 import logo from '../Imagenes/logo2.png';
 import '../hojas-de-estilo/BarraSuperior.css';
 

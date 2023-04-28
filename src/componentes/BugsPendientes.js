@@ -1,4 +1,4 @@
-
+import React from 'react';
 import Filtrado from "./Filtrado";
 import Lista from "./Lista"
 

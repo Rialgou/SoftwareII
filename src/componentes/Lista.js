@@ -1,6 +1,6 @@
 import ListGroup from 'react-bootstrap/ListGroup';
 import '../hojas-de-estilo/Lista.css'
-
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import {Link,NavLink} from 'react-router-dom';
@@ -57,7 +57,3 @@ function Lista() {
       };
 
       export default Lista;
-
-
-
-

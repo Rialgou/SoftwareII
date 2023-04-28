@@ -1,5 +1,5 @@
 import './App.css';
-
+import React from 'react';
 import BarraSuperior from './componentes/BarraSuperior';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';

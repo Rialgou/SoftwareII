@@ -1,5 +1,5 @@
 import Carousel from 'react-bootstrap/Carousel';
-
+import React from 'react';
 import { Container,Row,Col,Image } from 'react-bootstrap';
 
 import slide1 from '../Imagenes/reporte.jpg'

@@ -1,5 +1,5 @@
 import "../hojas-de-estilo/Filtrado.css";
-
+import React from 'react';
 import Form from 'react-bootstrap/Form';
 
 function Filtrado() {

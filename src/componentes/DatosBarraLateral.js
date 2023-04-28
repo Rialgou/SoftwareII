@@ -11,13 +11,13 @@ import {FaEnvelopeOpenText} from "react-icons/fa"
 
 export const DatosBarraLateral=[
     {
-        name: "Home",
+        name: "Inicio",
         path: "/Administrador",
         icon: <AiFillHome color = "white"/>
     },
     {
         name: "Reportes",
-        path: "/Administrador",
+        path: "#",
         icon: <IoIosPaper color = "white"/>,
         iconClosed: <RiArrowDownSFill color = "white" />,
         iconOpened: <RiArrowUpSFill color = "white" />,
@@ -29,7 +29,6 @@ export const DatosBarraLateral=[
             },
             {
                 path:"/reporte2",
-                icon1: <BiCircle color = "black"/>,
                 icon:<BsCircleFill color = "red" />,
                 name:"Reporte 2",
             },
@@ -57,7 +56,7 @@ export const DatosBarraLateral=[
         },
         {
         name: 'Mensajes',
-        path: '/Administrador',
+        path: '#',
         icon: <FaEnvelopeOpenText color = "white" />,
         iconClosed: <RiArrowDownSFill color = "white" />,
         iconOpened: <RiArrowUpSFill color = "white" />,
@@ -76,7 +75,7 @@ export const DatosBarraLateral=[
         },
         {
         name: "Equipo",
-        path: "/Administrador",
+        path: "#",
         icon: <RiTeamFill color = "white"/>,
         iconClosed: <RiArrowDownSFill />,
         iconOpened: <RiArrowUpSFill />,
@@ -115,7 +114,7 @@ export const DatosBarraLateral=[
         },
         {
         name: "Soporte",
-        path: "/Administrador",
+        path: "/Soporte",
         icon: <BsFillQuestionCircleFill color = "white"/>,
         }
 ];
