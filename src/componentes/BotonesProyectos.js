@@ -45,6 +45,7 @@ function BotonesProyectos() {
     
     const seleccionarBoton = (indice) => {
         setBotonSeleccionado(indice);
+        proyectoSeleccionado(proyectosData[indice].nombre);
     };
     
     return (

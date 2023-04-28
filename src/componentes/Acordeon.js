@@ -6,16 +6,22 @@ import { useState } from "react";
 import React from 'react';
 import '../hojas-de-estilo/Acordeon.css'
 
-function Acordeon() {
+function Acordeon({ proyectoId, prioridadProyecto, descripcionProyecto }) {
     const [descripcionBug, setDescripcionBug] = useState("");
     const [prioridad, setPrioridad] = useState("");
   
-    const handleDescripcionBugChange = (event) => {
+    const handleDescripcionBug = (event) => {
       setDescripcionBug(event.target.value);
+      descripcionProyecto(event.target.value);
     };
 
-    const handlePriorityChange = (value) => {
+    const handlePriority = (value) => {
       setPrioridad(value);
+      prioridadProyecto(value);
+    };
+
+    const handleProyectSelect = (value) => {
+      proyectoId(value);
     };
   
     return (
@@ -24,7 +30,7 @@ function Acordeon() {
         <Accordion.Item eventKey="0">
           <Accordion.Header>Seleccionar proyecto</Accordion.Header>
           <Accordion.Body>
-              <BotonesProyectos></BotonesProyectos>
+            <BotonesProyectos proyectoSeleccionado={handleProyectSelect}/>
           </Accordion.Body>
         </Accordion.Item>
 
@@ -32,9 +38,9 @@ function Acordeon() {
           <Accordion.Header>Prioridad del proyecto</Accordion.Header>
           <Accordion.Body>
             <ButtonGroup>
-              <Button variant={prioridad === "Baja" ? "success" : "outline-success"} onClick={() =>  handlePriorityChange("Baja")}>Baja</Button>
-              <Button variant={prioridad === "Media" ? "warning" : "outline-warning"} onClick={() =>  handlePriorityChange("Media")}>Media</Button>
-              <Button variant={prioridad === "Alta" ? "danger" : "outline-danger"} onClick={() =>  handlePriorityChange("Alta")}>Alta</Button>
+              <Button variant={prioridad === "Baja" ? "success" : "outline-success"} onClick={() =>  handlePriority("Baja")}>Baja</Button>
+              <Button variant={prioridad === "Media" ? "warning" : "outline-warning"} onClick={() =>  handlePriority("Media")}>Media</Button>
+              <Button variant={prioridad === "Alta" ? "danger" : "outline-danger"} onClick={() =>  handlePriority("Alta")}>Alta</Button>
             </ButtonGroup>
           </Accordion.Body>
         </Accordion.Item>
@@ -44,7 +50,7 @@ function Acordeon() {
           <Accordion.Body>
             <textarea className="caja-texto"
               value={descripcionBug}
-              onChange={handleDescripcionBugChange}
+              onChange={handleDescripcionBug}
               placeholder=" Ingrese descripción del bug"
             />
           </Accordion.Body>

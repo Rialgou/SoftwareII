@@ -1,4 +1,5 @@
 import '../hojas-de-estilo/NuevoReporte.css'
+import { useState } from 'react';
 import { Stack } from 'react-bootstrap';
 import React from 'react';
 import  Button from 'react-bootstrap/Button';
@@ -6,9 +7,41 @@ import Acordeon from '../componentes/Acordeon';
 import BarraLateralUsuario from '../componentes/BarraLateralUsuario';
 
 
-
 function NuevoReporte() {
+  const [datosReporte, setDatosReporte] = useState({
+    proyecto: '',
+    prioridad: '',
+    descripcion: ''
+  });
+
   const handleNewReportClick = () => {
+    console.log(datosReporte);
+
+    if (datosReporte.proyecto.trim().length === 0 || datosReporte.prioridad.trim().length === 0 || datosReporte.descripcion.trim().length === 0) {
+      console.log('No enviar data');
+      alert('Tienes que llenar todos los campos');
+      return;
+    }
+
+    else {
+      console.log('Enviar data');
+      alert('Reporte enviado con éxito!');
+    } 
+  };
+
+  const handleProyect = (proyecto) => {
+    console.log(`NuevoReporte botón seleccionado: ${proyecto}`);
+    setDatosReporte(prevState => ({...prevState, proyecto}));
+  };
+
+  const handlePriority = (prioridad) => {
+    console.log(`NuevoReporte prioridad seleccionado: ${prioridad}`);
+    setDatosReporte(prevState => ({...prevState, prioridad}));
+  };
+
+  const handleDescripcion = (descripcion) => {
+    console.log(`NuevoReporte descripción: ${descripcion}`);
+    setDatosReporte(prevState => ({...prevState, descripcion}));
   };
 
   return (
@@ -22,7 +55,11 @@ function NuevoReporte() {
         </div>
 
         <div className="mx-auto acordeon">
-          <Acordeon></Acordeon>
+          <Acordeon 
+            proyectoId={handleProyect} 
+            prioridadProyecto={handlePriority} 
+            descripcionProyecto={handleDescripcion}
+            />
         </div>
 
         <div className="contenedor-boton">

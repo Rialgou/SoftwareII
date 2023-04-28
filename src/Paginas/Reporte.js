@@ -2,6 +2,8 @@
 import React from 'react';
 import BarraLateral from '../componentes/BarraLateral';
 import DynamicCard from '../componentes/DynamicCard';
+import { DatePicker } from '@material-ui/pickers';
+import PrioridadButton from '../componentes/PrioridadButton';
 
 import "../hojas-de-estilo/Reporte.css";
 
@@ -62,7 +64,7 @@ const Reporte = () => {
                     <DatePicker value = {fechaSeleccionada} onChange = {cambiarFechaSelecionada}></DatePicker>
                     </div>
                     </div>
-                    <Button className="botones-stack" variant='dark' > Asignar Prioridad </Button>
+                    <PrioridadButton></PrioridadButton>
                   </Stack>
                 </Col>
               </Row>
