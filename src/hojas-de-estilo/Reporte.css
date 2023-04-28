@@ -85,9 +85,9 @@
 
 }
 
-.contenedor {
+.contiene {
     max-height: 125px;
-	width: 0%;
+	width: 90%;
 	max-width: 200px;
 	margin: 50px auto;
 	text-align: center;

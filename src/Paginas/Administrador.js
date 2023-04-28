@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import RadioButton from '../componentes/RadioButton'
 import BarraLateral from '../componentes/BarraLateral';

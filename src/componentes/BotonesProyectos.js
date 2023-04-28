@@ -1,5 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import { useState } from "react";
+import React from 'react';
 import '../hojas-de-estilo/BotonesProyectos.css';
 
 function BotonesProyectos({ proyectoSeleccionado }) {
