@@ -1,6 +1,6 @@
 .filtrado
 {
-    width: 350px;
+    width: 350px !important;
     font-weight: 100 !important;
     text-align: left;
     text-indent: 10px;

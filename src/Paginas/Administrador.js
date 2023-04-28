@@ -10,6 +10,8 @@ import { Container, Row, Col , Badge } from 'react-bootstrap';
 
 import { useState } from 'react';
 
+import "../hojas-de-estilo/Administrador.css"
+
 function Home() {
 
   const [radioValue, setRadioValue] = useState('1');
@@ -33,13 +35,13 @@ function Home() {
                 ></RadioButton>
             </Col>
             {showCol && radioValue === '1' && (
-            <Col className="mx-5">
+            <Col className="mx-5  columna-derecha">
               <BugsPendientes></BugsPendientes>
             </Col>
              )}
              {showCol && radioValue === '2' && (
-              <Col className='mx-5'>
-                <h2>hola </h2>
+              <Col className='mx-5  columna-derecha '>
+                <h2>hola dasoijhdiuashuidhasuih </h2>
               </Col>
             )}
           </Row>

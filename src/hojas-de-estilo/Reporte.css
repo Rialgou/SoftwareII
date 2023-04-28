@@ -1,0 +1,86 @@
+.contenedorReporte
+{
+    min-height: 100vh;
+    min-width: 90vw;
+    
+}
+
+
+.filaReporte
+{
+
+    min-height: 100vh;
+    min-width: 100vh;
+}
+
+.columnasReportes1
+{
+    min-height: 120vh;
+    min-width: 50vh;
+
+}
+
+.columnasReportes2
+{
+    min-height: 120vh;
+    min-width: 50vh;
+}
+
+
+
+.probar-contenedor
+{
+    background-color:rgba(250, 250, 250, 0.377);
+    min-height: 65vh;
+    min-width: 65vh;
+    border-radius: 30px;
+    border: 2px solid black; 
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25); 
+}
+
+
+.botones-stack
+{
+    height: 5vh;
+    width: 30vh !important;
+    border-radius: 30px;
+    border: 2px solid black; 
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.89); 
+
+}
+
+.contenedor-formulario {
+  border-radius: 30px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.89);
+  background-color: rgba(250, 250, 250, 0.377);
+  }
+  
+  
+
+  
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+
+.fila-botones
+{
+    margin-top: 9vh !important;
+}
+
+
+
+.botones-stack2
+{
+    height: 5vh;
+    width: 30vh !important;
+    border-radius: 30px;
+    border: 2px solid black; 
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.89); 
+
+}

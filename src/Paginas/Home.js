@@ -34,12 +34,12 @@ const Home = () => {
 
       <Row className="justify-content-md-center mt-3 mb-5 ">
         <Col md="auto">
-          <Button variant= "light" className='botones-0' onClick={handleAdminButtonClick}>
+          <Button variant= "primary" className='botones-0' onClick={handleAdminButtonClick}>
             Administrador
           </Button>
         </Col>
         <Col md="auto">
-          <Button variant="secondary" className='botones-0' onClick={handleUserButtonClick}>
+          <Button variant="success" className='botones-0' onClick={handleUserButtonClick}>
             Usuario
           </Button>
         </Col>

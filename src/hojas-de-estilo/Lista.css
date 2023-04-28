@@ -1,9 +1,17 @@
-.lista
+.item
 {
-    border-radius: 15px;
+ flex-basis: calc(50% - 0.0rem); /* 1rem es el margen que quieres mantener entre los elementos */
+ height: 70px;
+ text-align:center;
+ flex-grow: 1;
+
+white-space: nowrap;
+text-overflow: ellipsis;    
 }
 
-.lista-item
-{
-    margin-bottom: 1rem;
+
+.list-item-container {
+  display: flex;
+  border-radius: 30px;
+  justify-content: space-between;
 }
