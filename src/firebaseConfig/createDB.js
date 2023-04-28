@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app'
 import { getFirestore, collection, addDoc, Timestamp, doc } from 'firebase/firestore'
 
-const firebaseConfig = {
+/*const firebaseConfig = {
   apiKey: "AIzaSyDPw3eRrfQ1GxP2-AxEap7CxyUKio4zdbA",
   authDomain: "softwareii-5cc9f.firebaseapp.com",
   databaseURL: "https://softwareii-5cc9f-default-rtdb.firebaseio.com",
@@ -10,6 +10,17 @@ const firebaseConfig = {
   messagingSenderId: "669859230842",
   appId: "1:669859230842:web:673a67e098c264ab31f7c3",
   measurementId: "G-XCHL4L7892"
+};
+*/
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB-Gd3NiRsil56lC_T9atUefC8Yv4rRzUY",
+  authDomain: "softwareii-efe38.firebaseapp.com",
+  projectId: "softwareii-efe38",
+  storageBucket: "softwareii-efe38.appspot.com",
+  messagingSenderId: "494819549074",
+  appId: "1:494819549074:web:8a41fa1681b49fe3dfeb4b",
+  measurementId: "G-XXDZ8FMPB1"
 };
 
 const firebaseApp = initializeApp(firebaseConfig)
