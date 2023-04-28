@@ -1,5 +1,6 @@
 import Button from 'react-bootstrap/Button';
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import React from 'react';
 import '../hojas-de-estilo/BotonesProyectos.css';
 import {db} from '../firebaseConfig/firebase'
 import {collection, getDocs, getDoc, doc, deleteDoc, query, where} from 'firebase/firestore'
@@ -45,7 +46,6 @@ function BotonesProyectos() {
     
     const seleccionarBoton = (indice) => {
         setBotonSeleccionado(indice);
-        proyectoSeleccionado(proyectosData[indice].nombre);
     };
     
     return (
