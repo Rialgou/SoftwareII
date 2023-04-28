@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react'
 
 import {Link} from 'react-router-dom'
-import {collection,where, query, getDocs, getDoc, get, deleteDoc} from 'firebase/firestore'
+import {collection, getDocs, getDoc, deleteDoc, query, where} from 'firebase/firestore'
 import { db } from '../firebaseConfig/firebase'
 
 const ReportesUsuarios = () => {
@@ -14,28 +14,14 @@ const ReportesUsuarios = () => {
   const proyectosCollection = collection(db, "proyectos");
   const reportesCollection = collection(db, "reportes");
   // funcion para mostrar todos los docs
-  /*proyectosCollection.where("usuario",  "==", usuarioId).get()
-              .then((querySnapshot) =>{
-                // obtenemos todos los ids asociados al usuario
-                const proyectosIds = [];
-                // almacenamos los ids en un arreglo
-                querySnapshot.forEach((doc) => {
-                  const proyectoID = doc.id;
-                  proyectosIds.push(proyectoID)
-                });
-                //obtenemos los reportes asociados a esos proyectos
-                reportesCollection.where("proyecto", "==", proyectosIds)
-                                  .get()
-                                  .then((querySnapshot) => {
-                                    querySnapshot.forEach((doc) => {
-                                      // Los campos que necesito del reporte
-                                      const reporte = doc.data().descripcionUsuario;
-                                      const estado = doc.data().estado;
-
-                                      console.log(`reporte: ${reporte}, estado: ${estado}`);
-                                    });
-                                  });
-              });*/
+  /*const getReportesUsuario = async() => {
+    try{
+      const proyectosFiltrados = await query(proyectosCollection, where("usuario", "==", usuarioId))
+      console.log(proyectosFiltrados)
+    }catch(error){
+      console.log(error)
+    }
+  }*/
   const getReportes = async() => {
     try{
       const querySnapshot = await getDocs(reportesCollection)
