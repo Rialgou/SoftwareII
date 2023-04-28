@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import BarraLateralUsuario from '../componentes/BarraLateralUsuario';
 import {Button, Container} from 'react-bootstrap';
 import ReportesUsuarios from '../componentes/ReportesUsuarios';
@@ -6,6 +7,11 @@ import { Row, Col } from 'react-bootstrap';
 
 
 function Usuario() {
+    const navigate = useNavigate();
+    
+    const handleNewReportClick = () => {
+        navigate('/usuario/reporte');
+    };
   
     return (
         <main>
@@ -17,7 +23,7 @@ function Usuario() {
                     <ReportesUsuarios></ReportesUsuarios>
                     <Col className='' >
                         <Row className='mt-5 d-flex justify-content-end align-items-end mx-1'>
-                            <Button className="botones-stack" variant='dark'>Enviar Reporte +</Button>
+                            <Button className="botones-stack" variant='dark' onClick={handleNewReportClick}>Enviar Reporte +</Button>
                         </Row>
                     </Col>
                 </Row>    

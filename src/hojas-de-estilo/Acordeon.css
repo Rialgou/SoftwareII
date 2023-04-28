@@ -1,0 +1,13 @@
+.acordeon {
+    margin-top: 20px;
+    width: 80%;
+}
+
+.accordion-button {
+    font-weight: bold;
+}
+
+.caja-texto {
+    width: 100%;
+    height: 200px;
+}
