@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import { useState } from "react";
 import '../hojas-de-estilo/BotonesProyectos.css';
 
-function BotonesProyectos() {
+function BotonesProyectos({ proyectoSeleccionado }) {
 
     const proyectosData = [
         {nombre: "QuickCalc"},
@@ -21,6 +21,7 @@ function BotonesProyectos() {
 
     const seleccionarBoton = (indice) => {
         setBotonSeleccionado(indice);
+        proyectoSeleccionado(proyectosData[indice].nombre);
     };
 
     return (
