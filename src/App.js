@@ -13,6 +13,7 @@ import AcercaDeNosotros from './Paginas/AcercaDeNosotros';
 import Usuario from './Paginas/Usuario';
 import Administrador from './Paginas/Administrador';
 import Reporte from './Paginas/Reporte';
+import NuevoReporte from './Paginas/NuevoReporte'
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="/administrador" element={<Administrador/>} />
             <Route path='/administrador/:index' element={<Reporte></Reporte>} />
             <Route path="/Usuario" element={<Usuario/>} />
+            <Route path="/usuario/reporte" element={<NuevoReporte/>} />
           </Routes>
         </main>
       </Router>

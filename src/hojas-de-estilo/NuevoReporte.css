@@ -1,0 +1,24 @@
+  .contenido-principal{
+    height: 0;
+  }
+
+  .titulo
+  {
+    margin-top: 50px;
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: #0D090A;
+  }
+
+  .boton-enviar {
+    margin-top: 10px;
+    align-self: flex-end;
+    width: 250px;
+    /* border-radius: 40px;  */
+  }
+
+.contenedor-boton {
+    display: flex;
+    flex-direction: column;
+    margin-right: 210px;
+}
