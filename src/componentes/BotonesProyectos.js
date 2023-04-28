@@ -1,5 +1,5 @@
 import Button from 'react-bootstrap/Button';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import '../hojas-de-estilo/BotonesProyectos.css';
 import {db} from '../firebaseConfig/firebase'
 import {collection, getDocs, getDoc, doc, deleteDoc, query, where} from 'firebase/firestore'
