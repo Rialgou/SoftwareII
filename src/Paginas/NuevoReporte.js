@@ -1,5 +1,6 @@
 import '../hojas-de-estilo/NuevoReporte.css'
 import { Stack } from 'react-bootstrap';
+import React from 'react';
 import  Button from 'react-bootstrap/Button';
 import Acordeon from '../componentes/Acordeon';
 import BarraLateralUsuario from '../componentes/BarraLateralUsuario';

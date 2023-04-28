@@ -59,7 +59,7 @@ const Reporte = () => {
               <Row className='fila-botones '>
                 <Col className='d-flex justify-content-center align-items-center mt-5 '>
                   <Stack direction='horizontal' gap={5}>
-                    <div className = 'contenedor'>
+                    <div className = 'contiene'>
                     <div className = 'grupo'>
                     <label>Fecha de entrega</label>
                     <DatePicker value = {fechaSeleccionada} onChange = {cambiarFechaSelecionada}></DatePicker>
