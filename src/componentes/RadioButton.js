@@ -1,6 +1,5 @@
 import {ButtonGroup, Container, Row, Col,ToggleButton } from 'react-bootstrap';
 import '../hojas-de-estilo/RadioButton.css';
-import React from 'react';
 
 
 function RadioButton({radioValue,setRadioValue}) {
@@ -15,7 +14,7 @@ function RadioButton({radioValue,setRadioValue}) {
   ];
 
   return (
-    <Container  className="d-flex justify-content-center align-items-center contenedor">
+    <Container  className="d-flex justify-content-center align-items-center contenedor-botones">
       <Row className="justify-content-center">
         <Col> 
           <ButtonGroup vertical>

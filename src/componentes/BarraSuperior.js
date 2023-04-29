@@ -1,10 +1,15 @@
+
 import { Container, Nav, Navbar, NavDropdown, Image ,Stack} from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
-import React from 'react';
+
+
 import logo from '../Imagenes/logo2.png';
 import '../hojas-de-estilo/BarraSuperior.css';
 
-const BarraSuperior = () => {
+
+
+
+const BarraSuperior = ({administrador}) => {
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -23,9 +28,9 @@ const BarraSuperior = () => {
             <Stack direction='horizontal' gap={5}>
             <Nav className="Barra-usuario">
               <Image src={logo} alt='imagen-logo' className='logo' roundedCircle ></Image>
-              <NavDropdown title={"Jose Toledo"} id="collasible-nav-dropdown">
-                <NavDropdown.Item as={NavLink} to="/historial-cuenta">
-                  Historial cuenta
+              <NavDropdown title={administrador.nombre} id="collasible-nav-dropdown">
+                <NavDropdown.Item as={NavLink} to="/Cuenta">
+                  Cuenta
                 </NavDropdown.Item>
                 <NavDropdown.Item as={NavLink} to="/ajustes">
                   Ajustes

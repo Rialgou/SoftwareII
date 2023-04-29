@@ -1,17 +1,7 @@
+/*
+
 import { initializeApp } from 'firebase/app'
 import { getFirestore, collection, addDoc, Timestamp, doc } from 'firebase/firestore'
-
-/*const firebaseConfig = {
-  apiKey: "AIzaSyDPw3eRrfQ1GxP2-AxEap7CxyUKio4zdbA",
-  authDomain: "softwareii-5cc9f.firebaseapp.com",
-  databaseURL: "https://softwareii-5cc9f-default-rtdb.firebaseio.com",
-  projectId: "softwareii-5cc9f",
-  storageBucket: "softwareii-5cc9f.appspot.com",
-  messagingSenderId: "669859230842",
-  appId: "1:669859230842:web:673a67e098c264ab31f7c3",
-  measurementId: "G-XCHL4L7892"
-};
-*/
 
 const firebaseConfig = {
   apiKey: "AIzaSyB-Gd3NiRsil56lC_T9atUefC8Yv4rRzUY",
@@ -594,3 +584,6 @@ async function addReportes() {
   console.log('Documentos agregados a la colección de usuarios con los IDs:', reporte1Doc.id, reporte2Doc.id, reporte3Doc.id, reporte4Doc.id,  reporte5Doc.id, reporte6Doc.id, reporte7Doc.id, reporte8Doc.id);
 }
 addReportes();
+
+
+*/

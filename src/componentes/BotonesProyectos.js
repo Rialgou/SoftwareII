@@ -1,9 +1,12 @@
+
+
 import Button from 'react-bootstrap/Button';
 import { useState, useEffect } from "react";
-import React from 'react';
+
 import '../hojas-de-estilo/BotonesProyectos.css';
-import {db} from '../firebaseConfig/firebase'
-import {collection, getDocs, getDoc, doc, deleteDoc, query, where} from 'firebase/firestore'
+import {getFirestore,collection, getDocs, getDoc, doc, deleteDoc, query, where} from 'firebase/firestore'
+
+const db = getFirestore()
 
 function BotonesProyectos() {
     //id del usuario
@@ -25,6 +28,9 @@ function BotonesProyectos() {
         {nombre: "QuickCalc"},
         {nombre: "CleanSweep"},
     ];*/
+
+
+    
         
     const getProyectos = async() => {
         try{
@@ -65,4 +71,5 @@ function BotonesProyectos() {
 }
 
 export default BotonesProyectos;
+
 

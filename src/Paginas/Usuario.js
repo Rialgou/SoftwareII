@@ -1,9 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import BarraLateralUsuario from '../componentes/BarraLateralUsuario';
-import {Button, Container} from 'react-bootstrap';
 import ReportesUsuarios from '../componentes/ReportesUsuarios';
-import React from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col,Button,Container } from 'react-bootstrap';
 
 
 function Usuario() {
