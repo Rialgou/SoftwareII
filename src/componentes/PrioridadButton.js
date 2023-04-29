@@ -1,5 +1,5 @@
 import Dropdown from "react-bootstrap/Dropdown";
-
+import React from "react";
 import "../hojas-de-estilo/PrioridadButton.css";
 
 function PrioridadButton() {

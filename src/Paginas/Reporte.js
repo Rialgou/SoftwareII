@@ -1,10 +1,9 @@
-
 import React from 'react';
 import BarraLateral from '../componentes/BarraLateral';
 import DynamicCard from '../componentes/DynamicCard';
 import { DatePicker } from '@material-ui/pickers';
 import PrioridadButton from '../componentes/PrioridadButton';
-
+import { useEffect, useState } from 'react';
 import "../hojas-de-estilo/Reporte.css";
 
 import { Container,Row,Col,Badge,Stack,Button} from 'react-bootstrap';
@@ -13,7 +12,8 @@ import { useParams } from 'react-router-dom';
 const Reporte = () => {
 
   const {index} = useParams();
-
+  const[fechaSeleccionada, cambiarFechaSelecionada] = useState(new Date());
+  
   return (
     <>  
       <div>
