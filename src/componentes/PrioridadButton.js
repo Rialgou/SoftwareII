@@ -6,7 +6,7 @@ function PrioridadButton() {
   return (
     <Dropdown size="lg">
       <Dropdown.Toggle
-        variant="success"
+        variant="dark"
         id="dropdown-basic"
         className="PrioridadButton"
       >

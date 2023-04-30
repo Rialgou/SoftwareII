@@ -119,3 +119,27 @@ export const getReportesUsuario = async(usuarioId) => {
   }
 }
 
+// obtener datos reporte dado un id
+export const obtenerDatosReporte = async (reporteId) => {
+    try {
+
+        const db = getFirestore();
+
+        const referenciaReporte = doc(db,'reportes',reporteId);
+
+        const reporteSnapshot = await getDoc(referenciaReporte);
+
+        if(reporteSnapshot.exists()){
+              // Si el documento existe, retorna un objeto con los datos del administrador y su ID.
+              return {  id: reporteSnapshot.id, ...reporteSnapshot.data()};
+            } else {
+                // Si el documento no existe, retorna un objeto vacío.
+                return {};
+            }
+        } catch (error) { // Captura cualquier error que pueda ocurrir durante la ejecución.
+            console.log(error); // Muestra el error en la consola.
+            return {}; // Retorna un objeto vacío en caso de error.
+        }
+    };
+
+

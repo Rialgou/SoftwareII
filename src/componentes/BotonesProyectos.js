@@ -31,7 +31,7 @@ function BotonesProyectos() {
 
 
     
-        
+      
     const getProyectos = async() => {
         try{
             const proyectosQuery = query(collection(db,"proyectos"), where("usuario","==",referenciaUsuario));

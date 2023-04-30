@@ -3,7 +3,7 @@
 import React from 'react';
 import BarraLateral from '../componentes/BarraLateral';
 import DynamicCard from '../componentes/DynamicCard';
-//import { DatePicker } from '@material-ui/pickers';
+import { DatePicker } from '@material-ui/pickers';
 import PrioridadButton from '../componentes/PrioridadButton';
 import { useEffect, useState } from 'react';
 import "../hojas-de-estilo/Reporte.css";
@@ -11,10 +11,34 @@ import "../hojas-de-estilo/Reporte.css";
 import { Container,Row,Col,Badge,Stack,Button} from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 
+import {obtenerDatosReporte} from '../Funciones/consultas';
+
 const Reporte = () => {
 
-  const {index} = useParams();
-  //const[fechaSeleccionada, cambiarFechaSelecionada] = useState(new Date());
+  const {id} = useParams();
+
+  const  [fechaSeleccionada, cambiarFechaSelecionada] = useState(new Date());
+
+  const [reporte,setReporte] = useState(0);
+
+
+ 
+  const getReportesAdministrador = async (id) => {
+    try {
+      const reporte = await obtenerDatosReporte(id);
+      setReporte(reporte);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+  useEffect(() => {
+    console.log({id})
+    getReportesAdministrador(id);
+  }, []);
+  
+ 
   
   return (
     <>  
@@ -29,7 +53,7 @@ const Reporte = () => {
             <Container className=' contenedor-isquierdo mx-3 mt-4 mb-4 '>
               <Row>
                 <Col className='justify-content-center align-items-center mt-4 mx-2 mb-5'>
-                  <h1> <Badge bg='dark'> Reporte {index.at(7)} </Badge></h1>
+                  <h1> <Badge bg='dark'> Reporte {id} </Badge></h1>
                 </Col>
               </Row>
 
@@ -44,7 +68,11 @@ const Reporte = () => {
                   <Container className='d-flex probar-contenedor h-100 w-50  '>
                     <Row>
                       <Col>
-                        <h1>DIUAHSDUISA</h1>
+                        <h1>{reporte.estado}</h1>
+                        <h2>{reporte.descripcionUsuario}          </h2>
+                        <h3>  {reporte.prioridad}        </h3>
+                        <h4>          </h4>
+                        <h5>          </h5>
 
                       </Col>
                     </Row>
@@ -63,7 +91,7 @@ const Reporte = () => {
                     <div className = 'contiene'>
                     <div className = 'grupo'>
                     <label>Fecha de entrega</label>
-                  {/*  <DatePicker value = {fechaSeleccionada} onChange = {cambiarFechaSelecionada}></DatePicker>  */}
+                    <DatePicker value = {fechaSeleccionada} onChange = {cambiarFechaSelecionada}></DatePicker>  
                     </div>
                     </div>
                     <PrioridadButton></PrioridadButton>

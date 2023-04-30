@@ -54,7 +54,7 @@ function App() {
             <Route path="/salir-cuenta" element={<SalirCuenta />} />
             <Route path="/acerca-de-nosotros" element={<AcercaDeNosotros />} />
             <Route path="/administrador" element={<Administrador/>} />
-            <Route path='/administrador/:index' element={<Reporte></Reporte>} />
+            <Route path='/administrador/:id' element={<Reporte></Reporte>} />
             <Route path="/Usuario" element={<Usuario/>} />
             <Route path="/usuario/reporte" element= {<NuevoReporte></NuevoReporte>} />
           </Routes>

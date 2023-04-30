@@ -3,11 +3,9 @@ import '../hojas-de-estilo/Lista.css'
 
 import { useNavigate } from 'react-router-dom';
 
-
-
 import { useState,useEffect } from 'react';
 
-import {Link,NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import { obtenerReportesAdministrador } from '../Funciones/consultas';
 
@@ -44,16 +42,16 @@ function Lista({listaReportesAdministrador}) {
 
  
 
-  const rutaReporte = (index) => {
-    return `/administrador/reporte${index + 1}`;
+  const rutaReporte = (id) => {
+    return `/administrador/${id}`;
   };
 
 
   return (
     <>
-      {listaReportes.map(({prioridad,fechaEmision,descripcionUsuario} , index ) => (
+      {listaReportes.map(({prioridad,fechaEmision,descripcionUsuario,id} , index ) => (
         <ListGroup border  key ={index} horizontal={"lg"} className="my-2 list-item-container"  >
-          <ListGroup.Item  as={Link} to={rutaReporte(index)} className=" mt-2 mb-2 item" variant="warning" >
+          <ListGroup.Item  as={Link} to={rutaReporte(id)} className=" mt-2 mb-2 item" variant="warning" >
             Bug {index+1}
           </ListGroup.Item>
           <ListGroup.Item className="mt-2 mb-2 item"  variant="light"  >
