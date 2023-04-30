@@ -1,4 +1,4 @@
-
+/*
 
 import Button from 'react-bootstrap/Button';
 import { useState, useEffect } from "react";
@@ -30,7 +30,7 @@ function BotonesProyectos() {
     ];*/
 
 
-    
+    /*
       
     const getProyectos = async() => {
         try{
@@ -73,3 +73,4 @@ function BotonesProyectos() {
 export default BotonesProyectos;
 
 
+*/
