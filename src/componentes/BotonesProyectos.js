@@ -1,17 +1,14 @@
-/*
-
 import Button from 'react-bootstrap/Button';
 import { useState, useEffect } from "react";
 
 import '../hojas-de-estilo/BotonesProyectos.css';
-import {getFirestore,collection, getDocs, getDoc, doc, deleteDoc, query, where} from 'firebase/firestore'
+import { getProyectosUsuario } from '../Funciones/consultas';
 
-const db = getFirestore()
+
 
 function BotonesProyectos() {
     //id del usuario
     const usuarioId = "umlvgp6OkqUwNtDeh1aA";
-    const referenciaUsuario = doc(db,'usuarios',usuarioId)
     // hooks
     const [proyectosData, setProyectosData] = useState([]);
     const [botonSeleccionado, setBotonSeleccionado] = useState([]);
@@ -29,25 +26,13 @@ function BotonesProyectos() {
         {nombre: "CleanSweep"},
     ];*/
 
-
-    /*
-      
-    const getProyectos = async() => {
-        try{
-            const proyectosQuery = query(collection(db,"proyectos"), where("usuario","==",referenciaUsuario));
-            const proyectosQuerySnapshot = await getDocs(proyectosQuery);
-            const proyectos = [];
-            proyectosQuerySnapshot.forEach((doc) => {
-                proyectos.push({...doc.data(), id:doc.id});
-            });
-                
-            setProyectosData(proyectos);
-        }catch(error){
-            console.log(error)
-        }
-    };
     useEffect(() =>{
-        getProyectos();
+        const fetchData = async () =>{
+            const proyectosUsuario = await getProyectosUsuario(usuarioId);
+            setProyectosData(proyectosUsuario);
+        };
+
+        fetchData();
     },[proyectosData]);
     
     const seleccionarBoton = (indice) => {
@@ -71,6 +56,3 @@ function BotonesProyectos() {
 }
 
 export default BotonesProyectos;
-
-
-*/

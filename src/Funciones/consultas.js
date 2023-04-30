@@ -118,6 +118,26 @@ export const getReportesUsuario = async(usuarioId) => {
     console.log(error)
   }
 }
+// obtener proyectos correspondientes a un usuario
+export const getProyectosUsuario = async(usuarioId) => {
+    try{
+        const db = getFirestore();
+
+        const referenciaUsuario = doc(db,'usuarios',usuarioId)
+
+        const proyectosQuery = query(collection(db,"proyectos"), where("usuario","==",referenciaUsuario));
+        const proyectosQuerySnapshot = await getDocs(proyectosQuery);
+        const proyectos = [];
+        proyectosQuerySnapshot.forEach((doc) => {
+            proyectos.push({...doc.data(), id:doc.id});
+        });
+    
+        return(proyectos)
+    }catch(error){
+        console.log(error)
+        return {};
+    }
+};
 
 // obtener datos reporte dado un id
 export const obtenerDatosReporte = async (reporteId) => {

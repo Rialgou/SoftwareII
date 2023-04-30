@@ -1,6 +1,3 @@
-
-
-
 import { initializeApp } from "firebase/app";
 
 
@@ -16,4 +13,4 @@ const firebaseConfig = {
 // Initialize Firebase
 
 // Initialize Firebase
- initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
