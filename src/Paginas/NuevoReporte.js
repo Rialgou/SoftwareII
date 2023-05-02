@@ -27,7 +27,6 @@ function NuevoReporte() {
     else {
       console.log('Enviar data');
       await enviarReporteUsuario(datosReporte);
-      alert('Reporte enviado con éxito!');
     } 
   };
 

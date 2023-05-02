@@ -1,5 +1,5 @@
 // Importa las funciones necesarias de la biblioteca Firestore de Firebase.
-import { getFirestore, doc, getDoc, collection, query, where, getDocs, Timestamp } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, collection, query, where, getDocs, Timestamp, serverTimestamp, addDoc } from 'firebase/firestore';
 
 // Función asíncrona para obtener todos los reportes asociados a los proyectos de un administrador específico.
 export const obtenerReportesAdministrador = async (administradorId) => {
@@ -145,13 +145,25 @@ export const enviarReporteUsuario = async(datosReporte) => {
 
         const referenciaProyecto = doc(db,'proyectos',datosReporte.proyecto);
         
-        const ProyectoSnapshot = await getDoc(referenciaProyecto);
+        let prioridad;
+        if(datosReporte.prioridad === "Baja") prioridad = 1;
+        else if(datosReporte.prioridad === "Media") prioridad = 5;
+        else if(datosReporte.prioridad === "Alta") prioridad = 10;
 
-        console.log(ProyectoSnapshot.data());
-
-
+        const reporteData ={
+            depurador: '',
+            descripcionAdministrador: '',
+            descripcionUsuario: datosReporte.descripcion,
+            estado: 1,
+            fechaEmision: serverTimestamp(),
+            prioridad: prioridad,
+            proyecto: referenciaProyecto
+        };
+        await addDoc(collection(db,"reportes"), reporteData);
+        alert("reporte enviado con éxito!");
     }catch(error){
         console.log(error);
+        alert("error en enviar el reporte");
     }
 }
 
