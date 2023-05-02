@@ -1,5 +1,5 @@
 // Importa las funciones necesarias de la biblioteca Firestore de Firebase.
-import { getFirestore, doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, collection, query, where, getDocs, Timestamp } from 'firebase/firestore';
 
 // Función asíncrona para obtener todos los reportes asociados a los proyectos de un administrador específico.
 export const obtenerReportesAdministrador = async (administradorId) => {

@@ -6,7 +6,7 @@ import { getProyectosUsuario } from '../Funciones/consultas';
 
 
 
-function BotonesProyectos() {
+function BotonesProyectos({ seleccionarProyecto }) {
     //id del usuario
     const usuarioId = "umlvgp6OkqUwNtDeh1aA";
     // hooks
@@ -37,6 +37,7 @@ function BotonesProyectos() {
     
     const seleccionarBoton = (indice) => {
         setBotonSeleccionado(indice);
+        seleccionarProyecto(indice);
     };
     
     return (

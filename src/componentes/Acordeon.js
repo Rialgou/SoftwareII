@@ -9,7 +9,7 @@ import '../hojas-de-estilo/Acordeon.css'
 function Acordeon({ proyectoId, prioridadProyecto, descripcionProyecto }) {
     const [descripcionBug, setDescripcionBug] = useState("");
     const [prioridad, setPrioridad] = useState("");
-  
+
     const handleDescripcionBug = (event) => {
       setDescripcionBug(event.target.value);
       descripcionProyecto(event.target.value);
@@ -20,8 +20,9 @@ function Acordeon({ proyectoId, prioridadProyecto, descripcionProyecto }) {
       prioridadProyecto(value);
     };
 
-    const handleProyectSelect = (value) => {
-      proyectoId(value);
+    const handleProyectSelect = (id) => {
+      console.log(id);
+      //proyectoId(id);
     };
   
     return (
@@ -30,7 +31,7 @@ function Acordeon({ proyectoId, prioridadProyecto, descripcionProyecto }) {
         <Accordion.Item eventKey="0">
           <Accordion.Header>Seleccionar proyecto</Accordion.Header>
           <Accordion.Body>
-            <BotonesProyectos proyectoSeleccionado={handleProyectSelect}/>
+            <BotonesProyectos seleccionarProyecto={handleProyectSelect} />
           </Accordion.Body>
         </Accordion.Item>
 
