@@ -22,7 +22,7 @@ function Acordeon({ proyectoId, prioridadProyecto, descripcionProyecto }) {
 
     const handleProyectSelect = (id) => {
       console.log(id);
-      //proyectoId(id);
+      proyectoId(id);
     };
   
     return (

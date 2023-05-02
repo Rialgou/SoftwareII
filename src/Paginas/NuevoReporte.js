@@ -5,6 +5,7 @@ import React from 'react';
 import  Button from 'react-bootstrap/Button';
 import Acordeon from '../componentes/Acordeon';
 import BarraLateralUsuario from '../componentes/BarraLateralUsuario';
+import { enviarReporteUsuario } from '../Funciones/consultas';
 
 
 function NuevoReporte() {
@@ -14,9 +15,9 @@ function NuevoReporte() {
     descripcion: ''
   });
 
-  const handleNewReportClick = () => {
+  const handleNewReportClick = async () => {
     console.log(datosReporte);
-
+  
     if (datosReporte.proyecto.trim().length === 0 || datosReporte.prioridad.trim().length === 0 || datosReporte.descripcion.trim().length === 0) {
       console.log('No enviar data');
       alert('Tienes que llenar todos los campos');
@@ -25,6 +26,7 @@ function NuevoReporte() {
 
     else {
       console.log('Enviar data');
+      await enviarReporteUsuario(datosReporte);
       alert('Reporte enviado con éxito!');
     } 
   };

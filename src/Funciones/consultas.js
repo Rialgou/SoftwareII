@@ -139,6 +139,22 @@ export const getProyectosUsuario = async(usuarioId) => {
     }
 };
 
+export const enviarReporteUsuario = async(datosReporte) => {
+    try{
+        const db = getFirestore();
+
+        const referenciaProyecto = doc(db,'proyectos',datosReporte.proyecto);
+        
+        const ProyectoSnapshot = await getDoc(referenciaProyecto);
+
+        console.log(ProyectoSnapshot.data());
+
+
+    }catch(error){
+        console.log(error);
+    }
+}
+
 // obtener datos reporte dado un id
 export const obtenerDatosReporte = async (reporteId) => {
     try {
