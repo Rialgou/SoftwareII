@@ -1,22 +1,22 @@
 import Dropdown from "react-bootstrap/Dropdown";
 import React from "react";
 import "../hojas-de-estilo/PrioridadButton.css";
+import "../hojas-de-estilo/Reporte.css";
 
 function PrioridadButton() {
   return (
-    <Dropdown size="lg">
+    <Dropdown >
       <Dropdown.Toggle
         variant="dark"
-        id="dropdown-basic"
-        className="PrioridadButton"
+        className="botones"
       >
-        Prioridad de Bug
-      </Dropdown.Toggle>
+        Asignar Prioridad
+      </Dropdown.Toggle >
 
-      <Dropdown.Menu>
-        <Dropdown.Item onClick={function () {}} href="#/action-1">Alta</Dropdown.Item>
-        <Dropdown.Item onClick={function () {}} href="#/action-2">Media</Dropdown.Item>
-        <Dropdown.Item onClick={function () {}} href="#/action-3">Baja</Dropdown.Item>
+      <Dropdown.Menu variant="dark">
+        <Dropdown.Item  className = "casa" onClick={function () {}} href="#/action-1">Alta</Dropdown.Item>
+        <Dropdown.Item className = "casa" onClick={function () {}} href="#/action-2">Media</Dropdown.Item>
+        <Dropdown.Item className = "casa" onClick={function () {}} href="#/action-3">Baja</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );

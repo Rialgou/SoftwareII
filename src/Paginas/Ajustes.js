@@ -9,11 +9,12 @@ const Ajustes = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}>
         
-      <h1>Ajustes</h1>
-      <p>
-        IOUDHASUIDHUIASHDUIASHIUDHIUASHDIUASHDAD
-        DASUIKGHDUIASHUIDHASUIDHUIASHDSA
-        DIUASHDUIHSAUIDHIUASHDIUSAH
+
+      <br></br>
+      <br></br>
+      <h1 className='ms-4'>Ajustes</h1>
+      <p className='ms-5'>
+        .....
       </p>
     </motion.div>
   );

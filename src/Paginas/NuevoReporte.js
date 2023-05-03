@@ -1,14 +1,16 @@
-import '../hojas-de-estilo/NuevoReporte.css'
-import { useState } from 'react';
-import { Stack } from 'react-bootstrap';
 import React from 'react';
 import  Button from 'react-bootstrap/Button';
 import Acordeon from '../componentes/Acordeon';
 import BarraLateralUsuario from '../componentes/BarraLateralUsuario';
+import BarraSuperior from '../componentes/BarraSuperior';
+
+import { Stack } from 'react-bootstrap';
 import { enviarReporteUsuario } from '../Funciones/consultas';
-
-
 import {motion} from 'framer-motion';
+import {obtenerUsuario} from '../Funciones/consultas';
+import { useState,useEffect } from 'react';
+
+import '../hojas-de-estilo/NuevoReporte.css'
 
 
 function NuevoReporte() {
@@ -48,6 +50,21 @@ function NuevoReporte() {
     setDatosReporte(prevState => ({...prevState, descripcion}));
   };
 
+
+  const [usuario, setUsuario] = useState({});
+
+  const usuarioId = "umlvgp6OkqUwNtDeh1aA"; // Reemplazar con el ID del administrador
+
+  useEffect(() => {
+    const fetchData = async () => {
+    const datosUsuario = await obtenerUsuario(usuarioId);
+    setUsuario(datosUsuario);
+  };
+
+  fetchData();
+  }, [usuarioId]);
+
+
   return (
     <motion.div
     initial={{ opacity: 0 }}
@@ -55,6 +72,9 @@ function NuevoReporte() {
     exit={{ opacity: 0 }}
     transition={{ duration: 0.3 }}>
     <main className="contenido-principal">
+      <div>
+        <BarraSuperior nombre={usuario.nombre}></BarraSuperior>
+      </div>
       <div>
         <BarraLateralUsuario></BarraLateralUsuario>
       </div>

@@ -10,10 +10,12 @@ const HistorialCuenta = () => {
     exit={{ opacity: 0 }}
     transition={{ duration: 0.3 }}>
       
-    <h1>Cuenta</h1>
-    <p>
-      <strong>Somos el mejor equipo de Ingeneria de Software</strong>
-    </p>
+    <br></br>
+      <br></br>
+      <h1 className='ms-4'>Cuenta</h1>
+      <p className='ms-5'>
+        .....
+      </p>
   </motion.div>
   );
 };

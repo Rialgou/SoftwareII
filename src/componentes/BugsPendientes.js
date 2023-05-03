@@ -11,19 +11,19 @@ const BugsPendientes = ({titulo1,titulo2}) => {
   return (
     <>
     
-      <Container className="d-flex  flex-column justify-content-start align-items-start contenedor-reportes">
-        <Row className="w-100">
-          <Col className="mb-3 w-100" >
-          <h2 className="titulo" ><strong>{titulo1}</strong> <Badge bg='primary'>{titulo2}</Badge></h2>   
+      <Container flex className="d-flex  flex-column justify-content-start align-items-start ">
+        <Row className="">
+          <Col className="mb-3 " >
+          <h1 className="titulo" ><strong>{titulo1}</strong> <Badge bg='primary'>{titulo2}</Badge></h1>   
           </Col>
         </Row>
-        <Row className="w-100">
+        <Row className="">
           <Col className="mb-5  w-100 " >
           <Filtrado></Filtrado>
           </Col>
         </Row>
         <Row className="w-100">
-          <Col  className="col-Lista w-100">
+          <Col  className="col-Lista ">
           <Lista></Lista>
           </Col>
         </Row>

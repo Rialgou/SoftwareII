@@ -16,7 +16,7 @@ function Lista() {
   // Configuración hooks
   const [listaReportes, setListaReportes] = useState([]);
 
-  const administradorId = "DiCuM9PV5XFJJGZytGqT"; // Reemplazar con el ID del administrador
+  const administradorId = "oWcvYKoA3pnS6oJpBUhQ"; // Reemplazar con el ID del administrador
 
   const getReportesAdministrador = async (administradorId) => {
     try {
@@ -43,17 +43,17 @@ function Lista() {
   return (
     <>
       {listaReportes.map(({prioridad,fechaEmision,descripcionUsuario,id} , index ) => (
-        <ListGroup   key ={index} horizontal={"lg"} className="my-2 list-item-container"  >
+        <ListGroup   key ={index} horizontal={"lg"} className="my-2 " id='contenedor-lista-reportes' >
           <ListGroup.Item  as={Link} to={rutaReporte(id)} className=" mt-2 mb-2 item" variant="warning" >
             Bug {index+1}
           </ListGroup.Item>
-          <ListGroup.Item className="mt-2 mb-2 item"  variant="light"  >
+          <ListGroup.Item className="mt-2 mb-2 item"  variant="dark"  >
             {descripcionUsuario}
           </ListGroup.Item>
-          <ListGroup.Item className=" mt-2 mb-2 item" variant="light" >
+          <ListGroup.Item className=" mt-2 mb-2 item" variant="dark" >
             {fechaEmision.toDate().toLocaleString()}
           </ListGroup.Item>
-          <ListGroup.Item className=" mt-2 mb-2 item" variant="light" >
+          <ListGroup.Item className=" mt-2 mb-2 item" variant="dark" >
             {prioridad}
           </ListGroup.Item>
         </ListGroup>

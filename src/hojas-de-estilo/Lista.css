@@ -2,38 +2,28 @@
 .item
 {
  flex-basis: calc(40% - 0.0rem); /* 1rem es el margen que quieres mantener entre los elementos */
+
+ flex-grow: 0;
+
+ white-space: nowrap;
+ overflow: hidden;
+ text-overflow: ellipsis;
+
+
  height: 8vh;
- text-align:center;
- flex-grow: 1;
+ width: 4vh;
 
-  white-space: nowrap;
-  text-overflow: ellipsis; 
-  width: 2000px;
-}
+ text-align: start; 
 
-
-.list-item-container {
-  display: flex;
-  border-radius: 15px;
-  justify-content: space-between;
 
 }
 
-
-Administrador .css
-
-.columna-derecha
+#contenedor-lista-reportes
 {
-   width: 800px !important;
-     height: 650px !important; 
-    
+  border-radius: 25px;
+  
 }
 
 
-.contenedorss
-{
 
-   min-width: 180vh;
-   
 
-    }

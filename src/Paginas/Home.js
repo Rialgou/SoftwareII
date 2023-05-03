@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Button ,Badge,Image} from 'react-bootstrap';
+import { Container, Row, Col, Button ,Badge,Image, Stack} from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 import Imagen from '../Imagenes/home.png'
@@ -31,40 +31,38 @@ const Home = () => {
     transition={{ duration: 0.3 }}
     >
 
-    <Container className="home">
+    <Container  className='d-flex flex-column justify-content-center align-items-center home'>
+      < Row className="flex-column justify-content-center align-items-center">
 
-      <Row className="justify-content-md-center mt-5 ">
-        <Col md="auto" className='mt-5 mb-2'>
-          <h1 className="text-center mb-4 "><Badge bg="dark">BugFixer</Badge></h1>
+        <Col md="auto" className='mt-5 mb-5'>
+          <h1 className="text-center mb-5 "><Badge bg="dark">BugFixer</Badge></h1>
           <p className='parrafo'>
             Bienvenido a <strong> BugFixer </strong>, la plataforma que facilita la comunicación entre usuarios y
             administradores para reportar, gestionar y solucionar problemas en el software. Nuestro
             objetivo es mejorar la calidad y eficiencia en la detección y corrección de errores,
             permitiendo un proceso de desarrollo de software más ágil y efectivo.
           </p>
-        </Col>
-      </Row>
-
-      <Row className="justify-content-md-center mt-3 mb-5 ">
-        <Col md="auto">
-          <Button variant= "primary" className='botones-0' onClick={handleAdminButtonClick}>
+        </Col>"
+        
+        <Col md="auto " xs={12} className='prubea mb-5'  >
+          <Stack direction='horizontal' gap={5}>
+          <Button variant= "primary"  className='botones-home' onClick={handleAdminButtonClick}>
             Administrador
           </Button>
-        </Col>
-        <Col md="auto">
-          <Button variant="success" className='botones-0' onClick={handleUserButtonClick}>
+          <Button variant="success"  className='botones-home' onClick={handleUserButtonClick}>
             Usuario
           </Button>
+          </Stack>
         </Col>
-      </Row>
 
-      <Row >
-        <Col className="d-flex justify-content-center mt-2 mb-5 ">
-          <Image   rounded  src={Imagen} className='imagen' />
+
+
+        <Col md="auto" xs={12} className= 'mt-3'>
+          <Image src={Imagen} alt='Imagen-Home' className='imagen' />
         </Col>
+
       </Row>
     </Container>
-
 
     </motion.div>
   );

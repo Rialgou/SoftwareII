@@ -1,14 +1,13 @@
 import { Container, Nav, Navbar, NavDropdown, Image ,Stack} from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
+import { RiAccountPinCircleLine   } from "react-icons/ri";
 
-
-import logo from '../Imagenes/logo2.png';
 import '../hojas-de-estilo/BarraSuperior.css';
 
 
 
 
-const BarraSuperior = ({administrador}) => {
+const BarraSuperior = ({nombre}) => {
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -26,8 +25,8 @@ const BarraSuperior = ({administrador}) => {
 
             <Stack direction='horizontal' gap={5}>
             <Nav className="Barra-usuario">
-              <Image src={logo} alt='imagen-logo' className='logo' roundedCircle ></Image>
-              <NavDropdown title={administrador.nombre} id="collasible-nav-dropdown">
+              <RiAccountPinCircleLine size={38} color="#F2F2F2" />
+              <NavDropdown title={nombre} id="collasible-nav-dropdown">
                 <NavDropdown.Item as={NavLink} to="/Cuenta">
                   Cuenta
                 </NavDropdown.Item>

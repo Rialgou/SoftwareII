@@ -66,7 +66,7 @@ export const obtenerDatosAdministrador = async (administradorId) => {
         // Verifica si el documento existe en Firestore.
         if (administradorSnapshot.exists()) {
             // Si el documento existe, retorna un objeto con los datos del administrador y su ID.
-            return { ...administradorSnapshot.data(), id: administradorId ,casa:"hola"};
+            return { ...administradorSnapshot.data(), id: administradorId };
         } else {
             // Si el documento no existe, retorna un objeto vacío.
             return {};
@@ -76,6 +76,36 @@ export const obtenerDatosAdministrador = async (administradorId) => {
         return {}; // Retorna un objeto vacío en caso de error.
     }
 };
+
+
+
+// Función asíncrona para obtener los datos de un administrador específico.
+export const obtenerUsuario = async (usuarioId) => {
+    try {
+        // Crea una instancia de Firestore.
+        const db = getFirestore();
+
+        // Crea una referencia al documento del usuario en la colección "usuarios" utilizando el ID proporcionado.
+        const referenciaUsuario = doc(db, 'usuarios', usuarioId);
+
+        // Obtiene el documento del usuario utilizando la referencia creada previamente.
+        const usuarioSnapshot = await getDoc(referenciaUsuario);
+
+        // Verifica si el documento existe en Firestore.
+        if (usuarioSnapshot.exists()) {
+            // Si el documento existe, retorna un objeto con los datos del usuario y su Id
+            return { ...usuarioSnapshot.data(), id: usuarioId };
+        } else {
+            // Si el documento no existe, retorna un objeto vacío.
+            return {};
+        }
+    } catch (error) { // Captura cualquier error que pueda ocurrir durante la ejecución.
+        console.log(error); // Muestra el error en la consola.
+        return {}; // Retorna un objeto vacío en caso de error.
+    }
+};
+
+
 
 
 
@@ -191,3 +221,42 @@ export const obtenerDatosReporte = async (reporteId) => {
     };
 
 
+
+
+// Función asíncrona para obtener la información del proyecto y su identificador a partir del id de un reporte.
+export const obtenerInfoProyectoDesdeReporte = async (reporteId) => {
+    try {
+        // Crea una instancia de Firestore.
+        const db = getFirestore();
+
+        // Crea una referencia al documento del reporte en la colección "reportes" utilizando el ID proporcionado.
+        const referenciaReporte = doc(db, 'reportes', reporteId);
+
+        // Obtiene el documento del reporte utilizando la referencia creada previamente.
+        const reporteSnapshot = await getDoc(referenciaReporte);
+
+        // Verifica si el documento existe en Firestore.
+        if (reporteSnapshot.exists()) {
+            // Si el documento existe, obtiene la referencia del proyecto.
+            const referenciaProyecto = reporteSnapshot.data().proyecto;
+
+            // Obtiene el documento del proyecto utilizando la referencia del proyecto.
+            const proyectoSnapshot = await getDoc(referenciaProyecto);
+
+            // Verifica si el documento existe en Firestore.
+            if (proyectoSnapshot.exists()) {
+                // Si el documento existe, retorna un objeto con los datos del proyecto y su ID.
+                return { ...proyectoSnapshot.data(), id: proyectoSnapshot.id };
+            } else {
+                // Si el documento del proyecto no existe, retorna un objeto vacío.
+                return {};
+            }
+        } else {
+            // Si el documento del reporte no existe, retorna un objeto vacío.
+            return {};
+        }
+    } catch (error) { // Captura cualquier error que pueda ocurrir durante la ejecución.
+        console.log(error); // Muestra el error en la consola.
+        return {}; // Retorna un objeto vacío en caso de error.
+    }
+};

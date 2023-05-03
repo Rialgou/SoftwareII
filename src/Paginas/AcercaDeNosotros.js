@@ -9,10 +9,12 @@ const AcercaDeNosotros = () => {
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }}
     transition={{ duration: 0.3 }}>
-      
+    
+    <br></br>
+    <br></br>
     <h1>Acerca de nosotros</h1>
     <p>
-      <strong>Somos el mejor equipo de Ingeneria de Software</strong>
+      <strong className='ms-3'>Somos el mejor equipo de Ingeneria de Software</strong>
     </p>
   </motion.div>
   );

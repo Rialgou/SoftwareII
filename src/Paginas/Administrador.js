@@ -1,21 +1,16 @@
 
-import { getFirestore, doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
 
 import { Container, Row, Col , Badge } from 'react-bootstrap';
-
 import { useState,useEffect } from 'react';
+import {motion} from 'framer-motion';
+import { obtenerDatosAdministrador } from '../Funciones/consultas';
 
 import RadioButton from '../componentes/RadioButton'
 import BarraLateral from '../componentes/BarraLateral';
 import BugsPendientes from '../componentes/BugsPendientes';
-
+import BarraSuperior from '../componentes/BarraSuperior';
 
 import "../hojas-de-estilo/Administrador.css"
-
-import {motion} from 'framer-motion';
-
-
-
 
 
 function Home() {
@@ -23,7 +18,18 @@ function Home() {
   const [radioValue, setRadioValue] = useState('1');
   const [showCol, setShowCol] = useState(true); // Mostrar por defecto cuando se carga la página
 
+  const [administrador, setAdministrador] = useState({});
 
+  const administradorId = "oWcvYKoA3pnS6oJpBUhQ"; // Reemplazar con el ID del administrador
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const datosAdministrador = await obtenerDatosAdministrador(administradorId);
+      setAdministrador(datosAdministrador);
+    };
+
+    fetchData();
+  }, [administradorId]);
 
 
   
@@ -35,19 +41,20 @@ function Home() {
     exit={{ opacity: 0 }}
     transition={{ duration: 0.3 }}>
 
+        <div><BarraSuperior nombre={administrador.nombre} /></div>
 
         <div><BarraLateral/></div>
         
-        <Container className="d-flex  my-5 justify-content-center align-items-center contenedorss">
-          <Row className="mb-3 justify-content-center align-items-center">
-            <Col md={4} className="columna-isquierda mx-5">
+        <Container  fluid className=" justify-content-center align-items-center pene1 mt-5 ">
+          <Row  className="d-flex flex-row justify-content-center align-items-center">
+            <Col md={4} className="d-flex justify-content-center align-items-end  mx-5 ">
                 <RadioButton 
                   radioValue={radioValue}
                   setRadioValue={setRadioValue} 
                 ></RadioButton>
             </Col>
             {showCol && radioValue === '1' && (
-            <Col className="mx-5  columna-derecha">
+            <Col md={7}  className="d-flex ">
               <BugsPendientes
                 titulo1={"Nuevos"}
                 titulo2={"Bugs"}
@@ -57,7 +64,7 @@ function Home() {
             </Col>
              )}
              {showCol && radioValue === '2' && (
-              <Col className='mx-5 columna-derecha'>
+              <Col  md={6}  className='d-flex  '>
                 <BugsPendientes
                 titulo1={"Bugs"}
                 titulo2={"Activos"}
@@ -65,6 +72,7 @@ function Home() {
                 </BugsPendientes>
               </Col>
             )}
+     
           </Row>
         </Container>
 

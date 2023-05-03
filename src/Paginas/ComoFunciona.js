@@ -15,10 +15,7 @@ const ComoFunciona = () => {
       contenido = <Container className='informacion'>
                     <Row>
                       <Col>
-                        <h3>duhasduhas </h3>
-                        <h4>dasidjhasiodsaidas</h4>
-                        <h5>dioashdioashduiahudahsuiads</h5>
-                        <h6>daioshduiashdiuashuidashiudhasiudhas</h6>
+                        <h3> Adjuntar información Slider 1 </h3>
                       </Col>
                     </Row>
                   </Container>
@@ -28,10 +25,7 @@ const ComoFunciona = () => {
       contenido = <Container className='informacion'>
                     <Row>
                       <Col>
-                        <h3>uhdsauds </h3>
-                        <h4>dasiohjdiouashduiashuidsa</h4>
-                        <h5>dioashdiusahduiashduiahsuidhasdas</h5>
-                        <h6>dioasjdioasjdioasjdioasjiodjasoidjoiasjdioas</h6>
+                        <h3> Adjuntar información Slider 2 </h3>
                       </Col>
                     </Row>
                   </Container>
@@ -41,10 +35,7 @@ const ComoFunciona = () => {
       contenido = <Container className='informacion'>
                     <Row>
                       <Col>
-                        <h3>diuashdu </h3>
-                        <h4>dioadioashdiuoashduiashuidhasuidas</h4>
-                        <h5>dioashdiuashduiashiudashuidhasuihduiashiudas</h5>
-                        <h6>dioashjdioashiuodhasiudhasiuhduiashiudhasiudhiuashd</h6>
+                       <h3> Adjuntar información Slider 3</h3>
                       </Col>
                     </Row>
                   </Container>

@@ -10,7 +10,7 @@ function RadioButton({radioValue,setRadioValue}) {
     { name: 'Bugs en proceso', value: '2' },
     { name: 'Lista depuradores', value: '3' },
     { name: 'Lista de clientes', value: '4' },
-    { name: 'Cambiar color', value: '5' },
+    { name: 'Lista proyectos', value: '5' },
   ];
 
   return (

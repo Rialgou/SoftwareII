@@ -13,10 +13,12 @@ const SalirCuenta = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}>
           
-        <h1>Salir Cuenta</h1>
-        <p>
-          <strong>Salirse cuenta</strong>
-        </p>
+          <br></br>
+         <br></br>
+          <h1 className='ms-4'>Salir cuenta</h1>
+          <p className='ms-5'>
+        .....
+      </p>
       </motion.div>
     );
 

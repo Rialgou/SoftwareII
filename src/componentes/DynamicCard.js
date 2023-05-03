@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
+import Badge from 'react-bootstrap'
 
 import '../hojas-de-estilo/DynamicCard.css'
 
@@ -7,63 +8,63 @@ function DynamicCard() {
   const data = [
     {
       border: 'primary',
-      header: 'Jose Toledo',
-      title: 'Primary Card Title 1',
-      content: 'Some quick example text to build on the card title and make up the bulk of the card content.',
+      header: 'depurador 1',
+      title: 'Jose Toledo',
+      content: "Informacion relevante del depurador"
     },
     {
         border: 'primary',
-        header: 'Header 2',
-        title: 'Primary Card Title 1',
-        content: 'Some quick example text to build on the card title and make up the bulk of the card content.',
+        header: 'depurador x',
+        title: 'Nombre',
+        content: "Informacion relevante del depurador"
       },
       {
         border: 'primary',
-        header: 'Header 3',
-        title: 'Primary Card Title 1',
-        content: 'Some quick example text to build on the card title and make up the bulk of the card content.',
+        header: 'depurador x',
+        title: 'Nombre',
+        content: "Informacion relevante del depurador"
       },
       {
         border: 'primary',
-        header: 'Header 4',
-        title: 'Primary Card Title 1',
-        content: 'Some quick example text to build on the card title and make up the bulk of the card content.',
+        header: 'depurador x',
+        title: 'Nombre',
+        content: "Informacion relevante del depurador"
       },
       {
         border: 'primary',
-        header: 'Header 5',
-        title: 'Primary Card Title 1',
-        content: 'Some quick example text to build on the card title and make up the bulk of the card content.',
+        header: 'depurador x',
+        title: 'Nombre',
+        content: "Informacion relevante del depurador"
       },
       {
         border: 'primary',
-        header: 'Header 6',
-        title: 'Primary Card Title 1',
-        content: 'Some quick example text to build on the card title and make up the bulk of the card content.',
+        header: 'depurador x',
+        title: 'Nombre',
+        content: "Informacion relevante del depurador"
       },
       {
         border: 'primary',
-        header: 'Header 7',
-        title: 'Primary Card Title 1',
-        content: 'Some quick example text to build on the card title and make up the bulk of the card content.',
+        header: 'depurador x',
+        title: 'Nombre',
+        content: "Informacion relevante del depurador"
       },
       {
         border: 'primary',
-        header: 'Header 8',
-        title: 'Primary Card Title 1',
-        content: 'Some quick example text to build on the card title and make up the bulk of the card content.',
+        header: 'depurador x',
+        title: 'Nombre',
+        content: "Informacion relevante del depurador"
       },
       {
         border: 'primary',
-        header: 'Header 9',
-        title: 'Primary Card Title 1',
-        content: 'Some quick example text to build on the card title and make up the bulk of the card content.',
+        header: 'depurador x',
+        title: 'Nombre',
+        content: "Informacion relevante del depurador"
       },
       {
         border: 'primary',
-        header: 'Header 10',
-        title: 'Primary Card Title 1',
-        content: 'Some quick example text to build on the card title and make up the bulk of the card content.',
+        header: 'depurador x',
+        title: 'Nombre',
+        content: "Informacion relevante del depurador"
       },
 
   ];
