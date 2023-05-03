@@ -16,7 +16,7 @@ function Lista() {
   // Configuración hooks
   const [listaReportes, setListaReportes] = useState([]);
 
-  const administradorId = "DiCuM9PV5XFJJGZytGqT"; // Reemplazar con el ID del administrador
+  const administradorId = "oWcvYKoA3pnS6oJpBUhQ"; // Reemplazar con el ID del administrador
 
   const getReportesAdministrador = async (administradorId) => {
     try {

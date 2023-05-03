@@ -30,9 +30,14 @@ const ReportesUsuarios = () => {
         <div className='card-body'>
           {
             listaReportesUsuario.map((list) => {
+              let estadoReporte;
+              if(list.estado === -1) estadoReporte = "Rechazado";
+              else if(list.estado === 1) estadoReporte = "Pendiente";
+              else if(list.estado === 2) estadoReporte = "En proceso";
+              else if(list.estado === 3) estadoReporte = "Terminado"; 
               return <div key={list.id}>
                 <p>Reporte: {list.descripcionUsuario}</p>
-                <p>Estado: {list.estado}</p>
+                <p>Estado: {estadoReporte}</p>
                 <hr />
               </div>
             })
