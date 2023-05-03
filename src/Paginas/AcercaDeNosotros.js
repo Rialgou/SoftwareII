@@ -1,14 +1,20 @@
 
-import React from 'react';
+
+import {motion} from 'framer-motion';
 
 const AcercaDeNosotros = () => {
   return (
-    <div>
-      <h1>Acerca de nosotros</h1>
-      <h2>
-        Somos el mejor grupo de ingeneria de software 2
-      </h2>
-    </div>
+    <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.3 }}>
+      
+    <h1>Acerca de nosotros</h1>
+    <p>
+      <strong>Somos el mejor equipo de Ingeneria de Software</strong>
+    </p>
+  </motion.div>
   );
 };
 

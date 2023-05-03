@@ -11,6 +11,8 @@ import "../hojas-de-estilo/Reporte.css";
 import { Container,Row,Col,Badge,Stack,Button} from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 
+import {motion} from 'framer-motion';
+
 import {obtenerDatosReporte} from '../Funciones/consultas';
 
 const Reporte = () => {
@@ -41,7 +43,13 @@ const Reporte = () => {
  
   
   return (
-    <>  
+
+    <motion.div
+     initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}>
+
       <div>
         <BarraLateral></BarraLateral>
       </div>
@@ -122,8 +130,10 @@ const Reporte = () => {
           </Col>
         </Row>
       </Container>
-    
-    </>
+
+
+      </motion.div>
+
     
   );
 };

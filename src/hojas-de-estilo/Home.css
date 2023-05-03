@@ -1,6 +1,8 @@
+
 .home 
 {
-    background-color:rgba(250, 250, 250, 0.377);
+    background-color:rgba(250, 250, 250, 0.377) ;
+    width: 100px;
 }
 
 .botones-0
@@ -45,3 +47,4 @@
     margin-right: 30px;
     text-indent: 60px;
 }
+

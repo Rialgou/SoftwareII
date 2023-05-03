@@ -8,6 +8,9 @@ import BarraLateralUsuario from '../componentes/BarraLateralUsuario';
 import { enviarReporteUsuario } from '../Funciones/consultas';
 
 
+import {motion} from 'framer-motion';
+
+
 function NuevoReporte() {
   const [datosReporte, setDatosReporte] = useState({
     proyecto: '',
@@ -46,6 +49,11 @@ function NuevoReporte() {
   };
 
   return (
+    <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.3 }}>
     <main className="contenido-principal">
       <div>
         <BarraLateralUsuario></BarraLateralUsuario>
@@ -70,6 +78,7 @@ function NuevoReporte() {
         </div>
       </Stack>
     </main>
+    </motion.div>
   );
 }
 

@@ -12,6 +12,8 @@ import BugsPendientes from '../componentes/BugsPendientes';
 
 import "../hojas-de-estilo/Administrador.css"
 
+import {motion} from 'framer-motion';
+
 
 
 
@@ -26,8 +28,13 @@ function Home() {
 
   
   return (
+    
+    <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.3 }}>
 
-      <main>
 
         <div><BarraLateral/></div>
         
@@ -60,7 +67,8 @@ function Home() {
             )}
           </Row>
         </Container>
-      </main>
+
+        </motion.div>
   );
 }
 

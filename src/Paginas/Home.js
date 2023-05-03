@@ -6,6 +6,11 @@ import Imagen from '../Imagenes/home.png'
 
 import '../hojas-de-estilo/Home.css'
 
+
+
+import {motion} from 'framer-motion';
+
+
 const Home = () => {
   const navigate = useNavigate();
 
@@ -18,6 +23,14 @@ const Home = () => {
   };
 
   return (
+
+    <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.3 }}
+    >
+
     <Container className="home">
 
       <Row className="justify-content-md-center mt-5 ">
@@ -51,6 +64,9 @@ const Home = () => {
         </Col>
       </Row>
     </Container>
+
+
+    </motion.div>
   );
 };
 
