@@ -14,6 +14,10 @@ import {motion} from 'framer-motion';
 const Home = () => {
   const navigate = useNavigate();
 
+  const handleDebButtonClick = () => {
+    navigate('/depurador');
+  };
+
   const handleAdminButtonClick = () => {
     navigate('/administrador');
   };
@@ -42,10 +46,13 @@ const Home = () => {
             objetivo es mejorar la calidad y eficiencia en la detección y corrección de errores,
             permitiendo un proceso de desarrollo de software más ágil y efectivo.
           </p>
-        </Col>"
+        </Col>
         
         <Col md="auto " xs={12} className='prubea mb-5'  >
           <Stack direction='horizontal' gap={5}>
+          <Button variant= "danger"  className='botones-home' onClick={handleDebButtonClick}>
+            Depurador
+          </Button>
           <Button variant= "primary"  className='botones-home' onClick={handleAdminButtonClick}>
             Administrador
           </Button>
@@ -69,4 +76,3 @@ const Home = () => {
 };
 
 export default Home;
-

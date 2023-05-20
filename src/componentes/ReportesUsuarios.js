@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from 'react'
-
+import { Badge } from 'react-bootstrap';
 import {getReportesUsuario} from '../Funciones/consultas';
+import "../hojas-de-estilo/ReportesUsuarios.css"
 
 const ReportesUsuarios = () => {
 
@@ -23,10 +24,9 @@ const ReportesUsuarios = () => {
 
   
   return (
-    
     <div>
-      <div>Reportes</div>  
-      <div className='container card '>
+      <h2><strong>Estado</strong> <Badge bg='primary'>reportes</Badge></h2>
+      <div className='card'>
         <div className='card-body'>
           {
             listaReportesUsuario.map((list) => {

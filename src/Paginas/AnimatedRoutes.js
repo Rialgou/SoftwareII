@@ -9,6 +9,7 @@ import Usuario from './/Usuario';
 import Administrador from './/Administrador';
 import Reporte from './Reporte';
 import NuevoReporte from './NuevoReporte';
+import Depurador from './Depurador';
 
 import {  Routes, Route ,useLocation} from 'react-router-dom';
 
@@ -30,7 +31,8 @@ import {AnimatePresence} from 'framer-motion';
           <Route path="/administrador" element={<Administrador/>} />
           <Route path='/administrador/:id' element={<Reporte></Reporte>} />
           <Route path="/Usuario" element={<Usuario/>} />
-          <Route path="/usuario/reporte" element= {<NuevoReporte></NuevoReporte>} />
+          <Route path="/usuario/reporte" element={<NuevoReporte></NuevoReporte>} />
+          <Route path="/depurador" element={<Depurador/>}/>
       </Routes>
     </AnimatePresence>
     );

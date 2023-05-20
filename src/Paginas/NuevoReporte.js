@@ -4,7 +4,7 @@ import Acordeon from '../componentes/Acordeon';
 import BarraLateralUsuario from '../componentes/BarraLateralUsuario';
 import BarraSuperior from '../componentes/BarraSuperior';
 
-import { Stack } from 'react-bootstrap';
+import { Stack, Badge } from 'react-bootstrap';
 import { enviarReporteUsuario } from '../Funciones/consultas';
 import {motion} from 'framer-motion';
 import {obtenerUsuario} from '../Funciones/consultas';
@@ -79,8 +79,8 @@ function NuevoReporte() {
         <BarraLateralUsuario></BarraLateralUsuario>
       </div>
       <Stack gap={3}>
-        <div>
-          <h2 className="text-center titulo">Generador de reporte</h2>
+        <div className="text-center">
+          <h2 className="titulo"><strong>Generador de</strong> <Badge bg='primary'>reporte</Badge></h2>
         </div>
 
         <div className="mx-auto acordeon">
