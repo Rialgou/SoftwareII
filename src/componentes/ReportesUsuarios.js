@@ -36,7 +36,7 @@ const ReportesUsuarios = () => {
               else if(list.estado === 2) estadoReporte = "En proceso";
               else if(list.estado === 3) estadoReporte = "Terminado"; 
               return <div key={list.id}>
-                <p>Reporte: {list.descripcionUsuario}</p>
+                <p>Reporte: {list.asunto}</p>
                 <p>Estado: {estadoReporte}</p>
                 <hr />
               </div>

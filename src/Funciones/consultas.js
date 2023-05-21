@@ -1,5 +1,5 @@
 // Importa las funciones necesarias de la biblioteca Firestore de Firebase.
-import { getFirestore, doc, getDoc, collection, query, where, getDocs, Timestamp, serverTimestamp, addDoc } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, collection, query, where, getDocs, Timestamp, serverTimestamp, addDoc, orderBy, collectionGroup } from 'firebase/firestore';
 
 // Función asíncrona para obtener todos los reportes asociados a los proyectos de un administrador específico.
 export const obtenerReportesAdministrador = async (administradorId) => {
@@ -127,14 +127,14 @@ export const getReportesUsuario = async(usuarioId) => {
     //se crea una lista donde se guardaran los proyectos
     const proyectoRefs = [];
     const proyectosQuerySnapshot = await getDocs(proyectosFiltrados);
-    
+
     proyectosQuerySnapshot.forEach( (doc) => {
       proyectoRefs.push(doc.ref);
     })    
-
+    console.log("aqui muero")
     //se recuperan los reportes que pertenezcan a alguno de los proyectos
-    const reportesFiltrados = query(reportesCollection, where("proyecto","in", proyectoRefs))
-    
+    const reportesFiltrados = query(reportesCollection, where("proyecto","in", proyectoRefs),orderBy("fechaEmision"))
+    console.log("de aqui no paso")
     //se recuperan los documentos filtrados
     const reportesQuerySnapshot = await getDocs(reportesFiltrados);
     const reportes = []
@@ -142,8 +142,7 @@ export const getReportesUsuario = async(usuarioId) => {
     reportesQuerySnapshot.forEach((doc) => {
       reportes.push({...doc.data(),id:doc.id});
     })
-
-    return  reportes
+    return reportes.reverse()
   }catch(error){
     console.log(error)
   }
