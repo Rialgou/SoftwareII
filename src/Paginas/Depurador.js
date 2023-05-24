@@ -5,6 +5,8 @@ import RadioButtonDepurador from '../componentes/RadioButtonDepurador'
 import BarraLateral from '../componentes/BarraLateral';
 import BarraSuperior from '../componentes/BarraSuperior';
 import AcordeonBugsProceso from "../componentes/AcordeonBugsProceso";
+import AcordeonBugsNuevos from "../componentes/AcordeonBugsNuevos";
+
 import "../hojas-de-estilo/Depurador.css"
 
 function Depurador() {
@@ -39,8 +41,12 @@ function Depurador() {
             </Col>
              )}
              {showCol && radioValue === '2' && (
-              <Col md={6}  className='d-flex  '>
-                <h2><strong>Bugs </strong> <Badge bg='primary'>nuevos</Badge></h2>
+              <Col md={8}  className="d-flex">
+                <Container>
+                <h2><strong>Bugs </strong> <Badge bg='primary'>Nuevos</Badge></h2>
+                <AcordeonBugsNuevos/>
+                
+                </Container>
               </Col>
             )}
      
