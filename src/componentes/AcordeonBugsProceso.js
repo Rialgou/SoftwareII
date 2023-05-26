@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
+import Button from 'react-bootstrap/Button';
+import { ButtonToolbar, Modal } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import "../hojas-de-estilo/AcordeonBugsProceso.css";
 
@@ -13,37 +15,128 @@ function AcordeonBugsProceso() {
   ];
 
   const [activeItem, setActiveItem] = useState(null);
+  const [descripcionReporte, setdescripcionReporte] = useState("");
+  const [showAlertParcial, setShowAlertParcial] = useState(false);
+  const [showAlertFinal, setShowAlertFinal] = useState(false);
+  const [showAlertSinContenido, setShowAlertSinContenido] = useState(false);
 
   const handleItemClick = (index) => {
     setActiveItem(index === activeItem ? null : index);
   };
 
-  return (
-    <Accordion className="acordeon-bugs-proceso" activeKey={activeItem} onSelect={handleItemClick}>
-      {datos.map((item, index) => (
-        <Accordion.Item key={index} eventKey={index}>
-          <Card>
-            <Accordion.Header>
-              <div>
-                <span className="bug-info">
-                  <span> Bug {index + 1}</span>
-                  <span>Proyecto: {item.nombre}</span>
-                  <span>{item.fecha1}-{item.fecha2}</span>
-                  <span>Prioridad: {item.prioridad}</span>
-                </span>
-              </div>
-            </Accordion.Header>
-            <Accordion.Body>
-              Descripción del Bug <br/> {item.descripcion}
-            </Accordion.Body>
+  const handleDescripcionReporte = (event) => {
+    setdescripcionReporte(event.target.value);
+  };
 
-          </Card>
-        </Accordion.Item>
-      ))}
-    </Accordion>
+  const handleClickButtonParcial = () => {
+    if (descripcionReporte.trim().length === 0) 
+      setShowAlertSinContenido(true);
+    else 
+      setShowAlertParcial(true);
+  };
+
+  const handleClickButtonFinal = () => {
+    if (descripcionReporte.trim().length === 0) 
+      setShowAlertSinContenido(true);
+    else 
+      setShowAlertFinal(true);
+  };
+
+  const handleCloseAlertParcial = () => {
+    setShowAlertParcial(false);
+    setActiveItem(null);
+    setdescripcionReporte('');
+  };
+
+  const handleCloseAlertFinal = () => {
+    setShowAlertFinal(false);
+    setActiveItem(null);
+    setdescripcionReporte('');
+  };
+
+  const handleCloseAlertSinContenido = () => {
+    setShowAlertSinContenido(false);
+  };
+
+  return (
+    <>
+      <Accordion className="acordeon-bugs-proceso" activeKey={activeItem} onSelect={handleItemClick}>
+        {datos.map((item, index) => (
+          <Accordion.Item key={index} eventKey={index}>
+            <Card>
+              <Accordion.Header>
+                <div>
+                  <span className="bug-info">
+                    <span> Bug {index + 1}</span>
+                    <span>Proyecto: {item.nombre}</span>
+                    <span>{item.fecha1}-{item.fecha2}</span>
+                    <span>Prioridad: {item.prioridad}</span>
+                  </span>
+                </div>
+              </Accordion.Header>
+              <Accordion.Body>
+                <strong className="descripcion-titulo">Descripción del Bug</strong> <br /> {item.descripcion}
+                <textarea className="textarea-custom textarea-basic"
+                  value={descripcionReporte}
+                  onChange={handleDescripcionReporte}
+                  placeholder="Ingrese los detalles del avance a enviar" />
+                <ButtonToolbar className="botones-container">
+                  <Button variant="secondary" className="boton-parcial" onClick={handleClickButtonParcial}>
+                    Enviar reporte parcial
+                  </Button>
+                  <Button variant="primary" className="boton-final" onClick={handleClickButtonFinal}>
+                    Enviar reporte final
+                  </Button>
+                </ButtonToolbar>
+              </Accordion.Body>
+            </Card>
+          </Accordion.Item>
+        ))}
+      </Accordion>
+      
+      <Modal show={showAlertParcial} onHide={handleCloseAlertParcial} className="modal-basic">
+          <Modal.Header closeButton>
+            <Modal.Title>Reporte parcial enviado</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            ¡El avance ha sido enviado con éxito!
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleCloseAlertParcial}>
+              Cerrar
+            </Button>
+          </Modal.Footer>
+      </Modal>
+      
+      <Modal show={showAlertFinal} onHide={handleCloseAlertFinal} className="modal-basic">
+          <Modal.Header closeButton>
+            <Modal.Title>Reporte final enviado</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            ¡El reporte final ha sido enviado con éxito!<br /> Ahora el administrador debe aprobarlo.
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleCloseAlertFinal}>
+              Cerrar
+            </Button>
+          </Modal.Footer>
+      </Modal>
+
+      <Modal show={showAlertSinContenido} onHide={handleCloseAlertSinContenido} className="modal-campo">
+        <Modal.Header closeButton>
+          <Modal.Title>Reporte no enviado</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Por favor, ingrese los detalles del avance antes de continuar.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseAlertSinContenido}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+     </>
   );
 }
 
 export default AcordeonBugsProceso;
-
-
