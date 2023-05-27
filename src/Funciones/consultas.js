@@ -4,6 +4,7 @@ import { getFirestore, doc, getDoc, collection, query, where, getDocs, Timestamp
 // Función asíncrona para obtener todos los reportes asociados a los proyectos de un administrador específico.
 export const obtenerReportesAdministrador = async (administradorId) => {
     try {
+        console.log("obtenerReportesAdministrador");
         // Crea una instancia de Firestore.
         const db = getFirestore();
 
@@ -27,7 +28,7 @@ export const obtenerReportesAdministrador = async (administradorId) => {
         });
 
         // Crea una consulta que filtra los reportes que están asociados a los proyectos filtrados previamente.
-        const reportesFiltrados = query(reportesCollection, where("proyecto", "in", proyectoRefs));
+        const reportesFiltrados = query(reportesCollection, where("proyecto", "in", proyectoRefs),orderBy("fechaEmision"));
 
         // Obtiene el resultado de la consulta de reportes filtrados.
         const reportesQuerySnapshot = await getDocs(reportesFiltrados);
@@ -41,7 +42,7 @@ export const obtenerReportesAdministrador = async (administradorId) => {
         });
 
         // Retorna el arreglo de reportes.
-        return reportes;
+        return reportes.reverse();
 
     } catch (error) { // Captura cualquier error que pueda ocurrir durante la ejecución.
         console.log(error); // Muestra el error en la consola.
@@ -54,6 +55,7 @@ export const obtenerReportesAdministrador = async (administradorId) => {
 // Función asíncrona para obtener los datos de un administrador específico.
 export const obtenerDatosAdministrador = async (administradorId) => {
     try {
+        console.log("obtenerDatosAdministrador");
         // Crea una instancia de Firestore.
         const db = getFirestore();
 
@@ -82,6 +84,7 @@ export const obtenerDatosAdministrador = async (administradorId) => {
 // Función asíncrona para obtener los datos de un administrador específico.
 export const obtenerUsuario = async (usuarioId) => {
     try {
+        console.log("obtenerUsuario");
         // Crea una instancia de Firestore.
         const db = getFirestore();
 
@@ -112,7 +115,7 @@ export const obtenerUsuario = async (usuarioId) => {
 // funcion para mostrar todos los docs
 export const getReportesUsuario = async(usuarioId) => {
   try{
-
+    console.log("getReportesUsuario");
      // Crea una instancia de Firestore.
     const db = getFirestore();
 
@@ -131,10 +134,8 @@ export const getReportesUsuario = async(usuarioId) => {
     proyectosQuerySnapshot.forEach( (doc) => {
       proyectoRefs.push(doc.ref);
     })    
-    console.log("aqui muero")
     //se recuperan los reportes que pertenezcan a alguno de los proyectos
     const reportesFiltrados = query(reportesCollection, where("proyecto","in", proyectoRefs),orderBy("fechaEmision"))
-    console.log("de aqui no paso")
     //se recuperan los documentos filtrados
     const reportesQuerySnapshot = await getDocs(reportesFiltrados);
     const reportes = []
@@ -150,6 +151,7 @@ export const getReportesUsuario = async(usuarioId) => {
 // obtener proyectos correspondientes a un usuario
 export const getProyectosUsuario = async(usuarioId) => {
     try{
+        console.log("getproyectoUsuario")
         const db = getFirestore();
 
         const referenciaUsuario = doc(db,'usuarios',usuarioId)
@@ -170,6 +172,7 @@ export const getProyectosUsuario = async(usuarioId) => {
 
 export const enviarReporteUsuario = async(datosReporte) => {
     try{
+        console.log("enviarReporteUsuario");
         const db = getFirestore();
 
         const referenciaProyecto = doc(db,'proyectos',datosReporte.proyecto);
@@ -199,7 +202,7 @@ export const enviarReporteUsuario = async(datosReporte) => {
 // obtener datos reporte dado un id
 export const obtenerDatosReporte = async (reporteId) => {
     try {
-
+        console.log("obtenerDatosReporte");
         const db = getFirestore();
 
         const referenciaReporte = doc(db,'reportes',reporteId);
@@ -225,6 +228,7 @@ export const obtenerDatosReporte = async (reporteId) => {
 // Función asíncrona para obtener la información del proyecto y su identificador a partir del id de un reporte.
 export const obtenerInfoProyectoDesdeReporte = async (reporteId) => {
     try {
+        console.log("obtenerInfoProyectoDesdeReporte");
         // Crea una instancia de Firestore.
         const db = getFirestore();
 

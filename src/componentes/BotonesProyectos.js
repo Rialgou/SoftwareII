@@ -13,18 +13,6 @@ function BotonesProyectos({ seleccionarProyecto }) {
     const [proyectosData, setProyectosData] = useState([]);
     const [botonSeleccionado, setBotonSeleccionado] = useState([]);
 
-    /*const proyectosData = [
-        {nombre: "QuickCalc"},
-        {nombre: "CleanSweep"},
-        {nombre: "QuickCalc"},
-        {nombre: "CleanSweep"},
-        {nombre: "QuickCalc"},
-        {nombre: "CleanSweep"},
-        {nombre: "QuickCalc"},
-        {nombre: "CleanSweep"},
-        {nombre: "QuickCalc"},
-        {nombre: "CleanSweep"},
-    ];*/
 
     useEffect(() =>{
         const fetchData = async () =>{
@@ -33,7 +21,7 @@ function BotonesProyectos({ seleccionarProyecto }) {
         };
 
         fetchData();
-    },[proyectosData]);
+    },[]);
     
     const seleccionarBoton = (indice) => {
         setBotonSeleccionado(indice);

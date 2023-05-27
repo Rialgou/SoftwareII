@@ -1,5 +1,5 @@
 import React from 'react';
-import  Button from 'react-bootstrap/Button';
+import Button from 'react-bootstrap/Button';
 import Acordeon from '../componentes/Acordeon';
 import BarraLateralUsuario from '../componentes/BarraLateralUsuario';
 import BarraSuperior from '../componentes/BarraSuperior';
@@ -57,12 +57,12 @@ function NuevoReporte() {
 
   useEffect(() => {
     const fetchData = async () => {
-    const datosUsuario = await obtenerUsuario(usuarioId);
-    setUsuario(datosUsuario);
-  };
+      const datosUsuario = await obtenerUsuario(usuarioId);
+      setUsuario(datosUsuario);
+    };
 
   fetchData();
-  }, [usuarioId]);
+  }, []);
 
 
   return (
