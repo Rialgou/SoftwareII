@@ -9,7 +9,7 @@ import RadioButton from '../componentes/RadioButton'
 import BarraLateral from '../componentes/BarraLateral';
 import BugsPendientes from '../componentes/BugsPendientes';
 import BarraSuperior from '../componentes/BarraSuperior';
-
+import BugsEnProceso from '../componentes/BugsEnProceso';
 import "../hojas-de-estilo/Administrador.css"
 
 
@@ -65,11 +65,11 @@ function Home() {
              )}
              {showCol && radioValue === '2' && (
               <Col  md={6}  className='d-flex  '>
-                <BugsPendientes
+                <BugsEnProceso
                 titulo1={"Bugs"}
                 titulo2={"Activos"}
                 >
-                </BugsPendientes>
+                </BugsEnProceso>
               </Col>
             )}
      

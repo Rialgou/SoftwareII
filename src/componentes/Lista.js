@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom';
 
 import { obtenerReportesAdministrador } from '../Funciones/consultas';
 
-function Lista() {
+function Lista({estado}) {
 
 
  /* Ejemplo al consmir api de informacion reporte bug para rellnar lista  path??? */
@@ -18,9 +18,9 @@ function Lista() {
 
   const administradorId = "oWcvYKoA3pnS6oJpBUhQ"; // Reemplazar con el ID del administrador
 
-  const getReportesAdministrador = async (administradorId) => {
+  const getReportesAdministrador = async (administradorId,estado) => {
     try {
-      const reportes = await obtenerReportesAdministrador(administradorId);
+      const reportes = await obtenerReportesAdministrador(administradorId,estado);
       setListaReportes(reportes);
     } catch (error) {
       console.log(error);
@@ -29,7 +29,7 @@ function Lista() {
 
 
   useEffect(() => {
-    getReportesAdministrador(administradorId);
+    getReportesAdministrador(administradorId, estado);
   }, []);
   
 

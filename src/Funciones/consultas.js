@@ -1,8 +1,9 @@
 // Importa las funciones necesarias de la biblioteca Firestore de Firebase.
-import { getFirestore, doc, getDoc, collection, query, where, getDocs, Timestamp, serverTimestamp, addDoc, orderBy, collectionGroup } from 'firebase/firestore';
+import { type } from '@testing-library/user-event/dist/type';
+import { getFirestore, doc, getDoc, collection, query, where, getDocs, serverTimestamp, addDoc, orderBy } from 'firebase/firestore';
 
 // Función asíncrona para obtener todos los reportes asociados a los proyectos de un administrador específico.
-export const obtenerReportesAdministrador = async (administradorId) => {
+export const obtenerReportesAdministrador = async (administradorId, estado) => {
     try {
         console.log("obtenerReportesAdministrador");
         // Crea una instancia de Firestore.
@@ -26,9 +27,9 @@ export const obtenerReportesAdministrador = async (administradorId) => {
         proyectosQuerySnapshot.forEach((doc) => {
             proyectoRefs.push(doc.ref);
         });
-
+        console.log(typeof estado);
         // Crea una consulta que filtra los reportes que están asociados a los proyectos filtrados previamente.
-        const reportesFiltrados = query(reportesCollection, where("proyecto", "in", proyectoRefs),orderBy("fechaEmision"));
+        const reportesFiltrados = query(reportesCollection, where("proyecto", "in", proyectoRefs),where("estado","==",estado),orderBy("fechaEmision"));
 
         // Obtiene el resultado de la consulta de reportes filtrados.
         const reportesQuerySnapshot = await getDocs(reportesFiltrados);

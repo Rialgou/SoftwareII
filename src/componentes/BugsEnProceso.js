@@ -24,7 +24,7 @@ const BugsPendientes = ({titulo1,titulo2}) => {
         </Row>
         <Row className="w-100">
           <Col  className="col-Lista ">
-          <Lista estado = {1} ></Lista>
+          <Lista estado = {2} ></Lista>
           </Col>
         </Row>
       </Container>
