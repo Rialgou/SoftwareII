@@ -3,8 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Acordeon from '../componentes/Acordeon';
 import BarraLateralUsuario from '../componentes/BarraLateralUsuario';
 import BarraSuperior from '../componentes/BarraSuperior';
-
-import { Stack, Badge } from 'react-bootstrap';
+import { Stack, Badge, Modal } from 'react-bootstrap';
 import { enviarReporteUsuario } from '../Funciones/consultas';
 import {motion} from 'framer-motion';
 import {obtenerUsuario} from '../Funciones/consultas';
@@ -14,18 +13,20 @@ import '../hojas-de-estilo/NuevoReporte.css'
 
 
 function NuevoReporte() {
+  const [showAlertSinContenido, setShowAlertSinContenido] = useState(false);
+  
   const [datosReporte, setDatosReporte] = useState({
     proyecto: '',
-    prioridad: '',
+    titulo: '',
     descripcion: ''
   });
 
   const handleNewReportClick = async () => {
     console.log(datosReporte);
   
-    if (datosReporte.proyecto.trim().length === 0 || datosReporte.prioridad.trim().length === 0 || datosReporte.descripcion.trim().length === 0) {
+    if (datosReporte.proyecto.trim().length === 0 || datosReporte.titulo.trim().length === 0 || datosReporte.descripcion.trim().length === 0) {
       console.log('No enviar data');
-      alert('Tienes que llenar todos los campos');
+      setShowAlertSinContenido(true);
       return;
     }
 
@@ -40,9 +41,9 @@ function NuevoReporte() {
     setDatosReporte(prevState => ({...prevState, proyecto}));
   };
 
-  const handlePriority = (prioridad) => {
-    console.log(`NuevoReporte prioridad seleccionado: ${prioridad}`);
-    setDatosReporte(prevState => ({...prevState, prioridad}));
+  const handleTitle = (titulo) => {
+    console.log(`NuevoReporte titulo seleccionado: ${titulo}`);
+    setDatosReporte(prevState => ({...prevState, titulo}));
   };
 
   const handleDescripcion = (descripcion) => {
@@ -63,6 +64,10 @@ function NuevoReporte() {
 
   fetchData();
   }, []);
+
+  const handleCloseAlertSinContenido = () => {
+    setShowAlertSinContenido(false);
+  };
 
 
   return (
@@ -86,8 +91,8 @@ function NuevoReporte() {
         <div className="mx-auto acordeon">
           <Acordeon 
             proyectoId={handleProyect} 
-            prioridadProyecto={handlePriority} 
-            descripcionProyecto={handleDescripcion}
+            tituloBug={handleTitle} 
+            descripcionBug={handleDescripcion}
             />
         </div>
 
@@ -97,6 +102,49 @@ function NuevoReporte() {
           </Button>
         </div>
       </Stack>
+
+      <Modal centered show={showAlertSinContenido} onHide={handleCloseAlertSinContenido} className="modal-campo">
+        <Modal.Header closeButton>
+          <Modal.Title>Reporte no enviado</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Por favor, ingrese todos los campos para poder enviar el reporte.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseAlertSinContenido}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* <Modal centered show={showAlertError} onHide={handleCloseAlertError} className="modal-campo">
+        <Modal.Header closeButton>
+          <Modal.Title>¡Error!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Ocurrio un error al enviar el reporte, intentelo más tarde. 
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseAlertError}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal centered show={showAlertSuccess} onHide={handleCloseAlertSuccess} className="modal-basic">
+        <Modal.Header closeButton>
+          <Modal.Title>Reporte enviado</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        El reporte ha sido enviado con éxito. Lamentamos los inconvenientes que estás experimentando. Hemos recibido tu reporte de bug y nuestro equipo técnico lo revisará detenidamente para solucionarlo lo más pronto posible. Te mantendremos informado sobre el progreso y agradecemos tu paciencia. 
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseAlertSuccess}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal> */}
+
     </main>
     </motion.div>
   );

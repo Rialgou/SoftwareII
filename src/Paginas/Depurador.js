@@ -42,8 +42,8 @@ function Depurador() {
              )}
              {showCol && radioValue === '2' && (
               <Col md={8}  className="d-flex">
-                <Container>
-                <h2><strong>Bugs </strong> <Badge bg='primary'>Nuevos</Badge></h2>
+                <Container fluid className=" justify-content-center align-items-center mt-5">
+                <h2 className="titulo-bugs-proceso"><strong>Bugs </strong> <Badge bg='primary'>Nuevos</Badge></h2>
                 <AcordeonBugsNuevos/>
                 
                 </Container>

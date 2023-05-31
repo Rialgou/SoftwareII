@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Row, Col,Button,Container } from 'react-bootstrap';
+import { Stack, Badge, Button } from 'react-bootstrap';
 import {motion} from 'framer-motion';
 import {obtenerUsuario} from '../Funciones/consultas';
 import { useState,useEffect } from 'react';
@@ -32,25 +32,36 @@ function Usuario() {
 
 
   return (
-      <motion.div initial={{ opacity: 0 }}  animate={{ opacity: 1 }}exit={{ opacity: 0 }}transition={{ duration: 0.3 }}>
-          <div>
-            <BarraSuperior nombre={usuario.nombre}></BarraSuperior>
-          </div>
-          <div>
-            <BarraLateralUsuario></BarraLateralUsuario>
-          </div>
-          <Container className="d-flex  my-5 justify-content-center align-items-center ">
-              <Row className="mb-3 justify-content-center align-items-center">
-                  <ReportesUsuarios></ReportesUsuarios>
-                  <Col className='' >
-                      <Row className='mt-5 d-flex justify-content-end align-items-end mx-1'>
-                          <Button className="botones-stack" variant='dark' onClick={handleNewReportClick}>Crear nuevo reporte</Button>
-                      </Row>
-                  </Col>
-              </Row>    
-          </Container>
-       </motion.div>
-      
+    <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.3 }}>
+    <main className="contenido-principal">
+      <div>
+        <BarraSuperior nombre={usuario.nombre}></BarraSuperior>
+      </div>
+      <div>
+        <BarraLateralUsuario></BarraLateralUsuario>
+      </div>
+      <Stack gap={3}>
+        <div className="text-center">
+          <h2 className="titulo"><strong>Estado</strong> <Badge bg='primary'>Reportes</Badge></h2>
+        </div>
+
+        <div className="mx-auto acordeon">
+          <ReportesUsuarios />
+        </div>
+
+        <div className="contenedor-boton">
+          <Button className="boton-enviar" variant='dark' onClick={handleNewReportClick}>
+            Crear nuevo reporte
+          </Button>
+        </div>
+      </Stack>
+
+    </main>
+    </motion.div>
   );
 }
 
