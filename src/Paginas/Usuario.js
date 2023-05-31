@@ -16,7 +16,6 @@ function Usuario() {
       navigate('/usuario/reporte');
   };
 
-
   const [usuario, setUsuario] = useState({});
 
   const usuarioId = "umlvgp6OkqUwNtDeh1aA"; // Reemplazar con el ID del administrador

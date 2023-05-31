@@ -8,12 +8,14 @@ import { enviarReporteUsuario } from '../Funciones/consultas';
 import {motion} from 'framer-motion';
 import {obtenerUsuario} from '../Funciones/consultas';
 import { useState,useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import '../hojas-de-estilo/NuevoReporte.css'
 import { useAsyncError } from 'react-router-dom';
 
 
 function NuevoReporte() {
+  const navigate = useNavigate();
   const [showAlertSinContenido, setShowAlertSinContenido] = useState(false);
   const [showAlertError, setShowAlertError] = useState(false);
   const [showAlertSuccess, setShowAlertSuccess] = useState(false);
@@ -80,6 +82,7 @@ function NuevoReporte() {
   };
   const handleCloseAlertSuccess = () => {
     setShowAlertSuccess(false);
+    navigate('/usuario');
   };
 
 
