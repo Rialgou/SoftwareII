@@ -10,11 +10,13 @@ import {obtenerUsuario} from '../Funciones/consultas';
 import { useState,useEffect } from 'react';
 
 import '../hojas-de-estilo/NuevoReporte.css'
+import { useAsyncError } from 'react-router-dom';
 
 
 function NuevoReporte() {
   const [showAlertSinContenido, setShowAlertSinContenido] = useState(false);
-  
+  const [showAlertError, setShowAlertError] = useState(false);
+  const [showAlertSuccess, setShowAlertSuccess] = useState(false);
   const [datosReporte, setDatosReporte] = useState({
     proyecto: '',
     titulo: '',
@@ -32,7 +34,12 @@ function NuevoReporte() {
 
     else {
       console.log('Enviar data');
-      await enviarReporteUsuario(datosReporte);
+      if(await enviarReporteUsuario(datosReporte)){
+        setShowAlertSuccess(true);
+      }
+      else{
+        setShowAlertError(true);
+      }
     } 
   };
 
@@ -68,6 +75,14 @@ function NuevoReporte() {
   const handleCloseAlertSinContenido = () => {
     setShowAlertSinContenido(false);
   };
+  const handleCloseAlertError = () => {
+    setShowAlertError(false);
+  };
+  const handleCloseAlertSuccess = () => {
+    setShowAlertSuccess(false);
+  };
+
+
 
 
   return (
@@ -117,7 +132,7 @@ function NuevoReporte() {
         </Modal.Footer>
       </Modal>
 
-      {/* <Modal centered show={showAlertError} onHide={handleCloseAlertError} className="modal-campo">
+      <Modal centered show={showAlertError} onHide={handleCloseAlertError} className="modal-campo">
         <Modal.Header closeButton>
           <Modal.Title>¡Error!</Modal.Title>
         </Modal.Header>
@@ -143,7 +158,7 @@ function NuevoReporte() {
             Cerrar
           </Button>
         </Modal.Footer>
-      </Modal> */}
+      </Modal> 
 
     </main>
     </motion.div>

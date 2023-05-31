@@ -188,10 +188,12 @@ export const enviarReporteUsuario = async(datosReporte) => {
             proyecto: referenciaProyecto
         };
         await addDoc(collection(db,"reportes"), reporteData);
-        alert("reporte enviado con éxito!");
+        return true;
+        //alert("reporte enviado con éxito!");
     }catch(error){
         console.log(error);
-        alert("error en enviar el reporte");
+        return false;
+        //alert("error en enviar el reporte");
     }
 }
 
