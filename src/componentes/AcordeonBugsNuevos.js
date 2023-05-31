@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
-import "../hojas-de-estilo/AcordeonBugsProceso.css";
+import "../hojas-de-estilo/AcordeonBugsNuevos.css";
 
-function AcordeonBugsProceso() {
+function AcordeonBugsNuevos() {
   const datos = [
     { nombre: 'proyecto 1', fecha1: 'fecha 1', fecha2: 'fecha 11', prioridad: 'media', descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur cum similique reprehenderit illo iste expedita, quae dolores veniam architecto. Blanditiis molestias, iste similique harum labore laudantium voluptatibus illo ab animi.' },
     { nombre: 'proyecto 2', fecha1: 'fecha 2', fecha2: 'fecha 22', prioridad: 'media', descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur cum similique reprehenderit illo iste expedita, quae dolores veniam architecto. Blanditiis molestias, iste similique harum labore laudantium voluptatibus illo ab animi.' },
@@ -20,7 +20,7 @@ function AcordeonBugsProceso() {
   };
 
   return (
-    <Accordion className="acordeon-bugs-proceso" activeKey={activeItem} onSelect={handleItemClick}>
+    <Accordion className="acordeon-bugs-nuevos" activeKey={activeItem} onSelect={handleItemClick}>
       {datos.map((item, index) => (
         <Accordion.Item key={index} eventKey={index}>
           <Card>
@@ -35,7 +35,7 @@ function AcordeonBugsProceso() {
               </div>
             </Accordion.Header>
             <Accordion.Body>
-              Descripción del Bug <br/> {item.descripcion}
+              <strong className="descripcion-titulo">Descripción del Bug</strong> <br /> {item.descripcion}
               <Link
                 component="button"
                 variant="body2"
@@ -54,4 +54,4 @@ function AcordeonBugsProceso() {
   );
 }
 
-export default AcordeonBugsProceso;
+export default AcordeonBugsNuevos;

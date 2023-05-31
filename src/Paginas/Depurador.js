@@ -41,11 +41,10 @@ function Depurador() {
             </Col>
              )}
              {showCol && radioValue === '2' && (
-              <Col md={8}  className="d-flex">
+              <Col md={8}  className="d-flex ">
                 <Container>
                 <h2><strong>Bugs </strong> <Badge bg='primary'>Nuevos</Badge></h2>
                 <AcordeonBugsNuevos/>
-                
                 </Container>
               </Col>
             )}
