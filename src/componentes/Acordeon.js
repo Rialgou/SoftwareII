@@ -1,64 +1,79 @@
+import React, { useState } from "react";
 import BotonesProyectos from "./BotonesProyectos";
 import Accordion from 'react-bootstrap/Accordion';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
-import { useState } from "react";
 
 import '../hojas-de-estilo/Acordeon.css'
 
-function Acordeon({ proyectoId, prioridadProyecto, descripcionProyecto }) {
-    const [descripcionBug, setDescripcionBug] = useState("");
-    const [prioridad, setPrioridad] = useState("");
+function Acordeon({ proyectoId, tituloBug, descripcionBug }) {
+  const [desBug, setDescripcionBug] = useState("");
+  const [title, setTitle] = useState("");
+  const [showTextarea, setShowTextarea] = useState(false); 
+  const handleDescripcionBug = (event) => {
+    setDescripcionBug(event.target.value);
+    descripcionBug(event.target.value);
+  };
 
-    const handleDescripcionBug = (event) => {
-      setDescripcionBug(event.target.value);
-      descripcionProyecto(event.target.value);
-    };
+  const handleTitle = (event) => {
+    const value = event.target.value.slice(0, 40);
+    setTitle(value);
+    tituloBug(value);
+  };
 
-    const handlePriority = (value) => {
-      setPrioridad(value);
-      prioridadProyecto(value);
-    };
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") 
+      event.preventDefault();
+  };
 
-    const handleProyectSelect = (id) => {
-      console.log(id);
-      proyectoId(id);
-    };
-  
-    return (
-        <Accordion defaultActiveKey={['-1']} alwaysOpen>
+  const handleProyectSelect = (id) => {
+    console.log(id);
+    proyectoId(id);
+  };
 
-        <Accordion.Item eventKey="0">
-          <Accordion.Header>Seleccionar proyecto</Accordion.Header>
-          <Accordion.Body>
-            <BotonesProyectos seleccionarProyecto={handleProyectSelect} />
-          </Accordion.Body>
-        </Accordion.Item>
+  const handleAccordionItemClick = (eventKey) => {
+    if (eventKey === "1") 
+      setShowTextarea(true); 
+  };
 
-        <Accordion.Item eventKey="1">
-          <Accordion.Header>Prioridad del proyecto</Accordion.Header>
-          <Accordion.Body>
-            <ButtonGroup>
-              <Button variant={prioridad === "Baja" ? "success" : "outline-success"} onClick={() =>  handlePriority("Baja")}>Baja</Button>
-              <Button variant={prioridad === "Media" ? "warning" : "outline-warning"} onClick={() =>  handlePriority("Media")}>Media</Button>
-              <Button variant={prioridad === "Alta" ? "danger" : "outline-danger"} onClick={() =>  handlePriority("Alta")}>Alta</Button>
-            </ButtonGroup>
-          </Accordion.Body>
-        </Accordion.Item>
+  return (
+    <Accordion defaultActiveKey={['-1']} alwaysOpen>
+      <Accordion.Item eventKey="0">
+        <Accordion.Header>Seleccionar proyecto</Accordion.Header>
+        <Accordion.Body>
+          <BotonesProyectos seleccionarProyecto={handleProyectSelect} />
+        </Accordion.Body>
+      </Accordion.Item>
 
-        <Accordion.Item eventKey="2">
-          <Accordion.Header>Descripción del bug</Accordion.Header>
-          <Accordion.Body>
-            <textarea className="caja-texto textarea-basic"
-              value={descripcionBug}
-              onChange={handleDescripcionBug}
-              placeholder="Ingrese una descripción detallada del bug y los pasos necesarios para replicarlo"
+      <Accordion.Item eventKey="1">
+        <Accordion.Header onClick={() => handleAccordionItemClick("1")}>
+          Título del Bug
+          {showTextarea && ( 
+            <textarea
+              className="textarea-title"
+              value={title}
+              onChange={handleTitle}
+              onKeyDown={handleKeyDown}
+              placeholder="Ingrese un título para el Bug"
+              maxLength={40}
             />
-          </Accordion.Body>
-        </Accordion.Item>
+          )}
+        </Accordion.Header>
+      </Accordion.Item>
 
-      </Accordion>
-    );
+      <Accordion.Item eventKey="2">
+        <Accordion.Header>Descripción del Bug</Accordion.Header>
+        <Accordion.Body>
+          <textarea
+            className="caja-texto textarea-basic"
+            value={desBug}
+            onChange={handleDescripcionBug}
+            placeholder="Ingrese una descripción detallada del bug y los pasos necesarios para replicarlo"
+          />
+        </Accordion.Body>
+      </Accordion.Item>
+    </Accordion>
+  );
 }
 
 export default Acordeon;

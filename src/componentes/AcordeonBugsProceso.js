@@ -94,7 +94,7 @@ function AcordeonBugsProceso() {
         ))}
       </Accordion>
       
-      <Modal show={showAlertParcial} onHide={handleCloseAlertParcial} className="modal-basic">
+      <Modal centered show={showAlertParcial} onHide={handleCloseAlertParcial} className="modal-basic">
           <Modal.Header closeButton>
             <Modal.Title>Reporte parcial enviado</Modal.Title>
           </Modal.Header>
@@ -108,7 +108,7 @@ function AcordeonBugsProceso() {
           </Modal.Footer>
       </Modal>
       
-      <Modal show={showAlertFinal} onHide={handleCloseAlertFinal} className="modal-basic">
+      <Modal centered show={showAlertFinal} onHide={handleCloseAlertFinal} className="modal-basic">
           <Modal.Header closeButton>
             <Modal.Title>Reporte final enviado</Modal.Title>
           </Modal.Header>
@@ -122,7 +122,7 @@ function AcordeonBugsProceso() {
           </Modal.Footer>
       </Modal>
 
-      <Modal show={showAlertSinContenido} onHide={handleCloseAlertSinContenido} className="modal-campo">
+      <Modal centered show={showAlertSinContenido} onHide={handleCloseAlertSinContenido} className="modal-campo">
         <Modal.Header closeButton>
           <Modal.Title>Reporte no enviado</Modal.Title>
         </Modal.Header>

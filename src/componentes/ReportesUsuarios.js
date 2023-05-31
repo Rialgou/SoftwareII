@@ -1,4 +1,6 @@
 import React, {useState,useEffect} from 'react'
+import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card';
 import { Badge } from 'react-bootstrap';
 import {getReportesUsuario} from '../Funciones/consultas';
 import "../hojas-de-estilo/ReportesUsuarios.css"
@@ -20,33 +22,47 @@ const ReportesUsuarios = () => {
 
     fetchData();
   }, []);
-  
 
-  
   return (
-    <div>
-      <h2><strong>Estado</strong> <Badge bg='primary'>reportes</Badge></h2>
-      <div className='card'>
-        <div className='card-body'>
-          {
-            listaReportesUsuario.map((list) => {
-              let estadoReporte;
-              if(list.estado === -1) estadoReporte = "Rechazado";
-              else if(list.estado === 1) estadoReporte = "Pendiente";
-              else if(list.estado === 2) estadoReporte = "En proceso";
-              else if(list.estado === 3) estadoReporte = "Terminado"; 
-              return <div key={list.id}>
-                <p>Reporte: {list.asunto}</p>
-                <p>Estado: {estadoReporte}</p>
-                <hr />
-              </div>
-            })
-          }
-        </div>
-      </div>
-    </div>
-    
+    <>
+      <Accordion alwaysOpen>
+        {listaReportesUsuario.map((list, index) => (
+          <Accordion.Item key={index} eventKey={index}>
+            <Card>
+              <Accordion.Header>
+                <div>
+                  <span className="bug-info">
+                    <span> Bug {index + 1} </span>
+                    <span> Título: {list.asunto}</span>
+                  </span>
+                </div>
+              </Accordion.Header>
+
+              <Accordion.Body>
+                <strong className="descripcion-titulo">Estado del reporte: </strong>
+                {list.estado === -1 && <span>Rechazado</span>}
+                {list.estado === 1 && <span>Pendiente</span>}
+                {list.estado === 2 && <span>En proceso</span>}
+                {list.estado === 3 && <span>Terminado</span>}
+
+                <div>
+                  <strong className="descripcion-titulo">Fecha de emisión del reporte: </strong>
+                  <span>{list.fechaEmision.toDate().toLocaleString()}</span>
+                  <br/>
+                  <strong className="descripcion-titulo">Fecha estimada  de termino: </strong>
+                  {list.fechaEstimadaTermino ? <span>{list.fechaEstimadaTermino.toDate().toLocaleString()}</span> : <span>Por determinar</span>}
+                  <br/>
+                  <br/>
+                  <strong className="descripcion-titulo">Descripción del Bug: </strong>
+                  <span>{list.descripcionUsuario}</span>
+                </div>
+              </Accordion.Body>
+            </Card>
+          </Accordion.Item>
+        ))}
+      </Accordion> 
+    </> 
   )
 }
 
-export default ReportesUsuarios
+export default ReportesUsuarios;
