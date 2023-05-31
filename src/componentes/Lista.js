@@ -18,7 +18,7 @@ function Lista({estado}) {
 
   const administradorId = "oWcvYKoA3pnS6oJpBUhQ"; // Reemplazar con el ID del administrador
 
-  const getReportesAdministrador = async (administradorId,estado) => {
+  const getReportesAdministrador = async (administradorId) => {
     try {
       const reportes = await obtenerReportesAdministrador(administradorId,estado);
       setListaReportes(reportes);
@@ -29,7 +29,7 @@ function Lista({estado}) {
 
 
   useEffect(() => {
-    getReportesAdministrador(administradorId, estado);
+    getReportesAdministrador(administradorId);
   }, []);
   
 

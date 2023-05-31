@@ -177,19 +177,14 @@ export const enviarReporteUsuario = async(datosReporte) => {
         const db = getFirestore();
 
         const referenciaProyecto = doc(db,'proyectos',datosReporte.proyecto);
-        
-        let prioridad;
-        if(datosReporte.prioridad === "Baja") prioridad = 1;
-        else if(datosReporte.prioridad === "Media") prioridad = 5;
-        else if(datosReporte.prioridad === "Alta") prioridad = 10;
 
         const reporteData ={
+            asunto: datosReporte.titulo,
             depurador: '',
             descripcionAdministrador: '',
             descripcionUsuario: datosReporte.descripcion,
             estado: 1,
             fechaEmision: serverTimestamp(),
-            prioridad: prioridad,
             proyecto: referenciaProyecto
         };
         await addDoc(collection(db,"reportes"), reporteData);

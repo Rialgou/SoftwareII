@@ -47,11 +47,10 @@ const ReportesUsuarios = () => {
 
                 <div>
                   <strong className="descripcion-titulo">Fecha de emisión del reporte: </strong>
-                  <span>Fecha 1</span>
+                  <span>{list.fechaEmision.toDate().toLocaleString()}</span>
                   <br/>
                   <strong className="descripcion-titulo">Fecha estimada  de termino: </strong>
-                  <span>Fecha 2 o en revisión</span>
-
+                  {list.fechaEstimadaTermino ? <span>{list.fechaEstimadaTermino.toDate().toLocaleString()}</span> : <span>Por determinar</span>}
                   <br/>
                   <br/>
                   <strong className="descripcion-titulo">Descripción del Bug: </strong>
