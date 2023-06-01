@@ -8,10 +8,23 @@ import AcordeonBugsProceso from "../componentes/AcordeonBugsProceso";
 import AcordeonBugsNuevos from "../componentes/AcordeonBugsNuevos";
 
 import "../hojas-de-estilo/Depurador.css"
+import { obtenerDepurador } from '../Funciones/consultas';
 
 function Depurador() {
   const [radioValue, setRadioValue] = useState('1');
   const [showCol, setShowCol] = useState(true); // Mostrar por defecto cuando se carga la página
+  const [depurador, setDepurador] = useState({});
+  
+  const depuradorId = "qjM7ExaUwt7Zv7ApAVHL";
+
+  useEffect(() => {
+    const fetchData = async () => {
+    const datosDepurador = await obtenerDepurador(depuradorId);
+    setDepurador(datosDepurador);
+  };
+
+  fetchData();
+  }, [depuradorId]);
 
   return (
     
@@ -21,7 +34,7 @@ function Depurador() {
     exit={{ opacity: 0 }}
     transition={{ duration: 0.3 }}>
 
-        <div><BarraSuperior/></div>
+        <div><BarraSuperior nombre={depurador.nombre}/></div>
         <div><BarraLateral/></div>
         
         <Container  fluid className=" justify-content-center align-items-center mt-5">
@@ -36,7 +49,7 @@ function Depurador() {
             <Col md={8}  className="d-flex ">
               <Container className="bugs-proceso-container">
                 <h2 className="titulo-bugs-proceso"><strong>Bugs en</strong> <Badge bg='primary'>proceso</Badge></h2>
-                <AcordeonBugsProceso />
+                <AcordeonBugsProceso/>
               </Container>
             </Col>
              )}

@@ -261,3 +261,95 @@ export const obtenerInfoProyectoDesdeReporte = async (reporteId) => {
         return {}; // Retorna un objeto vacío en caso de error.
     }
 };
+
+export const obtenerDepurador = async(depuradorId) =>{
+    try {
+        console.log("obtenerDepurador");
+        // Crea una instancia de Firestore.
+        const db = getFirestore();
+
+        // Crea una referencia al documento del depurador en la colección "depurador" utilizando el ID proporcionado.
+        const referenciaUsuario = doc(db, 'depuradores', depuradorId);
+
+        // Obtiene el documento del depurador utilizando la referencia creada previamente.
+        const usuarioSnapshot = await getDoc(referenciaUsuario);
+
+        // Verifica si el documento existe en Firestore.
+        if (usuarioSnapshot.exists()) {
+            // Si el documento existe, retorna un objeto con los datos del usuario y su Id
+            return { ...usuarioSnapshot.data(), id: depuradorId };
+        } else {
+            // Si el documento no existe, retorna un objeto vacío.
+            return {};
+        }
+    } catch (error) { // Captura cualquier error que pueda ocurrir durante la ejecución.
+        console.log(error); // Muestra el error en la consola.
+        return {}; // Retorna un objeto vacío en caso de error.
+    }
+}
+
+// funcion para mostrar todos los docs
+export const getReportesDepurador = async(depuradorId,estado) => {
+    try{
+      console.log("getReportesDepurador");
+       // Crea una instancia de Firestore.
+      const db = getFirestore();
+     
+      const proyectosCollection = collection(db, "proyectos");
+      const reportesCollection = collection(db, "reportes");
+      const referenciaDepurador = doc(db,'depuradores',depuradorId)
+      //obtenemos los proyectos que pertenecen al depurador
+    
+      const proyectosFiltrados = query(proyectosCollection, where("depuradores", "array-contains", referenciaDepurador));
+      
+      //se crea una lista donde se guardaran los proyectos
+      const proyectoRefs = [];
+      const proyectosQuerySnapshot = await getDocs(proyectosFiltrados);
+      proyectosQuerySnapshot.forEach( (doc) => {
+        proyectoRefs.push(doc.ref);
+      })    
+      //se recuperan los reportes que pertenezcan a alguno de los proyectos
+      const reportesFiltrados = query(reportesCollection, where("proyecto","in", proyectoRefs),where("depurador","==",referenciaDepurador),where("estado","==",estado),orderBy("fechaEmision"));
+      //se recuperan los documentos filtrados
+      const reportesQuerySnapshot = await getDocs(reportesFiltrados);
+  
+      const reportesPromises = reportesQuerySnapshot.docs.map(async (doc) => {
+        const nombre = await getNombreProyecto(doc.data().proyecto);
+        const data = doc.data();
+        data.nombreProyecto = nombre;
+        return { ...data, id: doc.id };
+      });
+  
+      const reportes = await Promise.all(reportesPromises);
+      return reportes.reverse()
+    }catch(error){
+      console.log(error)
+    }
+  }
+
+  export const getNombreProyecto = async(referenciaReporte) => {
+    try{
+        console.log("getNombreProyecto");
+        // Crea una instancia de Firestore.
+        //const db = getFirestore();
+
+        // Crea una referencia al documento del reporte en la colección "reportes" utilizando el ID proporcionado.
+        //const referenciaReporte = doc(db, 'reportes', reporteId);
+
+        // Obtiene el documento del reporte utilizando la referencia creada previamente.
+        const reporteSnapshot = await getDoc(referenciaReporte);
+
+        // Verifica si el documento existe en Firestore.
+        if (reporteSnapshot.exists()) {
+            // Si el documento existe, obtiene la referencia del proyecto.
+            const nombreProyecto = reporteSnapshot.data().nombre;
+            return nombreProyecto;
+        } else {
+            // Si el documento del reporte no existe, retorna un objeto vacío.
+            return {};
+        }
+    } catch (error) { // Captura cualquier error que pueda ocurrir durante la ejecución.
+        console.log(error); // Muestra el error en la consola.
+        return {}; // Retorna un objeto vacío en caso de error.
+    }
+  }
