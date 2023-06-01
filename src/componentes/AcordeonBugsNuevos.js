@@ -1,11 +1,27 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import React, { useState,useEffect } from 'react';
+import { getReportesDepurador } from '../Funciones/consultas';
+import Button from 'react-bootstrap/Button'
+import { Link } from 'react-router-dom'
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import "../hojas-de-estilo/AcordeonBugsNuevos.css";
 import Rechazar from '../componentes/Rechazar';
 
 function AcordeonBugsNuevos() {
+
+  const [listaReportes, setListaReportes] = useState([]);
+  const depuradorId = "qjM7ExaUwt7Zv7ApAVHL";
+
+  const ReportesDepurador = async()=>{
+      const reportes = await getReportesDepurador(depuradorId,1);
+      setListaReportes(reportes);
+      console.log(listaReportes);
+  }
+
+  useEffect( () => {
+    ReportesDepurador();
+  },[]);
+
   const datos = [
     { nombre: 'proyecto 1', fecha1: 'fecha 1', fecha2: 'fecha 11', prioridad: 'media', descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur cum similique reprehenderit illo iste expedita, quae dolores veniam architecto. Blanditiis molestias, iste similique harum labore laudantium voluptatibus illo ab animi.' },
     { nombre: 'proyecto 2', fecha1: 'fecha 2', fecha2: 'fecha 22', prioridad: 'media', descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur cum similique reprehenderit illo iste expedita, quae dolores veniam architecto. Blanditiis molestias, iste similique harum labore laudantium voluptatibus illo ab animi.' },
@@ -22,21 +38,21 @@ function AcordeonBugsNuevos() {
 
   return (
     <Accordion className="acordeon-bugs-nuevos" activeKey={activeItem} onSelect={handleItemClick}>
-      {datos.map((item, index) => (
+      {listaReportes.map((list, index) => (
         <Accordion.Item key={index} eventKey={index}>
           <Card>
             <Accordion.Header>
               <div>
                 <span className="bug-info">
                   <span> Bug {index + 1}</span>
-                  <span>Proyecto: {item.nombre}</span>
-                  <span>{item.fecha1}-{item.fecha2}</span>
-                  <span>Prioridad: {item.prioridad}</span>
+                  <span>Proyecto: {list.nombreProyecto}</span>
+                  <span>{list.fechaEmision.toDate().toLocaleString()}-{list.fechaEstimadaTermino ? <span>{list.fechaEstimadaTermino.toDate().toLocaleString()}</span> : <span>Por determinar</span>}</span>
+                  <span>Prioridad: {list.prioridad}</span>
                 </span>
               </div>
             </Accordion.Header>
             <Accordion.Body>
-              <strong className="descripcion-titulo">Descripción del Bug</strong> <br /> {item.descripcion}
+              <strong className="descripcion-titulo">Descripción del Bug</strong> <br /> {list.descripcionAdministrador}
               <div>
               <Button variant="success" className="boton-aceptar" onClick={alert}>
                   Aceptar trabajo

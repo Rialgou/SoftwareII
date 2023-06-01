@@ -42,13 +42,13 @@ function Lista({estado}) {
 
   return (
     <>
-      {listaReportes.map(({prioridad,fechaEmision,descripcionUsuario,id} , index ) => (
+      {listaReportes.map(({prioridad,fechaEmision,asunto,id} , index ) => (
         <ListGroup   key ={index} horizontal={"lg"} className="my-2 " id='contenedor-lista-reportes' >
           <ListGroup.Item  as={Link} to={rutaReporte(id)} className=" mt-2 mb-2 item" variant="warning" >
             Bug {index+1}
           </ListGroup.Item>
           <ListGroup.Item className="mt-2 mb-2 item"  variant="dark"  >
-            {descripcionUsuario}
+            {asunto}
           </ListGroup.Item>
           <ListGroup.Item className=" mt-2 mb-2 item" variant="dark" >
             {fechaEmision.toDate().toLocaleString()}

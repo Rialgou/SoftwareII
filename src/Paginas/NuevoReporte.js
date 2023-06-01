@@ -70,9 +70,8 @@ function NuevoReporte() {
       const datosUsuario = await obtenerUsuario(usuarioId);
       setUsuario(datosUsuario);
     };
-
   fetchData();
-  }, []);
+  }, [usuarioId]);
 
   const handleCloseAlertSinContenido = () => {
     setShowAlertSinContenido(false);
