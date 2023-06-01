@@ -38,11 +38,11 @@ function AcordeonBugsNuevos() {
             <Accordion.Body>
               <strong className="descripcion-titulo">Descripción del Bug</strong> <br /> {item.descripcion}
               <div>
-              <Button variant="secondary" className="boton-aceptar" onClick={alert}>
+              <Button variant="success" className="boton-aceptar" onClick={alert}>
                   Aceptar trabajo
               </Button>
               <Rechazar className="rechazo-lugar"></Rechazar>
-              </div>;
+              </div>
             </Accordion.Body>
             
 

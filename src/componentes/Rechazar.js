@@ -12,7 +12,7 @@ function Rechazar() {
 
   return (
     <>
-      <Button variant="primary" className="boton-rechazo" onClick={handleShow}>
+      <Button variant="danger" className="boton-rechazo" onClick={handleShow}>
         rechazar trabajo
       </Button>
 
@@ -33,10 +33,7 @@ function Rechazar() {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cerrar
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="success" onClick={handleClose}>
             Enviar
           </Button>
         </Modal.Footer>
