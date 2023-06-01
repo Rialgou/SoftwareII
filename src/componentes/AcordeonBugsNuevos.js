@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import "../hojas-de-estilo/AcordeonBugsNuevos.css";
+import Rechazar from '../componentes/Rechazar';
 
 function AcordeonBugsNuevos() {
   const datos = [
@@ -36,16 +37,14 @@ function AcordeonBugsNuevos() {
             </Accordion.Header>
             <Accordion.Body>
               <strong className="descripcion-titulo">Descripción del Bug</strong> <br /> {item.descripcion}
-              <Link
-                component="button"
-                variant="body2"
-                onClick={() => {
-                  console.info("I'm a button.");
-                 }}
-                >
-                 Ver mas...
-                </Link>
+              <div>
+              <Button variant="success" className="boton-aceptar" onClick={alert}>
+                  Aceptar trabajo
+              </Button>
+              <Rechazar className="rechazo-lugar"></Rechazar>
+              </div>
             </Accordion.Body>
+            
 
           </Card>
         </Accordion.Item>
