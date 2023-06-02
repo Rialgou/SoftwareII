@@ -21,3 +21,10 @@
     border-color: rgb(230,230,230);
 }
 
+.textarea-title {
+    resize: none;
+}
+
+.titulo-bug-click .accordion-button:not(.collapsed)::after {
+    transform: rotate(0) !important;
+} 

@@ -122,7 +122,10 @@ function NuevoReporte() {
 
       <Modal centered show={showAlertSinContenido} onHide={handleCloseAlertSinContenido} className="modal-campo">
         <Modal.Header closeButton>
-          <Modal.Title>Reporte no enviado</Modal.Title>
+          <Modal.Title>
+            Reporte no enviado
+            <span role="img" aria-label="Emoticono Upsi"> 😅</span>
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           Por favor, ingrese todos los campos para poder enviar el reporte.
@@ -136,7 +139,10 @@ function NuevoReporte() {
 
       <Modal centered show={showAlertError} onHide={handleCloseAlertError} className="modal-campo">
         <Modal.Header closeButton>
-          <Modal.Title>¡Error!</Modal.Title>
+          <Modal.Title>
+            ¡Error! 
+            <span role="img" aria-label="Emoticono Error"> ❗️❌</span>
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           Ocurrio un error al enviar el reporte, intentelo más tarde. 
@@ -150,7 +156,10 @@ function NuevoReporte() {
 
       <Modal centered show={showAlertSuccess} onHide={handleCloseAlertSuccess} className="modal-basic">
         <Modal.Header closeButton>
-          <Modal.Title>Reporte enviado</Modal.Title>
+          <Modal.Title>
+            Reporte enviado
+            <span role="img" aria-label="Emoticono Enviado">📤</span>
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
         El reporte ha sido enviado con éxito. Lamentamos los inconvenientes que estás experimentando. Hemos recibido tu reporte de bug y nuestro equipo técnico lo revisará detenidamente para solucionarlo lo más pronto posible. Te mantendremos informado sobre el progreso y agradecemos tu paciencia. 

@@ -103,10 +103,13 @@ function AcordeonBugsProceso() {
       
       <Modal centered show={showAlertParcial} onHide={handleCloseAlertParcial} className="modal-basic">
           <Modal.Header closeButton>
-            <Modal.Title>Reporte parcial enviado</Modal.Title>
+            <Modal.Title>
+              Reporte parcial enviado
+              <span role="img" aria-label="Emoticono OK"> 👌</span>
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            ¡El avance ha sido enviado con éxito!
+            ¡El avance ha sido enviado con éxito! 
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleCloseAlertParcial}>
@@ -117,7 +120,10 @@ function AcordeonBugsProceso() {
       
       <Modal centered show={showAlertFinal} onHide={handleCloseAlertFinal} className="modal-basic">
           <Modal.Header closeButton>
-            <Modal.Title>Reporte final enviado</Modal.Title>
+            <Modal.Title>
+              Reporte final enviado
+              <span role="img" aria-label="Emoticono Celebración"> 🎉</span>
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             ¡El reporte final ha sido enviado con éxito!<br /> Ahora el administrador debe aprobarlo.
@@ -131,7 +137,10 @@ function AcordeonBugsProceso() {
 
       <Modal centered show={showAlertSinContenido} onHide={handleCloseAlertSinContenido} className="modal-campo">
         <Modal.Header closeButton>
-          <Modal.Title>Reporte no enviado</Modal.Title>
+          <Modal.Title>
+            Reporte no enviado
+            <span role="img" aria-label="Emoticono Upsi">😅</span>
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           Por favor, ingrese los detalles del avance antes de continuar.

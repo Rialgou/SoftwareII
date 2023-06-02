@@ -1,39 +1,55 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import "../hojas-de-estilo/RechazoAcordeon.css";
 
 function Rechazar() {
   const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
+  const [textareaValue, setTextareaValue] = useState('');
+  
+  const handleClose = () => {
+    setShow(false);
+    setTextareaValue(''); 
+  };
+  
   const handleShow = () => setShow(true);
+  
+  const handleTextareaChange = (event) => {
+    setTextareaValue(event.target.value);
+  };
+  
+  const handleEnviarClick = () => {
+    if (textareaValue.trim() !== '') 
+      handleClose();
+  };
 
   return (
     <>
       <Button variant="danger" className="boton-rechazo" onClick={handleShow}>
-        rechazar trabajo
+        Solicitar reasignación 
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal centered show={show} onHide={handleClose} dialogClassName="modal-basic" contentClassName="modal-reasignacion">
         <Modal.Header closeButton>
-          <Modal.Title>¿porque rechaza el trabajo?</Modal.Title>
+          <Modal.Title>
+            ¿Por qué estas solicitando una reasignación?
+            <span role="img" aria-label="Emoticono Cara Pensativa"> 🤔</span>
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
-            
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>texto explicativo</Form.Label>
-              <Form.Control as="textarea" rows={3} />
-            </Form.Group>
-          </Form>
+          <textarea
+            className="textarea-custom textarea-basic"
+            placeholder="Ingrese las razones por las cuales está solicitando una reasignación del Bug"
+            value={textareaValue}
+            onChange={handleTextareaChange}
+          />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="success" onClick={handleClose}>
+          <Button
+            variant="success"
+            onClick={handleEnviarClick}
+            disabled={textareaValue.trim() === ''}
+          >
             Enviar
           </Button>
         </Modal.Footer>
