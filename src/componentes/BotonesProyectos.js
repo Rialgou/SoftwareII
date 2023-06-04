@@ -29,7 +29,7 @@ function BotonesProyectos({ seleccionarProyecto }) {
     };
     
     return (
-        <div className="botones-container">
+        <div>
             {proyectosData.map((proyecto) => (
                 <Button
                     key={proyecto.id}
@@ -41,6 +41,9 @@ function BotonesProyectos({ seleccionarProyecto }) {
                 </Button>
             ))}
         </div>
+        
+        
+        
     );
 }
 

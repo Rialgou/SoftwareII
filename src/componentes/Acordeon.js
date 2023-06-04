@@ -58,7 +58,7 @@ function Acordeon({ proyectoId, tituloBug, descripcionBug }) {
               value={title}
               onChange={handleTitle}
               onKeyDown={handleKeyDown}
-              placeholder="Ingrese un título para el Bug"
+              placeholder="Ingrese un título para el Bug                       (máx. 40)"
               maxLength={40}
             />
           )}
