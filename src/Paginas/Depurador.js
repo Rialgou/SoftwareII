@@ -6,6 +6,7 @@ import BarraLateral from '../componentes/BarraLateral';
 import BarraSuperior from '../componentes/BarraSuperior';
 import AcordeonBugsProceso from "../componentes/AcordeonBugsProceso";
 import AcordeonBugsNuevos from "../componentes/AcordeonBugsNuevos";
+import EsperaReasignacion from "../componentes/EsperaReasignacion";
 
 import "../hojas-de-estilo/Depurador.css"
 import { obtenerDepurador } from '../Funciones/consultas';
@@ -58,6 +59,14 @@ function Depurador() {
                 <Container className='bugs-nuevos-container'>
                 <h2 className="titulo-bugs-nuevos"><strong>Bugs </strong> <Badge bg='primary'>Nuevos</Badge></h2>
                 <AcordeonBugsNuevos/>
+                </Container>
+              </Col>
+            )}
+            {showCol && radioValue === '3' && (
+              <Col md={8}  className="d-flex">
+                <Container className='bugs-nuevos-container'>
+                <h2 className="titulo-bugs-nuevos"><strong>Espera </strong> <Badge bg='primary'>Reasignacion</Badge></h2>
+                <EsperaReasignacion/>
                 </Container>
               </Col>
             )}

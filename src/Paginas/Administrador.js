@@ -11,6 +11,8 @@ import BugsPendientes from '../componentes/BugsPendientes';
 import BarraSuperior from '../componentes/BarraSuperior';
 import BugsEnProceso from '../componentes/BugsEnProceso';
 import "../hojas-de-estilo/Administrador.css"
+import SolicitudReasignacion from '../componentes/SolicitudReasignacion';
+import RevisarReporteFinal from '../componentes/RevisarReporteFinal';
 
 
 function Home() {
@@ -72,6 +74,26 @@ function Home() {
                 </BugsEnProceso>
               </Col>
             )}
+            {showCol && radioValue === '3' && (
+            <Col md={7}  className="d-flex ">
+              <SolicitudReasignacion
+                titulo1={"Solicitudes de"}
+                titulo2={"Reasignacion"}
+
+
+              ></SolicitudReasignacion>
+            </Col>
+             )}
+             {showCol && radioValue === '4' && (
+            <Col md={7}  className="d-flex ">
+              <RevisarReporteFinal
+                titulo1={"Reportes"}
+                titulo2={"Finales"}
+
+
+              ></RevisarReporteFinal>
+            </Col>
+             )}
      
           </Row>
         </Container>

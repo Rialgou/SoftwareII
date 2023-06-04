@@ -8,6 +8,7 @@ function RadioButton({radioValue,setRadioValue}) {
   const radios = [
     { name: 'Bugs en proceso', value: '1' },
     { name: 'Bugs nuevos', value: '2' },
+    { name: 'Espera reasignacion', value: '3' },
   ];
 
   return (
