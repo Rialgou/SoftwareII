@@ -1,6 +1,6 @@
 // Importa las funciones necesarias de la biblioteca Firestore de Firebase.
 import { type } from '@testing-library/user-event/dist/type';
-import { getFirestore, doc, getDoc, collection, query, where, getDocs, serverTimestamp, addDoc, orderBy } from 'firebase/firestore';
+import { getFirestore,updateDoc, doc, getDoc, collection, query, where, getDocs, serverTimestamp, addDoc, orderBy } from 'firebase/firestore';
 
 // Función asíncrona para obtener todos los reportes asociados a los proyectos de un administrador específico.
 export const obtenerReportesAdministrador = async (administradorId, estado) => {
@@ -353,3 +353,124 @@ export const getReportesDepurador = async(depuradorId,estado) => {
         return {}; // Retorna un objeto vacío en caso de error.
     }
   }
+
+
+  export const obtenerDepuradoresDesdeProyecto = async (proyectoId) => {
+    try {
+      // Crea una instancia de Firestore.
+      const db = getFirestore();
+  
+      // Crea una referencia al documento del proyecto en la colección "proyectos" utilizando el ID proporcionado.
+      const referenciaProyecto = doc(db, 'proyectos', proyectoId);
+  
+      // Obtiene el documento del proyecto utilizando la referencia creada previamente.
+      const proyectoSnapshot = await getDoc(referenciaProyecto);
+  
+      // Verifica si el documento existe en Firestore.
+      if (proyectoSnapshot.exists()) {
+        // Obtiene la lista de depuradores asociados al proyecto.
+        const depuradores = proyectoSnapshot.data().depuradores || [];
+  
+        // Crea un array para almacenar los depuradores con su información.
+        const depuradoresInfo = [];
+  
+        // Itera sobre los depuradores y obtiene su información.
+        for (const depuradorRef of depuradores) {
+          // Obtiene el documento del depurador utilizando la referencia del depurador.
+          const depuradorSnapshot = await getDoc(depuradorRef);
+  
+          // Verifica si el documento del depurador existe en Firestore.
+          if (depuradorSnapshot.exists()) {
+            // Obtiene los datos del depurador y agrega un objeto con su información al array.
+            depuradoresInfo.push({ ...depuradorSnapshot.data(), id: depuradorSnapshot.id });
+          }
+        }
+  
+        // Retorna el array de depuradores con su información.
+        return depuradoresInfo;
+      } else {
+        // Si el documento del proyecto no existe, retorna un arreglo vacío.
+        return [];
+      }
+    } catch (error) {
+      console.log(error);
+      return [];
+    }
+  };
+
+
+
+
+
+
+  export const actualizarReporte = async (reporteId, depuradorId, descripcionAdministrador, fechaEstimadaTermino, prioridad) => {
+    try {
+      // Obtener una referencia al documento del reporte en Firestore
+      const db = getFirestore();
+      const reporteRef = doc(db, 'reportes', reporteId);
+  
+      // Obtener una referencia al documento del depurador en Firestore
+      const depuradorRef = doc(db, 'depuradores', depuradorId);
+  
+      // Actualizar los campos del reporte
+      const updateData = {
+        depurador: depuradorRef,
+        descripcionAdministrador: descripcionAdministrador,
+        fechaEstimadaTermino: fechaEstimadaTermino,
+        prioridad: prioridad,
+        estado: 2
+      };
+  
+      await updateDoc(reporteRef, updateData);
+  
+      return true;
+    } catch (error) {
+      console.log('Error al actualizar el reporte:', error);
+      return false;
+    }
+  };
+  
+
+
+
+  export const obtenerInformacionUsuario = async (proyectoId) => {
+    try {
+      // Obtener una instancia de Firestore
+      const db = getFirestore();
+  
+      // Obtener la referencia del proyecto
+      const proyectoRef = doc(db, 'proyectos', proyectoId);
+  
+      // Obtener el documento del proyecto
+      const proyectoSnapshot = await getDoc(proyectoRef);
+  
+      // Verificar si el documento existe
+      if (proyectoSnapshot.exists()) {
+        // Obtener la referencia del usuario asociado al proyecto
+        const usuarioRef = proyectoSnapshot.data().usuario;
+  
+        // Obtener el documento del usuario
+        const usuarioSnapshot = await getDoc(usuarioRef);
+  
+        // Verificar si el documento del usuario existe
+        if (usuarioSnapshot.exists()) {
+          // Obtener los datos del usuario
+          const usuarioData = usuarioSnapshot.data();
+  
+          // Retornar los datos del usuario
+          return usuarioData;
+        }
+      }
+  
+      // Si el proyecto o el usuario no existen, retornar null
+      return null;
+    } catch (error) {
+      console.log('Error al obtener la información del usuario:', error);
+      return null;
+    }
+  };
+  
+
+  
+  
+  

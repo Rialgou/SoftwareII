@@ -1,28 +1,19 @@
-
-.item
-{
- flex-basis: calc(40% - 0.0rem); /* 1rem es el margen que quieres mantener entre los elementos */
-
- flex-grow: 0;
-
- white-space: nowrap;
- overflow: hidden;
- text-overflow: ellipsis;
-
-
- height: 8vh;
- width: 4vh;
-
- text-align: start; 
-
-
+.item {
+  flex-basis: calc(40% - 0.0rem);
+  flex-grow: 0;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: initial;
+  height: 8vh;
+  width: 4vh;
+  text-align: start;
 }
-
-#contenedor-lista-reportes
-{
+#contenedor-lista-reportes {
   border-radius: 25px;
-  
 }
+
+
+  
 
 
 

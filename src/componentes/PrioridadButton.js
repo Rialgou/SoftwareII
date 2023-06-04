@@ -1,22 +1,51 @@
 import Dropdown from "react-bootstrap/Dropdown";
-import React from "react";
+import React, { useState } from "react";
 import "../hojas-de-estilo/PrioridadButton.css";
 import "../hojas-de-estilo/Reporte.css";
 
-function PrioridadButton() {
+function PrioridadButton({ setPrioridadSeleccionada }) {
+  const [hoveredOption, setHoveredOption] = useState(null);
+
+  const handlePrioridadSeleccionada = (prioridad) => {
+    setPrioridadSeleccionada(prioridad);
+  };
+
+  const handleOptionHover = (prioridad) => {
+    setHoveredOption(prioridad);
+  };
+
   return (
-    <Dropdown >
-      <Dropdown.Toggle
-        variant="dark"
-        className="botones"
-      >
+    <Dropdown>
+      <Dropdown.Toggle variant="dark" className="botones">
         Asignar Prioridad
-      </Dropdown.Toggle >
+      </Dropdown.Toggle>
 
       <Dropdown.Menu variant="dark">
-        <Dropdown.Item  className = "casa" onClick={function () {}} href="#/action-1">Alta</Dropdown.Item>
-        <Dropdown.Item className = "casa" onClick={function () {}} href="#/action-2">Media</Dropdown.Item>
-        <Dropdown.Item className = "casa" onClick={function () {}} href="#/action-3">Baja</Dropdown.Item>
+        <Dropdown.Item
+          className={hoveredOption === "Alta" ? "casa alta" : "casa"}
+          id="Alta"
+          onMouseEnter={() => handleOptionHover("Alta")}
+          onMouseLeave={() => handleOptionHover(null)}
+          onClick={() => handlePrioridadSeleccionada("Alta")}
+        >
+          Alta
+        </Dropdown.Item>
+        <Dropdown.Item
+          className={hoveredOption === "Media" ? "casa media" : "casa"}
+          onMouseEnter={() => handleOptionHover("Media")}
+          onMouseLeave={() => handleOptionHover(null)}
+          onClick={() => handlePrioridadSeleccionada("Media")}
+        >
+          Media
+        </Dropdown.Item>
+        <Dropdown.Item
+          className={hoveredOption === "Baja" ? "casa baja" : "casa"}
+          onMouseEnter={() => handleOptionHover("Baja")}
+          onMouseLeave={() => handleOptionHover(null)}
+          onClick={() => handlePrioridadSeleccionada("Baja")}
+        >
+          Baja
+        </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );

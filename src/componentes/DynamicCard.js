@@ -1,82 +1,36 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import Badge from 'react-bootstrap'
+import { Badge } from 'react-bootstrap';
 
-import '../hojas-de-estilo/DynamicCard.css'
+import '../hojas-de-estilo/DynamicCard.css';
 
-function DynamicCard() {
-  const data = [
-    {
-      border: 'primary',
-      header: 'depurador 1',
-      title: 'Jose Toledo',
-      content: "Informacion relevante del depurador"
-    },
-    {
-        border: 'primary',
-        header: 'depurador x',
-        title: 'Nombre',
-        content: "Informacion relevante del depurador"
-      },
-      {
-        border: 'primary',
-        header: 'depurador x',
-        title: 'Nombre',
-        content: "Informacion relevante del depurador"
-      },
-      {
-        border: 'primary',
-        header: 'depurador x',
-        title: 'Nombre',
-        content: "Informacion relevante del depurador"
-      },
-      {
-        border: 'primary',
-        header: 'depurador x',
-        title: 'Nombre',
-        content: "Informacion relevante del depurador"
-      },
-      {
-        border: 'primary',
-        header: 'depurador x',
-        title: 'Nombre',
-        content: "Informacion relevante del depurador"
-      },
-      {
-        border: 'primary',
-        header: 'depurador x',
-        title: 'Nombre',
-        content: "Informacion relevante del depurador"
-      },
-      {
-        border: 'primary',
-        header: 'depurador x',
-        title: 'Nombre',
-        content: "Informacion relevante del depurador"
-      },
-      {
-        border: 'primary',
-        header: 'depurador x',
-        title: 'Nombre',
-        content: "Informacion relevante del depurador"
-      },
-      {
-        border: 'primary',
-        header: 'depurador x',
-        title: 'Nombre',
-        content: "Informacion relevante del depurador"
-      },
-
-  ];
+function DynamicCard({ listadeDepuradores, depuradorSeleccionado, setDepuradorSeleccionado }) {
+  const seleccionarDepurador = (depurador) => {
+    if (depuradorSeleccionado === depurador) {
+      // Si se hace clic en la tarjeta del depurador ya seleccionado, lo deseleccionamos
+      setDepuradorSeleccionado(null);
+    } else {
+      // Si se hace clic en una tarjeta diferente, seleccionamos ese depurador
+      setDepuradorSeleccionado(depurador);
+    }
+  };
 
   return (
     <>
-      {data.map((cardData, index) => (
-        <Card key={index} border={cardData.border} style={{ width: '16rem' }} className="custom-card" >
-          <Card.Header>{cardData.header}</Card.Header>
+      {listadeDepuradores.map((depurador, index) => (
+        <Card
+          key={index}
+          border={depurador === depuradorSeleccionado ? 'primary' : 'light'}
+          style={{ width: '16rem' }}
+          className="custom-card"
+          onClick={() => seleccionarDepurador(depurador)}
+        >
+          <Card.Header>{depurador.nombre}</Card.Header>
           <Card.Body>
-            <Card.Title>{cardData.title}</Card.Title>
-            <Card.Text>{cardData.content}</Card.Text>
+            <Card.Text>
+              Nivel de carga: <Badge variant="secondary">{depurador.nivelCarga}</Badge>
+            </Card.Text>
+            <Card.Text className="texto">Correo: {depurador.correo}</Card.Text>
           </Card.Body>
         </Card>
       ))}
@@ -85,3 +39,7 @@ function DynamicCard() {
 }
 
 export default DynamicCard;
+
+
+
+
