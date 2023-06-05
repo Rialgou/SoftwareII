@@ -26,14 +26,16 @@ function AcordeonBugsNuevos() {
   const handleItemClick = (index) => {
     setActiveItem(index === activeItem ? null : index);
   };
-
+  const handleRechazoCompletado = () => {
+    setActualizarComponente(true);
+  };
   const handleAceptarBug = async (reportId) => {
     if(await aceptarBug(reportId)){
       setShowModal(true);
       setActualizarComponente(true);
     }
   };  
- 
+
   useEffect( () => {
     ReportesDepurador();
     if(actualizarComponente){
@@ -68,7 +70,7 @@ function AcordeonBugsNuevos() {
                   <Button variant="success" className="boton-aceptar" onClick={()=>handleAceptarBug(list.id)}>
                     Aceptar Bug
                   </Button>
-                <Rechazar className="rechazo-lugar"></Rechazar>
+                <Rechazar className="rechazo-lugar" onRechazoCompletado={handleRechazoCompletado} reporteId={list.id} ></Rechazar>
                 </div>
               </Accordion.Body>
               
