@@ -474,6 +474,21 @@ export const getReportesDepurador = async(depuradorId,estado) => {
     }
   };
   
+export const aceptarBug = async (reporteId) => {
+  try{
+    const db = getFirestore();
+  
+    const reporteRef = doc(db, "reportes",reporteId);
+
+    const nuevoEstado = {estado:2};
+    
+    await updateDoc(reporteRef,nuevoEstado);
+    return true;
+  } catch(error){
+    console.log(error);
+    return false;
+  }
+}
 
   
   

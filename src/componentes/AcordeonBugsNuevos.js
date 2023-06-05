@@ -1,14 +1,15 @@
- import React, { useState,useEffect } from 'react';
-import { getReportesDepurador } from '../Funciones/consultas';
+import React, { useState,useEffect } from 'react';
+import { aceptarBug, getReportesDepurador } from '../Funciones/consultas';
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import "../hojas-de-estilo/AcordeonBugsNuevos.css";
 import Rechazar from '../componentes/Rechazar';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function AcordeonBugsNuevos() {
-
+  const [actualizarComponente, setActualizarComponente] = useState(false);
   const [listaReportes, setListaReportes] = useState([]);
   const depuradorId = "qjM7ExaUwt7Zv7ApAVHL";
 
@@ -18,10 +19,6 @@ function AcordeonBugsNuevos() {
       console.log(listaReportes);
   }
 
-  useEffect( () => {
-    ReportesDepurador();
-  },[]);
-
   const [activeItem, setActiveItem] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
@@ -30,11 +27,19 @@ function AcordeonBugsNuevos() {
     setActiveItem(index === activeItem ? null : index);
   };
 
-  const handleAceptarBug = () => {
-
-    setShowModal(true);
+  const handleAceptarBug = async (reportId) => {
+    if(await aceptarBug(reportId)){
+      setShowModal(true);
+      setActualizarComponente(true);
+    }
   };  
-
+ 
+  useEffect( () => {
+    ReportesDepurador();
+    if(actualizarComponente){
+      setActualizarComponente(false);
+    }
+  },[actualizarComponente]);
   return (
     <>
       <Accordion className="acordeon-bugs-nuevos" activeKey={activeItem} onSelect={handleItemClick}>
@@ -59,7 +64,7 @@ function AcordeonBugsNuevos() {
                 <strong className="descripcion-titulo">Descripción del Bug</strong> <br /> {list.descripcionAdministrador}
                 <br/>
                 <div>
-                  <Button variant="success" className="boton-aceptar" onClick={handleAceptarBug}>
+                  <Button variant="success" className="boton-aceptar" onClick={()=>handleAceptarBug(list.id)}>
                     Aceptar Bug
                   </Button>
                 <Rechazar className="rechazo-lugar"></Rechazar>
