@@ -43,7 +43,8 @@ function AcordeonBugsNuevos() {
   return (
     <>
       <Accordion className="acordeon-bugs-nuevos" activeKey={activeItem} onSelect={handleItemClick}>
-        {listaReportes.map((list, index) => (
+        {listaReportes.filter((list)=> (list.reasignacion === false))
+        .map((list, index) => (
           <Accordion.Item key={index} eventKey={index}>
             <Card>
               <Accordion.Header>

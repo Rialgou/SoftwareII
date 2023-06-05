@@ -189,7 +189,8 @@ export const enviarReporteUsuario = async(datosReporte) => {
             descripcionUsuario: datosReporte.descripcion,
             estado: 1,
             fechaEmision: serverTimestamp(),
-            proyecto: referenciaProyecto
+            proyecto: referenciaProyecto,
+            reaisgnacion: false
         };
         await addDoc(collection(db,"reportes"), reporteData);
         return true;
