@@ -1,5 +1,4 @@
 import React from 'react';
-import BarraLateral from '../componentes/BarraLateral';
 import DynamicCard from '../componentes/DynamicCard';
 import BarraSuperior from '../componentes/BarraSuperior';
 import PrioridadButton from '../componentes/PrioridadButton';
@@ -213,9 +212,6 @@ const enviarReporte = async () => {
 
       <div>
         <BarraSuperior nombre={administrador.nombre} />
-      </div>
-      <div>
-        <BarraLateral></BarraLateral>
       </div>
 
 

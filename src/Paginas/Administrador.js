@@ -5,15 +5,16 @@ import { useState,useEffect } from 'react';
 import {motion} from 'framer-motion';
 import { obtenerDatosAdministrador } from '../Funciones/consultas';
 
-import RadioButton from '../componentes/RadioButton'
-import BarraLateral from '../componentes/BarraLateral';
+import BarraOpciones from '../componentes/BarraOpciones';
 import BugsPendientes from '../componentes/BugsPendientes';
 import BugsPorConfirmar from '../componentes/BugsPorConfirmar';
 import BarraSuperior from '../componentes/BarraSuperior';
 import BugsEnProceso from '../componentes/BugsEnProceso';
-import "../hojas-de-estilo/Administrador.css"
 import SolicitudReasignacion from '../componentes/SolicitudReasignacion';
 import RevisarReporteFinal from '../componentes/RevisarReporteFinal';
+
+
+import "../hojas-de-estilo/Administrador.css"
 
 
 function Home() {
@@ -46,15 +47,14 @@ function Home() {
 
         <div><BarraSuperior nombre={administrador.nombre} /></div>
 
-        <div><BarraLateral/></div>
         
         <Container  fluid className=" justify-content-center align-items-start pene1 mt-5 ">
           <Row  className="d-flex flex-row justify-content-center align-items-start">
-            <Col md={2} className="d-flex justify-content-center align-items-end  mx-5 ">
-                <RadioButton 
-                  radioValue={radioValue}
-                  setRadioValue={setRadioValue} 
-                ></RadioButton>
+            <Col md={2} className="d-flex justify-content-start align-items-start  mx-3 ">
+              <BarraOpciones 
+              radioValue =  {radioValue}
+              setRadioValue = {setRadioValue}
+              ></BarraOpciones>
             </Col>
             {showCol && radioValue === '1' && (
             <Col md={9}  className="d-flex ">
