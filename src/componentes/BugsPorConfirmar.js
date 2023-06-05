@@ -6,7 +6,7 @@ import { Badge,Container,Row,Col } from "react-bootstrap";
 import '../hojas-de-estilo/BugsPendientes.css';
 
 
-const BugsEnProceso = ({titulo1,titulo2}) => {
+const BugsPendientes = ({titulo1,titulo2}) => {
 
   return (
     <>
@@ -24,7 +24,7 @@ const BugsEnProceso = ({titulo1,titulo2}) => {
         </Row>
         <Row className="w-100">
           <Col  className="col-Lista ">
-          <Lista estado = {3} ></Lista>
+          <Lista estado = {2} ></Lista>
           </Col>
         </Row>
       </Container>
@@ -33,5 +33,5 @@ const BugsEnProceso = ({titulo1,titulo2}) => {
   )
 };
 
-export default BugsEnProceso ;
+export default BugsPendientes ;
 

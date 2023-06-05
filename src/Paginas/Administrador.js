@@ -8,6 +8,7 @@ import { obtenerDatosAdministrador } from '../Funciones/consultas';
 import RadioButton from '../componentes/RadioButton'
 import BarraLateral from '../componentes/BarraLateral';
 import BugsPendientes from '../componentes/BugsPendientes';
+import BugsPorConfirmar from '../componentes/BugsPorConfirmar';
 import BarraSuperior from '../componentes/BarraSuperior';
 import BugsEnProceso from '../componentes/BugsEnProceso';
 import "../hojas-de-estilo/Administrador.css"
@@ -67,6 +68,15 @@ function Home() {
              )}
              {showCol && radioValue === '2' && (
               <Col  md={9}  className='d-flex  '>
+                <BugsPorConfirmar
+                titulo1={"Bugs por"}
+                titulo2={"Confirmar"}
+                >
+                </BugsPorConfirmar>
+              </Col>
+            )}
+             {showCol && radioValue === '3' && (
+              <Col  md={9}  className='d-flex  '>
                 <BugsEnProceso
                 titulo1={"Bugs en"}
                 titulo2={"Proceso"}
@@ -74,7 +84,7 @@ function Home() {
                 </BugsEnProceso>
               </Col>
             )}
-            {showCol && radioValue === '3' && (
+            {showCol && radioValue === '4' && (
             <Col md={9}  className="d-flex ">
               <SolicitudReasignacion
                 titulo1={"Solicitudes de"}
@@ -84,7 +94,7 @@ function Home() {
               ></SolicitudReasignacion>
             </Col>
              )}
-             {showCol && radioValue === '4' && (
+             {showCol && radioValue === '5' && (
             <Col md={9}  className="d-flex ">
               <RevisarReporteFinal
                 titulo1={"Reportes"}
