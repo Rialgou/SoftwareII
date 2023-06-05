@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Acordeon from '../componentes/Acordeon';
-import BarraLateralUsuario from '../componentes/BarraLateralUsuario';
 import BarraSuperior from '../componentes/BarraSuperior';
 import { Stack, Badge, Modal } from 'react-bootstrap';
 import { enviarReporteUsuario } from '../Funciones/consultas';
@@ -11,7 +10,6 @@ import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import '../hojas-de-estilo/NuevoReporte.css'
-import { useAsyncError } from 'react-router-dom';
 
 
 function NuevoReporte() {
@@ -96,9 +94,6 @@ function NuevoReporte() {
     <main className="contenido-principal">
       <div>
         <BarraSuperior nombre={usuario.nombre}></BarraSuperior>
-      </div>
-      <div>
-        <BarraLateralUsuario></BarraLateralUsuario>
       </div>
       <Stack gap={3}>
         <div className="text-center">

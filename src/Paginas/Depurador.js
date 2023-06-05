@@ -2,7 +2,6 @@ import { Container, Row, Col , Badge } from 'react-bootstrap';
 import {motion} from 'framer-motion';
 import { useState,useEffect } from 'react';
 import RadioButtonDepurador from '../componentes/RadioButtonDepurador'
-import BarraLateral from '../componentes/BarraLateral';
 import BarraSuperior from '../componentes/BarraSuperior';
 import AcordeonBugsProceso from "../componentes/AcordeonBugsProceso";
 import AcordeonBugsNuevos from "../componentes/AcordeonBugsNuevos";
@@ -36,7 +35,6 @@ function Depurador() {
     transition={{ duration: 0.3 }}>
 
         <div><BarraSuperior nombre={depurador.nombre}/></div>
-        <div><BarraLateral/></div>
         
         <Container  fluid className=" justify-content-center align-items-center mt-5">
           <Row  className="d-flex flex-row justify-content-center align-items-center">

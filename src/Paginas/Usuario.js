@@ -4,7 +4,6 @@ import {motion} from 'framer-motion';
 import {obtenerUsuario} from '../Funciones/consultas';
 import { useState,useEffect } from 'react';
 
-import BarraLateralUsuario from '../componentes/BarraLateralUsuario';
 import ReportesUsuarios from '../componentes/ReportesUsuarios';
 import BarraSuperior from '../componentes/BarraSuperior';
 
@@ -40,9 +39,7 @@ function Usuario() {
       <div>
         <BarraSuperior nombre={usuario.nombre}></BarraSuperior>
       </div>
-      <div>
-        <BarraLateralUsuario></BarraLateralUsuario>
-      </div>
+
       <Stack gap={3}>
         <div className="text-center">
           <h2 className="titulo"><strong>Estado</strong> <Badge bg='primary'>Reportes</Badge></h2>

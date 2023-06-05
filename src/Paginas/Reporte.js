@@ -43,7 +43,7 @@ const Reporte = () => {
   const [showDepurador,setShowDepurador] = useState(false);
   const [showCalendario,setShowCalendario] = useState(false);
   const [showText,setShowText] = useState(false);
-  const [showAlert, setShowAlert] = useState(true);
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleCloseDepurador = () => setShowDepurador(false);
   const handleShowDepurador = () => setShowDepurador(true);
@@ -70,12 +70,12 @@ const Reporte = () => {
   useEffect(() => {
     timerRef.current = setTimeout(() => {
       setShowAlert(false);
-    }, 500);
+    }, 3000);
 
     return () => {
       clearTimeout(timerRef.current);
     };
-  }, []);
+  }, [showAlert]);
   
 
 
@@ -521,13 +521,14 @@ const enviarReporte = async () => {
     </ListGroup>
 </Container>
               <div>
-              <Button variant = "danger" className=' botoness mt-3 ms-1 me-1 '>Rechazar reporte</Button>
-              <Button variant = "success" className=' botoness mt-3 ms-1 me-1 ' onClick={enviarReporte}>Enviar reporte</Button>
+              <Button variant = "danger" className=' botoness  mt-5 ms-4 '>Rechazar reporte</Button>
+              <Button variant = "success" className=' botoness mt-5 ms-4 ' onClick={enviarReporte}>Enviar reporte</Button>
               </div>
               <br></br>
+              <br></br>
               <div className="d-flex justify-content-center align-items-center">
-      {showAlert && (
-        <Alert show={showAlert} variant="danger" className='alerta'>
+              {showAlert && (
+        <Alert variant="danger" className="alerta">
           <Alert.Heading>¡Cuidado!</Alert.Heading>
           <p>No olvides rellenar todos los campos necesarios en tu reporte.</p>
         </Alert>

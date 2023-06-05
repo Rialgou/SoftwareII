@@ -37,12 +37,13 @@
   }
   
   .alerta {
-    border-radius: 25px;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 15px !important;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más sutil */
     padding: 15px 20px;
-    border: 1px solid #ccc;
+    border: none; /* Sin borde */
+    font-weight: bold;
+    
   }
-  
   .botones-stack2 {
     height: 5vh;
     width: 30vh;
@@ -109,18 +110,22 @@
   
 
   .botones {
-    height: 5vh;
-    width: 25vh;
-    border-radius: 25px;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    height: 6vh;
+    width: 23vh;
+    border-radius: 15px !important;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más sutil */
     padding: 10px 20px;
-    border: 1px solid #ccc;
-    background-color: transparent; /* Establece el fondo como transparente */
-    color: #000000;
-    font-size: 16px;
+    border: none; /* Sin borde */
+    color: #333333; /* Color de texto más oscuro */
+    font-size: 15px !important; /* Tamaño de fuente más pequeño */
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
+    white-space: normal; /* Permite el salto de línea */
+    overflow: hidden; /* Oculta cualquier contenido que desborde */
+    display: flex; /* Permite el contenido multilínea */
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center; /* Centra el contenido horizontalmente */
   }
 
  

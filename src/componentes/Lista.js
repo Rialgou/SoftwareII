@@ -4,6 +4,8 @@ import '../hojas-de-estilo/Lista.css';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { obtenerReportesAdministrador } from '../Funciones/consultas';
+import { VscDebugStart } from 'react-icons/vsc';
+
 
 function Lista({ estado }) {
   const [listaReportes, setListaReportes] = useState([]);
@@ -27,24 +29,45 @@ function Lista({ estado }) {
   };
 
   return (
-    <>
-      {listaReportes.map((reporte, index) => (
-        <ListGroup key={index} horizontal={"lg"} className="my-1" id='contenedor-lista-reportes'>
-          <ListGroup.Item as={Link} to={rutaReporte(reporte.id)} className="mt-2 mb-2 item" variant="warning" style={{ flexBasis: '10.0%' }}>
-            Bug {index + 1}
+    <div className="lista-container">
+      <div className="encabezado">
+        <ListGroup horizontal={"lg"} className="my-2">
+          <ListGroup.Item className="mt-2 mb-2 item encabezado-item" style={{ flexBasis: '10.0%' }}>
+            Ingresar
           </ListGroup.Item>
-          <ListGroup.Item  className="mt-2 mb-2 item" variant="dark" style={{ flexBasis: '70.0%' }}>
-           {reporte.asunto}
-        </ListGroup.Item>
-              <ListGroup.Item className="mt-2 mb-2 item" variant="dark" style={{ flexBasis: '20.0%' }}>
-            {reporte.fechaEmision.toDate().toLocaleString()}
+          <ListGroup.Item className="mt-2 mb-2 item encabezado-item"  style={{ flexBasis: '60.0%' }}>
+            Asunto
+          </ListGroup.Item>
+          <ListGroup.Item className="mt-2 mb-2 item encabezado-item"  style={{ flexBasis: '30.0%' }}>
+            Fecha de emisión
           </ListGroup.Item>
         </ListGroup>
-      ))}
-    </>
+      </div>
+
+      <div className="contenido">
+        {listaReportes.map((reporte, index) => (
+          <ListGroup key={index} horizontal={"lg"} className="my-2">
+            <ListGroup.Item as={Link} to={rutaReporte(reporte.id)} className="mt-2 mb-2 item" id="probar" variant="dark" style={{ flexBasis: '10.0%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <VscDebugStart size={24} />
+            </ListGroup.Item>
+            <ListGroup.Item className="mt-2 mb-2 item" variant="dark" style={{ flexBasis: '60.0%' }}>
+              {reporte.asunto}
+            </ListGroup.Item>
+            <ListGroup.Item className="mt-2 mb-2 item" variant="dark" style={{ flexBasis: '30.0%' }}>
+              {reporte.fechaEmision.toDate().toLocaleString()}
+            </ListGroup.Item>
+          </ListGroup>
+        ))}
+      </div>
+    </div>
   );
 }
 
 export default Lista;
+
+
+
+
+
 
 

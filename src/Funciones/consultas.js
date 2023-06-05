@@ -3,52 +3,53 @@ import { type } from '@testing-library/user-event/dist/type';
 import { getFirestore,updateDoc, doc, getDoc, collection, query, where, getDocs, serverTimestamp, addDoc, orderBy } from 'firebase/firestore';
 
 // Función asíncrona para obtener todos los reportes asociados a los proyectos de un administrador específico.
+// Función asíncrona para obtener todos los reportes asociados a los proyectos de un administrador específico.
 export const obtenerReportesAdministrador = async (administradorId, estado) => {
-    try {
-        console.log("obtenerReportesAdministrador");
-        // Crea una instancia de Firestore.
-        const db = getFirestore();
+  try {
+      console.log("obtenerReportesAdministrador");
+      // Crea una instancia de Firestore.
+      const db = getFirestore();
 
-        // Crea una referencia al documento del administrador en la colección "administradores" utilizando el ID proporcionado.
-        const referenciaAdministrador = doc(db, 'administradores', administradorId);
+      // Crea una referencia al documento del administrador en la colección "administradores" utilizando el ID proporcionado.
+      const referenciaAdministrador = doc(db, 'administradores', administradorId);
 
-        // Crea referencias a las colecciones "proyectos" y "reportes" en la base de datos.
-        const proyectosCollection = collection(db, "proyectos");
-        const reportesCollection = collection(db, "reportes");
+      // Crea referencias a las colecciones "proyectos" y "reportes" en la base de datos.
+      const proyectosCollection = collection(db, "proyectos");
+      const reportesCollection = collection(db, "reportes");
 
-        // Crea una consulta que filtra los proyectos que tienen la referencia del administrador proporcionado.
-        const proyectosFiltrados = query(proyectosCollection, where("administrador", "==", referenciaAdministrador));
+      // Crea una consulta que filtra los proyectos que tienen la referencia del administrador proporcionado.
+      const proyectosFiltrados = query(proyectosCollection, where("administrador", "==", referenciaAdministrador));
 
-        // Declara un arreglo vacío llamado "proyectoRefs" y obtiene el resultado de la consulta de proyectos filtrados.
-        const proyectoRefs = [];
-        const proyectosQuerySnapshot = await getDocs(proyectosFiltrados);
+      // Declara un arreglo vacío llamado "proyectoRefs" y obtiene el resultado de la consulta de proyectos filtrados.
+      const proyectoRefs = [];
+      const proyectosQuerySnapshot = await getDocs(proyectosFiltrados);
 
-        // Agrega las referencias de los proyectos filtrados al arreglo "proyectoRefs".
-        proyectosQuerySnapshot.forEach((doc) => {
-            proyectoRefs.push(doc.ref);
-        });
-        console.log(typeof estado);
-        // Crea una consulta que filtra los reportes que están asociados a los proyectos filtrados previamente.
-        const reportesFiltrados = query(reportesCollection, where("proyecto", "in", proyectoRefs),where("estado","==",estado),orderBy("fechaEmision"));
+      // Agrega las referencias de los proyectos filtrados al arreglo "proyectoRefs".
+      proyectosQuerySnapshot.forEach((doc) => {
+          proyectoRefs.push(doc.ref);
+      });
+      console.log(typeof estado);
+      // Crea una consulta que filtra los reportes que están asociados a los proyectos filtrados previamente.
+      const reportesFiltrados = query(reportesCollection, where("proyecto", "in", proyectoRefs),where("estado","==",estado),orderBy("fechaEmision"));
 
-        // Obtiene el resultado de la consulta de reportes filtrados.
-        const reportesQuerySnapshot = await getDocs(reportesFiltrados);
+      // Obtiene el resultado de la consulta de reportes filtrados.
+      const reportesQuerySnapshot = await getDocs(reportesFiltrados);
 
-        // Declara un arreglo vacío llamado "reportes".
-        const reportes = [];
+      // Declara un arreglo vacío llamado "reportes".
+      const reportes = [];
 
-        // Agrega los reportes filtrados al arreglo "reportes", incluyendo los datos y el ID del documento.
-        reportesQuerySnapshot.forEach((doc) => {
-            reportes.push({ ...doc.data(), id: doc.id });
-        });
+      // Agrega los reportes filtrados al arreglo "reportes", incluyendo los datos y el ID del documento.
+      reportesQuerySnapshot.forEach((doc) => {
+          reportes.push({ ...doc.data(), id: doc.id });
+      });
 
-        // Retorna el arreglo de reportes.
-        return reportes.reverse();
+      // Retorna el arreglo de reportes.
+      return reportes.reverse();
 
-    } catch (error) { // Captura cualquier error que pueda ocurrir durante la ejecución.
-        console.log(error); // Muestra el error en la consola.
-        return []; // Retorna un arreglo vacío en caso de error.
-    }
+  } catch (error) { // Captura cualquier error que pueda ocurrir durante la ejecución.
+      console.log(error); // Muestra el error en la consola.
+      return []; // Retorna un arreglo vacío en caso de error.
+  }
 };
 
 
