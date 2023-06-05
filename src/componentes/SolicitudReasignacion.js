@@ -24,7 +24,7 @@ const SolicitudReasignacion = ({titulo1,titulo2}) => {
         </Row>
         <Row className="w-100">
           <Col  className="col-Lista ">
-          <Lista estado = {3} ></Lista>
+          <Lista estado = {2} reasignacion = {true} ></Lista>
           </Col>
         </Row>
       </Container>
