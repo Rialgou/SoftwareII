@@ -9,6 +9,18 @@ export const obtenerReportesAdministrador = async (administradorId, estado) => {
       console.log("obtenerReportesAdministrador");
       // Crea una instancia de Firestore.
       const db = getFirestore();
+export const obtenerReportesAdministrador = async (administradorId, estado, filtroValue) => {
+    try {
+        console.log("obtenerReportesAdministrador");
+        // Crea una instancia de Firestore.
+        if(filtroValue!=1&&filtroValue!=2&&filtroValue!=3) filtroValue=0;
+        //console.log("value en reporte:", filtroValue);
+        let orden;
+        if(filtroValue==0) orden = "fechaEmision";
+        if(filtroValue==1) orden = "fechaEmision";
+        if(filtroValue==2) orden = "depurador";
+        if(filtroValue==3) orden = "prioridad";
+        const db = getFirestore();
 
       // Crea una referencia al documento del administrador en la colección "administradores" utilizando el ID proporcionado.
       const referenciaAdministrador = doc(db, 'administradores', administradorId);
@@ -51,7 +63,6 @@ export const obtenerReportesAdministrador = async (administradorId, estado) => {
       return []; // Retorna un arreglo vacío en caso de error.
   }
 };
-
 
 
 // Función asíncrona para obtener los datos de un administrador específico.
@@ -492,6 +503,24 @@ export const aceptarBug = async (reporteId) => {
   }
 }
 
-  
-  
-  
+export const solicitarReasignacion = async(reporteId, comentario) => {
+    try{
+      const db = getFirestore();
+      
+      const reporteRef = doc(db, "reportes", reporteId);
+      const nuevoMensaje = {
+        reporte:reporteRef,
+        mensaje:comentario
+      };
+      
+      await addDoc(collection(db, 'mensaje-reasignaciones'), nuevoMensaje);
+      const reasignacion = {reasignacion:true };
+
+      await updateDoc(reporteRef,reasignacion);
+      return true;
+      
+    }catch(error){
+      console.log(error);
+      return false;
+    }
+}

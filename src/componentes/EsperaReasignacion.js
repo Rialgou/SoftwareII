@@ -9,7 +9,6 @@ import Rechazar from '../componentes/Rechazar';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 function EsperaReasignacion() {
-  const [actualizarComponente, setActualizarComponente] = useState(false);
   const [listaReportes, setListaReportes] = useState([]);
   const depuradorId = "qjM7ExaUwt7Zv7ApAVHL";
 
@@ -18,32 +17,20 @@ function EsperaReasignacion() {
       setListaReportes(reportes);
       console.log(listaReportes);
   }
-
   const [activeItem, setActiveItem] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-
 
   const handleItemClick = (index) => {
     setActiveItem(index === activeItem ? null : index);
   };
 
-  const handleAceptarBug = async (reportId) => {
-    if(await aceptarBug(reportId)){
-      setShowModal(true);
-      setActualizarComponente(true);
-    }
-  };  
  
   useEffect( () => {
     ReportesDepurador();
-    if(actualizarComponente){
-      setActualizarComponente(false);
-    }
-  },[actualizarComponente]);
+  },[]);
   return (
     <>
       <Accordion className="acordeon-bugs-nuevos" activeKey={activeItem} onSelect={handleItemClick}>
-          {listaReportes.filter((list)=> (list.reasignacion))
+          {listaReportes.filter((list)=> (list.reasignacion === true))
           .map((list, index) => (
           <Accordion.Item key={index} eventKey={index}>
             <Card>

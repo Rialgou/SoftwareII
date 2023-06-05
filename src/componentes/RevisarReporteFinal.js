@@ -19,7 +19,7 @@ const RevisarReporteFinal = ({titulo1,titulo2}) => {
         </Row>
         <Row className="">
           <Col className="mb-5  w-100 " >
-          <Filtrado></Filtrado>
+          {/*<Filtrado></Filtrado>*/}
           </Col>
         </Row>
         <Row className="w-100">
