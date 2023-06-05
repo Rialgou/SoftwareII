@@ -113,7 +113,7 @@ export const obtenerUsuario = async (usuarioId) => {
 
 
 
-// funcion para mostrar todos los docs
+// funcion para mostrar todos los reportes del usuario con el proyecto correspondiente
 export const getReportesUsuario = async(usuarioId) => {
   try{
     console.log("getReportesUsuario");
@@ -134,16 +134,20 @@ export const getReportesUsuario = async(usuarioId) => {
 
     proyectosQuerySnapshot.forEach( (doc) => {
       proyectoRefs.push(doc.ref);
-    })    
+    })   
+  
     //se recuperan los reportes que pertenezcan a alguno de los proyectos
     const reportesFiltrados = query(reportesCollection, where("proyecto","in", proyectoRefs),orderBy("fechaEmision"))
     //se recuperan los documentos filtrados
     const reportesQuerySnapshot = await getDocs(reportesFiltrados);
-    const reportes = []
+    const reportesPromises = reportesQuerySnapshot.docs.map(async (doc) =>{
+      const nombre = await getNombreProyecto(doc.data().proyecto);
+      const data = doc.data();
+      data.nombreProyecto = nombre;
+      return {...data,id:doc.id}
+    });
 
-    reportesQuerySnapshot.forEach((doc) => {
-      reportes.push({...doc.data(),id:doc.id});
-    })
+    const reportes = await Promise.all(reportesPromises);
     return reportes.reverse()
   }catch(error){
     console.log(error)
@@ -312,7 +316,7 @@ export const getReportesDepurador = async(depuradorId,estado) => {
       const reportesFiltrados = query(reportesCollection, where("proyecto","in", proyectoRefs),where("depurador","==",referenciaDepurador),where("estado","==",estado),orderBy("fechaEmision"));
       //se recuperan los documentos filtrados
       const reportesQuerySnapshot = await getDocs(reportesFiltrados);
-  
+      
       const reportesPromises = reportesQuerySnapshot.docs.map(async (doc) => {
         const nombre = await getNombreProyecto(doc.data().proyecto);
         const data = doc.data();
@@ -321,7 +325,7 @@ export const getReportesDepurador = async(depuradorId,estado) => {
       });
   
       const reportes = await Promise.all(reportesPromises);
-      return reportes.reverse()
+      return reportes.reverse();
     }catch(error){
       console.log(error)
     }

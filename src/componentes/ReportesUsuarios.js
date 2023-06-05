@@ -39,7 +39,7 @@ const ReportesUsuarios = () => {
               </Accordion.Header>
 
               <Accordion.Body>
-                <strong className="descripcion-titulo">Proyecto: </strong><span>{"Proyecto"}</span>
+                <strong className="descripcion-titulo">Proyecto: </strong><span>{list.nombreProyecto}</span>
                 <br/>
                 <strong className="descripcion-titulo">Estado del reporte: </strong>
                 {list.estado === -1 && <span>Rechazado</span>}
