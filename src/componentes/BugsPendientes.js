@@ -1,4 +1,4 @@
-import Filtrado from "./Filtrado";
+//import Filtrado from "./Filtrado";
 import Lista from "./Lista"
 
 import { Badge,Container,Row,Col } from "react-bootstrap";
@@ -15,11 +15,6 @@ const BugsPendientes = ({titulo1,titulo2}) => {
         <Row className="">
           <Col className="mb-3 " >
           <h1 className="titulo" ><strong>{titulo1}</strong> <Badge bg='primary'>{titulo2}</Badge></h1>   
-          </Col>
-        </Row>
-        <Row className="">
-          <Col className="mb-5  w-100 " >
-          <Filtrado></Filtrado>
           </Col>
         </Row>
         <Row className="w-100">

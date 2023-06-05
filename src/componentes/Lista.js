@@ -4,23 +4,42 @@ import '../hojas-de-estilo/Lista.css';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { obtenerReportesAdministrador } from '../Funciones/consultas';
+import { sortReportesAdministrador } from '../Funciones/consultas';
 
-function Lista({ estado, reasignacion }) {
+function Lista({ estado, reasignacion, filtroValue }) {
   const [listaReportes, setListaReportes] = useState([]);
   const administradorId = "oWcvYKoA3pnS6oJpBUhQ"; // Reemplazar con el ID del administrador
 
   const getReportesAdministrador = async (administradorId) => {
     try {
-      const reportes = await obtenerReportesAdministrador(administradorId, estado);
+      const reportes = await obtenerReportesAdministrador(administradorId, estado, filtroValue);
+      //console.log('value en lista:', filtroValue);
       setListaReportes(reportes);
     } catch (error) {
       console.log(error);
     }
   };
-
   useEffect(() => {
     getReportesAdministrador(administradorId);
   }, []);
+
+  
+
+  useEffect(() => {
+    const getReportes = async () => {
+      try {
+        const reportes = await obtenerReportesAdministrador(administradorId, estado, filtroValue);
+        setListaReportes(reportes);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    getReportes();
+  }, [filtroValue]);
+
+
+  
 
   const rutaReporte = (id) => {
     return `/administrador/${id}`;

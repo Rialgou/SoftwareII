@@ -3,10 +3,17 @@ import { type } from '@testing-library/user-event/dist/type';
 import { getFirestore,updateDoc, doc, getDoc, collection, query, where, getDocs, serverTimestamp, addDoc, orderBy } from 'firebase/firestore';
 
 // Función asíncrona para obtener todos los reportes asociados a los proyectos de un administrador específico.
-export const obtenerReportesAdministrador = async (administradorId, estado) => {
+export const obtenerReportesAdministrador = async (administradorId, estado, filtroValue) => {
     try {
         console.log("obtenerReportesAdministrador");
         // Crea una instancia de Firestore.
+        if(filtroValue!=1&&filtroValue!=2&&filtroValue!=3) filtroValue=0;
+        //console.log("value en reporte:", filtroValue);
+        let orden;
+        if(filtroValue==0) orden = "fechaEmision";
+        if(filtroValue==1) orden = "fechaEmision";
+        if(filtroValue==2) orden = "depurador";
+        if(filtroValue==3) orden = "prioridad";
         const db = getFirestore();
 
         // Crea una referencia al documento del administrador en la colección "administradores" utilizando el ID proporcionado.
@@ -27,9 +34,10 @@ export const obtenerReportesAdministrador = async (administradorId, estado) => {
         proyectosQuerySnapshot.forEach((doc) => {
             proyectoRefs.push(doc.ref);
         });
-        console.log(typeof estado);
+        console.log('tipo de estado:', typeof estado);
+        //console.log('estado:',estado);
         // Crea una consulta que filtra los reportes que están asociados a los proyectos filtrados previamente.
-        const reportesFiltrados = query(reportesCollection, where("proyecto", "in", proyectoRefs),where("estado","==",estado),orderBy("fechaEmision"));
+        const reportesFiltrados = query(reportesCollection, where("proyecto", "in", proyectoRefs),where("estado","==",estado),orderBy(orden));
 
         // Obtiene el resultado de la consulta de reportes filtrados.
         const reportesQuerySnapshot = await getDocs(reportesFiltrados);
@@ -50,7 +58,6 @@ export const obtenerReportesAdministrador = async (administradorId, estado) => {
         return []; // Retorna un arreglo vacío en caso de error.
     }
 };
-
 
 
 // Función asíncrona para obtener los datos de un administrador específico.
