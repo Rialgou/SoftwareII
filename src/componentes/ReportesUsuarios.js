@@ -45,7 +45,8 @@ const ReportesUsuarios = () => {
                 {list.estado === -1 && <span>Rechazado</span>}
                 {list.estado === 1 && <span>Pendiente</span>}
                 {list.estado === 2 && <span>En proceso</span>}
-                {list.estado === 3 && <span>Terminado</span>}
+                {list.estado === 3 && <span>En proceso</span>}
+                {list.estado === 4 && <span>Completado</span>}
 
                 <div>
                   <strong className="descripcion-titulo">Fecha de emisión del reporte: </strong>

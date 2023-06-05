@@ -14,7 +14,7 @@ function AcordeonBugsNuevos() {
   const depuradorId = "qjM7ExaUwt7Zv7ApAVHL";
 
   const ReportesDepurador = async()=>{
-      const reportes = await getReportesDepurador(depuradorId,1);
+      const reportes = await getReportesDepurador(depuradorId,2);
       setListaReportes(reportes);
       console.log(listaReportes);
   }

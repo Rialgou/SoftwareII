@@ -480,7 +480,7 @@ export const aceptarBug = async (reporteId) => {
   
     const reporteRef = doc(db, "reportes",reporteId);
 
-    const nuevoEstado = {estado:2};
+    const nuevoEstado = {estado:3};
     
     await updateDoc(reporteRef,nuevoEstado);
     return true;
