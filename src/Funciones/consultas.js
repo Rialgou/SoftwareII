@@ -2,13 +2,7 @@
 import { type } from '@testing-library/user-event/dist/type';
 import { getFirestore,updateDoc, doc, getDoc, collection, query, where, getDocs, serverTimestamp, addDoc, orderBy } from 'firebase/firestore';
 
-// Función asíncrona para obtener todos los reportes asociados a los proyectos de un administrador específico.
-// Función asíncrona para obtener todos los reportes asociados a los proyectos de un administrador específico.
-export const obtenerReportesAdministrador = async (administradorId, estado) => {
-  try {
-      console.log("obtenerReportesAdministrador");
-      // Crea una instancia de Firestore.
-      const db = getFirestore();
+
 export const obtenerReportesAdministrador = async (administradorId, estado, filtroValue) => {
     try {
         console.log("obtenerReportesAdministrador");

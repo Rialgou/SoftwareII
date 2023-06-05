@@ -1,5 +1,5 @@
 .lista-container {
-  max-height: 47vh;
+  max-height: 48vh;
   overflow-y: auto;
   position: relative;
 }
@@ -22,7 +22,6 @@
 
 .contenido {
   margin-top: 30px;
-  overflow-y: scroll;
 }
 
 .item {
@@ -36,10 +35,6 @@
   border-radius: 5px;
   margin: 5px;
 }
-
-
-
-
 
 
 
