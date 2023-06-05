@@ -58,18 +58,18 @@ function Home() {
             {showCol && radioValue === '1' && (
             <Col md={7}  className="d-flex ">
               <BugsPendientes
-                titulo1={"Nuevos"}
-                titulo2={"Bugs"}
+                titulo1={"Bugs"}
+                titulo2={"Pendientes"}
 
 
               ></BugsPendientes>
             </Col>
              )}
              {showCol && radioValue === '2' && (
-              <Col  md={6}  className='d-flex  '>
+              <Col  md={7}  className='d-flex  '>
                 <BugsEnProceso
-                titulo1={"Bugs"}
-                titulo2={"Activos"}
+                titulo1={"Bugs en"}
+                titulo2={"Proceso"}
                 >
                 </BugsEnProceso>
               </Col>
@@ -78,7 +78,7 @@ function Home() {
             <Col md={7}  className="d-flex ">
               <SolicitudReasignacion
                 titulo1={"Solicitudes de"}
-                titulo2={"Reasignacion"}
+                titulo2={"Reasignación"}
 
 
               ></SolicitudReasignacion>

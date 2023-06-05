@@ -16,7 +16,7 @@ function Acordeon({ proyectoId, tituloBug, descripcionBug }) {
   };
 
   const handleTitle = (event) => {
-    const value = event.target.value.slice(0, 40);
+    const value = event.target.value.slice(0, 100);
     setTitle(value);
     tituloBug(value);
   };
@@ -58,8 +58,8 @@ function Acordeon({ proyectoId, tituloBug, descripcionBug }) {
               value={title}
               onChange={handleTitle}
               onKeyDown={handleKeyDown}
-              placeholder="Ingrese un título para el Bug                       (máx. 40)"
-              maxLength={40}
+              placeholder="Ingrese un título para el Bug                   (máx. 100)"
+              maxLength={100}
             />
           )}
         </Accordion.Header>

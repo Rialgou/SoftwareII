@@ -49,7 +49,7 @@ function Depurador() {
             {showCol && radioValue === '1' && (
             <Col md={8}  className="d-flex ">
               <Container className="bugs-proceso-container">
-                <h2 className="titulo-bugs-proceso"><strong>Bugs en</strong> <Badge bg='primary'>proceso</Badge></h2>
+                <h2 className="titulo-bugs-proceso"><strong>Bugs en</strong> <Badge bg='primary'>Proceso</Badge></h2>
                 <AcordeonBugsProceso/>
               </Container>
             </Col>
@@ -65,7 +65,7 @@ function Depurador() {
             {showCol && radioValue === '3' && (
               <Col md={8}  className="d-flex">
                 <Container className='bugs-nuevos-container'>
-                <h2 className="titulo-bugs-nuevos"><strong>Espera </strong> <Badge bg='primary'>Reasignacion</Badge></h2>
+                <h2 className="titulo-bugs-nuevos"><strong>Espera </strong> <Badge bg='primary'>Reasignación</Badge></h2>
                 <EsperaReasignacion/>
                 </Container>
               </Col>

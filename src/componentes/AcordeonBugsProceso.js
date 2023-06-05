@@ -76,7 +76,7 @@ function AcordeonBugsProceso() {
                   <span className="bug-info">
                     <span> Bug {index + 1}</span>
                     <span>Proyecto: {list.nombreProyecto}</span>
-                    <span>{list.fechaEmision.toDate().toLocaleString()}-{list.fechaEstimadaTermino ? <span>{list.fechaEstimadaTermino.toDate().toLocaleString()}</span> : <span>Por determinar</span>}</span>
+                    <span>{list.fechaEmision.toDate().toLocaleDateString()} - {list.fechaEstimadaTermino ? <span>{list.fechaEstimadaTermino.toDate().toLocaleDateString()}</span> : <span>Por determinar</span>}</span>
                     <span>
                       {list.prioridad === 1 && <span>Prioridad: Baja</span>}
                       {list.prioridad === 2 && <span>Prioridad: Media</span>}

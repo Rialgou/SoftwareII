@@ -51,7 +51,7 @@ function AcordeonBugsNuevos() {
                   <span className="bug-info">
                     <span> Bug {index + 1}</span>
                     <span>Proyecto: {list.nombreProyecto}</span>
-                    <span>{list.fechaEmision.toDate().toLocaleString()}-{list.fechaEstimadaTermino ? <span>{list.fechaEstimadaTermino.toDate().toLocaleString()}</span> : <span>Por determinar</span>}</span>
+                    <span>{list.fechaEmision.toDate().toLocaleDateString()} - {list.fechaEstimadaTermino ? <span>{list.fechaEstimadaTermino.toDate().toLocaleDateString()}</span> : <span>Por determinar</span>}</span>
                     <span>
                       {list.prioridad === 1 && <span>Prioridad: Baja</span>}
                       {list.prioridad === 2 && <span>Prioridad: Media</span>}
@@ -80,12 +80,10 @@ function AcordeonBugsNuevos() {
         <Modal.Header closeButton>
           <Modal.Title>
             Bug aceptado
-            <span role="img" aria-label="Emoticono Sonriente"> 😊</span>
-            <span role="img" aria-label="Emoticono Pulgar Arriba">👍</span>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        ¡Es tu momento para brillar! Registra tus avances parciales y demuestra tu habilidad resolviendo este desafío. ¡Cada paso cuenta! ¡No te rindas y mantén la motivación alta! ¡Tú puedes lograrlo!
+        ¡El bug ha sido aceptado con éxito!
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowModal(false)}>

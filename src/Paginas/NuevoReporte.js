@@ -120,7 +120,7 @@ function NuevoReporte() {
         </div>
       </Stack>
 
-      <Modal centered show={showAlertSinContenido} onHide={handleCloseAlertSinContenido} className="modal-campo">
+      <Modal centered show={showAlertSinContenido} onHide={handleCloseAlertSinContenido} className="modal-basic">
         <Modal.Header closeButton>
           <Modal.Title>
             Reporte no enviado
@@ -137,7 +137,7 @@ function NuevoReporte() {
         </Modal.Footer>
       </Modal>
 
-      <Modal centered show={showAlertError} onHide={handleCloseAlertError} className="modal-campo">
+      <Modal centered show={showAlertError} onHide={handleCloseAlertError} className="modal-basic">
         <Modal.Header closeButton>
           <Modal.Title>
             ¡Error! 
