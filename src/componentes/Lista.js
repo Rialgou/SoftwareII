@@ -29,14 +29,14 @@ function Lista({ estado }) {
   return (
     <>
       {listaReportes.map((reporte, index) => (
-        <ListGroup key={index} horizontal={"lg"} className="my-2" id='contenedor-lista-reportes'>
-          <ListGroup.Item as={Link} to={rutaReporte(reporte.id)} className="mt-2 mb-2 item" variant="warning" style={{ flexBasis: '12.0%' }}>
+        <ListGroup key={index} horizontal={"lg"} className="my-1" id='contenedor-lista-reportes'>
+          <ListGroup.Item as={Link} to={rutaReporte(reporte.id)} className="mt-2 mb-2 item" variant="warning" style={{ flexBasis: '10.0%' }}>
             Bug {index + 1}
           </ListGroup.Item>
           <ListGroup.Item  className="mt-2 mb-2 item" variant="dark" style={{ flexBasis: '70.0%' }}>
            {reporte.asunto}
         </ListGroup.Item>
-              <ListGroup.Item className="mt-2 mb-2 item" variant="dark" style={{ flexBasis: '18.0%' }}>
+              <ListGroup.Item className="mt-2 mb-2 item" variant="dark" style={{ flexBasis: '20.0%' }}>
             {reporte.fechaEmision.toDate().toLocaleString()}
           </ListGroup.Item>
         </ListGroup>

@@ -126,7 +126,7 @@
  
   
   .botoness {
-    height: 4vh;
+    height: 5vh;
     width: 25vh;
     align-self: flex-end;
     border-radius: 25px;
@@ -137,7 +137,6 @@
     color: #000000;
     font-size: 14px;
     font-weight: bold;
-    text-transform: uppercase;
     cursor: pointer;
   }
   

@@ -364,7 +364,7 @@ const enviarReporte = async () => {
 
 
 
-          <Col xs={12} md={3}  id='columna-2' className='d-flex flex-column justify-content-center align-items-center '>
+          <Col xs={12} md={3}  id='columna-2' className='d-flex flex-column justify-content-center align-items-end'>
               <Stack gap={5} className="d-flex justify-content-center align-items-center">
 
                 <Button variant="dark" onClick={handleShowDepurador} className='botones'>
@@ -446,7 +446,6 @@ const enviarReporte = async () => {
     <textarea
       value={descripcion}
       onChange={(e) => setDescripcion(e.target.value)}
-      maxLength={100}
       rows={3}
       className="form-control"
     />
@@ -477,7 +476,7 @@ const enviarReporte = async () => {
 
 
 
-          <Col xs={12} md={4} id='columna-3' className='d-flex flex-column justify-content-center  align-items-center;' >
+          <Col xs={12} md={4} id='columna-3' className='d-flex flex-column justify-content-center  align-items-center' >
             <h1 className='ss'><strong> Carta de  </strong> <Badge  bg='primary'> resumen </Badge></h1>
 
             <Container fluid className="mt-4 contenedor-formulario">
@@ -489,47 +488,47 @@ const enviarReporte = async () => {
       </ListGroup.Item>
 
       <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start lista-item" variant="dark">
-        <Col xs={12} md={3}>
+        <Col xs={12} md={1}>
           <p><strong>Depurador</strong></p>
         </Col>
-        <Col xs={12} md={9}>
+        <Col xs={12} md={20}>
           <p className="parrafo">{depuradorSeleccionado ? depuradorSeleccionado.nombre : "Escoger depurador"}</p>
         </Col>
       </ListGroup.Item>
 
       <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start lista-item" variant="dark">
-        <Col xs={12} md={3}>
+        <Col xs={12} md={1}>
           <p><strong>Plazo de entrega</strong></p>
         </Col>
-        <Col xs={12} md={9}>
+        <Col xs={12} md={20}>
           <p className="parrafo">{fechaSeleccionada ? fechaSeleccionada.toString() : "Escoger fecha de entrega"}</p>
         </Col>
       </ListGroup.Item>
 
       <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start lista-item" variant="dark">
-        <Col xs={12} md={3}>
+        <Col xs={12} md={1}>
           <p><strong>Prioridad</strong></p>
         </Col>
-        <Col xs={12} md={9}>
+        <Col xs={12} md={20}>
           <p className="parrafo">{prioridadSeleccionada ? prioridadSeleccionada : "Escoger prioridad"}</p>
         </Col>
       </ListGroup.Item>
 
       <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start lista-item" variant="dark">
-        <Col xs={12} md={3}>
+        <Col xs={12} md={1}>
           <p><strong>Descripción</strong></p>
         </Col>
-        <Col xs={12} md={9}>
+        <Col xs={12} md={20}>
           <p className="parrafo">{descripcion ? descripcion : "Escoger descripción"}</p>
         </Col>
       </ListGroup.Item>
     </ListGroup>
 </Container>
-
-              <Button variant = "success" className=' botoness mt-4 ms-3 me-3 ' onClick={enviarReporte}>Enviar reporte</Button>
-
+              <div>
+              <Button variant = "danger" className=' botoness mt-3 ms-1 me-1 '>Rechazar reporte</Button>
+              <Button variant = "success" className=' botoness mt-3 ms-1 me-1 ' onClick={enviarReporte}>Enviar reporte</Button>
+              </div>
               <br></br>
-            
               <div className="d-flex justify-content-center align-items-center">
       {showAlert && (
         <Alert show={showAlert} variant="danger" className='alerta'>

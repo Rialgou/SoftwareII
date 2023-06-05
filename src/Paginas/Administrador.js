@@ -47,16 +47,16 @@ function Home() {
 
         <div><BarraLateral/></div>
         
-        <Container  fluid className=" justify-content-center align-items-center pene1 mt-5 ">
-          <Row  className="d-flex flex-row justify-content-center align-items-center">
-            <Col md={4} className="d-flex justify-content-center align-items-end  mx-5 ">
+        <Container  fluid className=" justify-content-center align-items-start pene1 mt-5 ">
+          <Row  className="d-flex flex-row justify-content-center align-items-start">
+            <Col md={2} className="d-flex justify-content-center align-items-end  mx-5 ">
                 <RadioButton 
                   radioValue={radioValue}
                   setRadioValue={setRadioValue} 
                 ></RadioButton>
             </Col>
             {showCol && radioValue === '1' && (
-            <Col md={7}  className="d-flex ">
+            <Col md={9}  className="d-flex ">
               <BugsPendientes
                 titulo1={"Bugs"}
                 titulo2={"Pendientes"}
@@ -66,7 +66,7 @@ function Home() {
             </Col>
              )}
              {showCol && radioValue === '2' && (
-              <Col  md={7}  className='d-flex  '>
+              <Col  md={9}  className='d-flex  '>
                 <BugsEnProceso
                 titulo1={"Bugs en"}
                 titulo2={"Proceso"}
@@ -75,7 +75,7 @@ function Home() {
               </Col>
             )}
             {showCol && radioValue === '3' && (
-            <Col md={7}  className="d-flex ">
+            <Col md={9}  className="d-flex ">
               <SolicitudReasignacion
                 titulo1={"Solicitudes de"}
                 titulo2={"Reasignación"}
@@ -85,7 +85,7 @@ function Home() {
             </Col>
              )}
              {showCol && radioValue === '4' && (
-            <Col md={7}  className="d-flex ">
+            <Col md={9}  className="d-flex ">
               <RevisarReporteFinal
                 titulo1={"Reportes"}
                 titulo2={"Finales"}
