@@ -57,7 +57,7 @@ function Home() {
               ></BarraOpciones>
             </Col>
             {showCol && radioValue === '1' && (
-            <Col md={9}  className="d-flex ">
+            <Col md={9}  className="d-flex align-items-start">
               <BugsPendientes
                 titulo1={"Bugs"}
                 titulo2={"Pendientes"}

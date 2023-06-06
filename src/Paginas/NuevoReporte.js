@@ -153,7 +153,7 @@ function NuevoReporte() {
         <Modal.Header closeButton>
           <Modal.Title>
             Reporte enviado
-            <span role="img" aria-label="Emoticono Enviado">📤</span>
+            <span role="img" aria-label="Emoticono Enviado"> 📤</span>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
