@@ -3,60 +3,47 @@ import { type } from '@testing-library/user-event/dist/type';
 import { getFirestore,updateDoc, doc, getDoc, collection, query, where, getDocs, serverTimestamp, addDoc, orderBy } from 'firebase/firestore';
 
 
-export const obtenerReportesAdministrador = async (administradorId, estado, filtroValue) => {
-    try {
-        console.log("obtenerReportesAdministrador");
-        // Crea una instancia de Firestore.
-        if(filtroValue!=1&&filtroValue!=2&&filtroValue!=3) filtroValue=0;
-        //console.log("value en reporte:", filtroValue);
-        let orden;
-        if(filtroValue==0) orden = "fechaEmision";
-        if(filtroValue==1) orden = "fechaEmision";
-        if(filtroValue==2) orden = "depurador";
-        if(filtroValue==3) orden = "prioridad";
-        const db = getFirestore();
+export const obtenerReportesAdministrador = async (administradorId, estado, selectedItem) => {
+  try {
+    const db = getFirestore();
+    const referenciaAdministrador = doc(db, 'administradores', administradorId);
+    const proyectosCollection = collection(db, "proyectos");
+    const reportesCollection = collection(db, "reportes");
+    const proyectosFiltrados = query(proyectosCollection, where("administrador", "==", referenciaAdministrador));
+    const proyectoRefs = [];
+    const proyectosQuerySnapshot = await getDocs(proyectosFiltrados);
+    proyectosQuerySnapshot.forEach((doc) => {
+      proyectoRefs.push(doc.ref);
+    });
 
-      // Crea una referencia al documento del administrador en la colección "administradores" utilizando el ID proporcionado.
-      const referenciaAdministrador = doc(db, 'administradores', administradorId);
+    let reportesFiltrados;
+    if (selectedItem === 1) {
+      reportesFiltrados = query(reportesCollection, where("proyecto", "in", proyectoRefs), where("estado", "==", estado), orderBy("fechaEmision"));
+    } else if (selectedItem === 2) {
+      reportesFiltrados = query(reportesCollection, where("proyecto", "in", proyectoRefs), where("estado", "==", estado), orderBy("prioridad"));
+    } else if (selectedItem === 3) {
+      reportesFiltrados = query(reportesCollection, where("proyecto", "in", proyectoRefs), where("estado", "==", estado), orderBy("fechaEstimadaTermino"));
+    } else {
+      reportesFiltrados = query(reportesCollection, where("proyecto", "in", proyectoRefs), where("estado", "==", estado));
+    }
 
-      // Crea referencias a las colecciones "proyectos" y "reportes" en la base de datos.
-      const proyectosCollection = collection(db, "proyectos");
-      const reportesCollection = collection(db, "reportes");
+    const reportesQuerySnapshot = await getDocs(reportesFiltrados);
+    const reportes = [];
+    reportesQuerySnapshot.forEach((doc) => {
+      reportes.push({ ...doc.data(), id: doc.id });
+    });
 
-      // Crea una consulta que filtra los proyectos que tienen la referencia del administrador proporcionado.
-      const proyectosFiltrados = query(proyectosCollection, where("administrador", "==", referenciaAdministrador));
+    if(selectedItem===1 ) return reportes
+    else if(selectedItem===2)reportes.reverse();
+    return reportes;
 
-      // Declara un arreglo vacío llamado "proyectoRefs" y obtiene el resultado de la consulta de proyectos filtrados.
-      const proyectoRefs = [];
-      const proyectosQuerySnapshot = await getDocs(proyectosFiltrados);
 
-      // Agrega las referencias de los proyectos filtrados al arreglo "proyectoRefs".
-      proyectosQuerySnapshot.forEach((doc) => {
-          proyectoRefs.push(doc.ref);
-      });
-      console.log(typeof estado);
-      // Crea una consulta que filtra los reportes que están asociados a los proyectos filtrados previamente.
-      const reportesFiltrados = query(reportesCollection, where("proyecto", "in", proyectoRefs),where("estado","==",estado),orderBy("fechaEmision"));
-
-      // Obtiene el resultado de la consulta de reportes filtrados.
-      const reportesQuerySnapshot = await getDocs(reportesFiltrados);
-
-      // Declara un arreglo vacío llamado "reportes".
-      const reportes = [];
-
-      // Agrega los reportes filtrados al arreglo "reportes", incluyendo los datos y el ID del documento.
-      reportesQuerySnapshot.forEach((doc) => {
-          reportes.push({ ...doc.data(), id: doc.id });
-      });
-
-      // Retorna el arreglo de reportes.
-      return reportes.reverse();
-
-  } catch (error) { // Captura cualquier error que pueda ocurrir durante la ejecución.
-      console.log(error); // Muestra el error en la consola.
-      return []; // Retorna un arreglo vacío en caso de error.
+  } catch (error) {
+    console.log(error);
+    return [];
   }
 };
+
 
 
 // Función asíncrona para obtener los datos de un administrador específico.

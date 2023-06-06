@@ -1,27 +1,39 @@
-import React, { useState } from 'react';
-import Form from 'react-bootstrap/Form';
+import React, { useState, useEffect } from 'react';
+import Dropdown from 'react-bootstrap/Dropdown';
+import '../Estilos/Filtrado.css';
 
-function Filtrado({ onSelectChange }) {
-  const [selectedValue, setSelectedValue] = useState('');
+function Filtrado({ setSelectedItem }) {
+  const [toggleText, setToggleText] = useState("Ordenar por");
 
-  const handleSelectChange = (event) => {
-    const value = event.target.value;
-    setSelectedValue(value);
-    onSelectChange(value);
+  const handleItemClick = (value) => {
+    setSelectedItem(value);
+    switch (value) {
+      case 1:
+        setToggleText("Fecha de emisión");
+        break;
+      case 2:
+        setToggleText("Prioridad");
+        break;
+      case 3:
+        setToggleText("Fecha estimada de término");
+        break;
+      default:
+        setToggleText("Ordenar por");
+    }
   };
 
   return (
-    <Form.Select
-      aria-label="Filtrado-basico"
-      size="md"
-      className="border border-dark shadow-sm filtrado"
-      as="select"
-      onChange={handleSelectChange}
-    >
-      <option value="1">Filtrado por fecha de asignación</option>
-      <option value="2">Filtrado por nombre del depurador</option>
-      <option value="3">Filtrado por prioridad</option>
-    </Form.Select>
+    <Dropdown>
+      <Dropdown.Toggle className='Filtro' variant="light" size='md' id="dropdown-basic">
+        {toggleText}
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Dropdown.Item onClick={() => handleItemClick(1)}>Fecha de emisión</Dropdown.Item>
+        <Dropdown.Item onClick={() => handleItemClick(2)}>Prioridad</Dropdown.Item>
+        <Dropdown.Item onClick={() => handleItemClick(3)}>Fecha estimada de término</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
   );
 }
 

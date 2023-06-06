@@ -60,22 +60,22 @@ function Home() {
             </Col>
           )}
           {showCol && radioValue === '2' && (
-            <Col md={9} className='d-flex'>
+           <Col md={showCol2 ? 9 : 12} className="d-flex ms-3">
               <BugsPorConfirmar titulo1={"Bugs por"} titulo2={"Confirmar"} />
             </Col>
           )}
           {showCol && radioValue === '3' && (
-            <Col md={9} className='d-flex'>
+            <Col md={showCol2 ? 9 : 12} className="d-flex ms-3">
               <BugsEnProceso titulo1={"Bugs en"} titulo2={"Proceso"} />
             </Col>
           )}
           {showCol && radioValue === '4' && (
-            <Col md={9} className="d-flex">
+            <Col md={showCol2 ? 9 : 12} className="d-flex ms-3">
               <SolicitudReasignacion titulo1={"Solicitudes de"} titulo2={"Reasignación"} />
             </Col>
           )}
           {showCol && radioValue === '5' && (
-            <Col md={9} className="d-flex">
+            <Col md={showCol2 ? 9 : 12} className="d-flex ms-3">
               <RevisarReporteFinal titulo1={"Reportes"} titulo2={"Finales"} />
             </Col>
           )}

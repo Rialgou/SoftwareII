@@ -182,5 +182,26 @@
   .botones-medio{
     padding: 150px;
   }
+
+  .sss
+  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .margen
+  {
+    margin-right: 1vh;
+  }
+
+  .parrafo-placeholder {
+    opacity: 0.5; /* Ejemplo de transparencia */
+    /* Otros estilos para los campos no seleccionados */
+  }
+
+ 
+
+
   
   

@@ -9,13 +9,15 @@ import { VscDebugStart } from 'react-icons/vsc';
 
 import '../Estilos/Lista.css';
 
-function Lista({ estado, reasignacion, filtroValue }) {
+function Lista({ estado, reasignacion, selectedItem,setSelectedItem}) {
+
   const [listaReportes, setListaReportes] = useState([]);
   const administradorId = "oWcvYKoA3pnS6oJpBUhQ"; // Reemplazar con el ID del administrador
 
-  const getReportesAdministrador = async (administradorId) => {
+
+  const getReportesAdministrador = async () => {
     try {
-      const reportes = await obtenerReportesAdministrador(administradorId, estado, filtroValue);
+      const reportes = await obtenerReportesAdministrador(administradorId, estado,selectedItem);
       setListaReportes(reportes);
     } catch (error) {
       console.log(error);
@@ -23,21 +25,8 @@ function Lista({ estado, reasignacion, filtroValue }) {
   };
 
   useEffect(() => {
-    getReportesAdministrador(administradorId);
-  }, []);
-
-  useEffect(() => {
-    const getReportes = async () => {
-      try {
-        const reportes = await obtenerReportesAdministrador(administradorId, estado, filtroValue);
-        setListaReportes(reportes);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    getReportes();
-  }, [filtroValue]);
+    getReportesAdministrador();
+  }, [administradorId,selectedItem]);
 
   const rutaReporte = (id) => {
     return `/administrador/${id}`;

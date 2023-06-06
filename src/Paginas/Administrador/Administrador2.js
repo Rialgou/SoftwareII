@@ -2,6 +2,7 @@ import BarraSuperior from '../../ComponentesGlobales/BarraSuperior';
 
 import DynamicCard from './Componentes/DynamicCard';
 import PrioridadButton from './Componentes/PrioridadButton';
+import Modales from './Componentes/Modales';
 
 import { DatePicker } from '@material-ui/pickers';
 import { Container,Row,Col,Badge,Stack,Button, ListGroup,Modal,Alert} from 'react-bootstrap';
@@ -42,7 +43,9 @@ const Reporte = () => {
   const [showDepurador,setShowDepurador] = useState(false);
   const [showCalendario,setShowCalendario] = useState(false);
   const [showText,setShowText] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
+
+  const [modalShow, setModalShow] = useState(false);
+  const [modalShow2, setModalShow2] = useState(false);
 
   const handleCloseDepurador = () => setShowDepurador(false);
   const handleShowDepurador = () => setShowDepurador(true);
@@ -68,13 +71,29 @@ const Reporte = () => {
 
   useEffect(() => {
     timerRef.current = setTimeout(() => {
-      setShowAlert(false);
+      setModalShow(false);
     }, 3000);
 
     return () => {
       clearTimeout(timerRef.current);
     };
-  }, [showAlert]);
+  }, [modalShow]);
+
+
+ 
+  useEffect(() => {
+    if (modalShow2 !== false) {
+      timerRef.current = setTimeout(() => {
+        setModalShow2(false);
+        handleAdminButtonClick();
+      }, 3000);
+    }
+  
+    return () => {
+      clearTimeout(timerRef.current);
+    };
+  }, [modalShow2]);
+  
   
 
 
@@ -155,6 +174,8 @@ const Reporte = () => {
   };
 
 
+
+
 const enviarReporte = async () => {
 
   if (
@@ -174,19 +195,16 @@ const enviarReporte = async () => {
 
     if (actualizado) {
       console.log('Reporte actualizado correctamente');
-      // Realiza alguna acción adicional después de actualizar el reporte
-
-      handleAdminButtonClick();
+      
+      setModalShow2(true);
 
     } else {
       console.log('Error al actualizar el reporte');
     }
   } else {
     
-    setShowAlert(true);
+    setModalShow(true);
 
-
-    
    
   }
 };
@@ -206,12 +224,26 @@ const enviarReporte = async () => {
       transition={{ duration: 0.3 }}>
 
 
-    
-
-
       <div>
         <BarraSuperior nombre={administrador.nombre} />
       </div>
+
+      <Modales
+        show={modalShow}
+        Title={ "¡ Cuidado !"}
+        h4 = {"Recordatorio"}
+        p = {"No olvides rellenar todos los campos obligatorios en la carta de resumen , son vitales para poder enviar una correcta asignación"}
+
+        onHide={() => setModalShow(false)}
+      />
+
+      <Modales
+        show={modalShow2}
+        Title={ "¡ Logrado !"}
+        p = {"Su asigna miento se ha logrado de manera exitosa"}
+
+        onHide={() => setModalShow2(false)}
+      />
 
 
       <Container fluid className=' contenedor-prueba1   mt-5 mb-5'>
@@ -219,7 +251,7 @@ const enviarReporte = async () => {
         <Row >
 
           <Col  xs={12} md={5} id='columna-1' className='d-flex flex-column justify-content-center align-items-center ' >
-              <h2 className=''><strong>Visualizador de </strong> <Badge pill bg='primary'> información </Badge></h2>
+              <h2 className='sss'><strong className='margen'>Visualizador de </strong> <Badge pill bg='primary'> información </Badge></h2>
 
               <Container fluid className="mt-4 ms-5 me-3 contenedor-formulario">
   <ListGroup as="ul" id="listas">
@@ -458,10 +490,10 @@ const enviarReporte = async () => {
 
 
 
-          <Col xs={12} md={4} id='columna-3'>
-            <h1 className='ss'><strong> Carta de  </strong> <Badge  bg='primary'> resumen </Badge></h1>
+          <Col xs={12} md={4} >
+            <h1 className='my-4 sss'><strong className='margen'> Carta de  </strong> <Badge pill bg='primary' className='margen'> resumen </Badge></h1>
 
-            <Container fluid className="my-2  contenedor-formulario">
+            <Container fluid className="  contenedor-formulario">
     <ListGroup as="ul" id="listas">
       <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start lista-item" variant="dark">
         <Col md={12}>
@@ -474,7 +506,9 @@ const enviarReporte = async () => {
           <p><strong>Depurador</strong></p>
         </Col>
         <Col xs={12} md={20}>
-          <p className="parrafo">{depuradorSeleccionado ? depuradorSeleccionado.nombre : "Escoger depurador"}</p>
+          <p className={`parrafo ${depuradorSeleccionado ? '' : 'parrafo-placeholder'}`}>
+            {depuradorSeleccionado ? depuradorSeleccionado.nombre : "Escoger depurador"}
+          </p>
         </Col>
       </ListGroup.Item>
 
@@ -483,7 +517,9 @@ const enviarReporte = async () => {
           <p><strong>Plazo de entrega</strong></p>
         </Col>
         <Col xs={12} md={20}>
-          <p className="parrafo">{fechaSeleccionada ? fechaSeleccionada.toString() : "Escoger fecha de entrega"}</p>
+          <p className={`parrafo ${fechaSeleccionada ? '' : 'parrafo-placeholder'}`}>
+            {fechaSeleccionada ? fechaSeleccionada.toString() : "Escoger fecha de entrega"}
+          </p>
         </Col>
       </ListGroup.Item>
 
@@ -492,7 +528,9 @@ const enviarReporte = async () => {
           <p><strong>Prioridad</strong></p>
         </Col>
         <Col xs={12} md={20}>
-          <p className="parrafo">{prioridadSeleccionada ? prioridadSeleccionada : "Escoger prioridad"}</p>
+          <p className={`parrafo ${prioridadSeleccionada ? '' : 'parrafo-placeholder'}`}>
+            {prioridadSeleccionada ? prioridadSeleccionada : "Escoger prioridad"}
+          </p>
         </Col>
       </ListGroup.Item>
 
@@ -501,29 +539,18 @@ const enviarReporte = async () => {
           <p><strong>Descripción</strong></p>
         </Col>
         <Col xs={12} md={20}>
-          <p className="parrafo">{descripcion ? descripcion : "Escoger descripción"}</p>
+          <p className={`parrafo ${descripcion ? '' : 'parrafo-placeholder'}`}>
+            {descripcion ? descripcion : "Escoger descripción"}
+          </p>
         </Col>
       </ListGroup.Item>
     </ListGroup>
 </Container>
               <div>
-              <Button variant = "danger" className=' botoness  mt-5 ms-4 '>Rechazar reporte</Button>
-              <Button variant = "success" className=' botoness mt-5 ms-4 ' onClick={enviarReporte}>Enviar reporte</Button>
+              <Button variant = "danger" className=' botoness  mt-5 ms-5 '>Rechazar reporte</Button>
+              <Button variant = "success" className=' botoness mt-5 ms-5 ' onClick={enviarReporte}>Enviar reporte</Button>
               </div>
-              <br></br>
-              <br></br>
-              <div className="d-flex justify-content-center align-items-center">
-              {showAlert && (
-        <Alert variant="danger" className="alerta">
-          <Alert.Heading>¡Cuidado!</Alert.Heading>
-          <p>No olvides rellenar todos los campos necesarios en tu reporte.</p>
-        </Alert>
-      )}
-    </div>
-              
           </Col>
-
-          
 
 
         </Row>
