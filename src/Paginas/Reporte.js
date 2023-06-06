@@ -217,7 +217,7 @@ const enviarReporte = async () => {
 
       <Container fluid className=' contenedor-prueba1   mt-5 mb-5'>
         
-        <Row>
+        <Row >
 
           <Col  xs={12} md={5} id='columna-1' className='d-flex flex-column justify-content-center align-items-center ' >
               <h2 className=''><strong>Visualizador de </strong> <Badge pill bg='primary'> información </Badge></h2>
@@ -303,20 +303,7 @@ const enviarReporte = async () => {
     </Col>
   </ListGroup.Item>
 
-  <ListGroup.Item
-    as="li"
-    className="d-flex justify-content-between align-items-start lista-item"
-    variant="dark"
-  >
-    <Col xs={12} md={2}>
-      <p>
-        <strong>Prioridad</strong>
-      </p>
-    </Col>
-    <Col xs={12} md={10}>
-      <p className="parrafo">{reporte.prioridad}</p>
-    </Col>
-  </ListGroup.Item>
+  
 
   <ListGroup.Item
     as="li"
@@ -360,7 +347,7 @@ const enviarReporte = async () => {
 
 
 
-          <Col xs={12} md={3}  id='columna-2' className='d-flex flex-column justify-content-center align-items-end'>
+          <Col className='botones-medio' id='columna-2'>
               <Stack gap={5} className="d-flex justify-content-center align-items-center">
 
                 <Button variant="dark" onClick={handleShowDepurador} className='botones'>
@@ -472,7 +459,7 @@ const enviarReporte = async () => {
 
 
 
-          <Col xs={12} md={4} id='columna-3' className='d-flex flex-column justify-content-center  align-items-center' >
+          <Col xs={12} md={4} id='columna-3'>
             <h1 className='ss'><strong> Carta de  </strong> <Badge  bg='primary'> resumen </Badge></h1>
 
             <Container fluid className="my-3  contenedor-formulario">

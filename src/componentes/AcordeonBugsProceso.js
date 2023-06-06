@@ -139,11 +139,11 @@ function AcordeonBugsProceso() {
           </Modal.Footer>
       </Modal>
 
-      <Modal centered show={showAlertSinContenido} onHide={handleCloseAlertSinContenido} className="modal-campo">
+      <Modal centered show={showAlertSinContenido} onHide={handleCloseAlertSinContenido} className="modal-basic">
         <Modal.Header closeButton>
           <Modal.Title>
             Reporte no enviado
-            <span role="img" aria-label="Emoticono Upsi">😅</span>
+            <span role="img" aria-label="Emoticono Upsi"> 😅</span>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

@@ -83,6 +83,8 @@ function AcordeonBugsNuevos() {
         <Modal.Header closeButton>
           <Modal.Title>
             Bug aceptado
+            <span role="img" aria-label="Emoticono Sonriente"> 😊</span>
+            <span role="img" aria-label="Emoticono Pulgar Arriba">👍</span>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
