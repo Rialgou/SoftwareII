@@ -461,7 +461,7 @@ const enviarReporte = async () => {
           <Col xs={12} md={4} id='columna-3'>
             <h1 className='ss'><strong> Carta de  </strong> <Badge  bg='primary'> resumen </Badge></h1>
 
-            <Container fluid className="my-3  contenedor-formulario">
+            <Container fluid className="my-2  contenedor-formulario">
     <ListGroup as="ul" id="listas">
       <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start lista-item" variant="dark">
         <Col md={12}>

@@ -2,7 +2,7 @@ import { Container, Nav, Navbar, NavDropdown,Stack} from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
 import { RiAccountPinCircleLine   } from "react-icons/ri";
 
-import '../Estilos/BarraSuperior.css';
+import '../EstilosGlovales/BarraSuperior.css';
 
 
 const BarraSuperior = ({nombre}) => {
