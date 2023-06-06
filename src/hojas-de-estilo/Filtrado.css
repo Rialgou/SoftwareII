@@ -1,8 +1,23 @@
-.filtrado
-{
-    width: 350px !important;
-    font-weight: 100 !important;
+.filtrado {
+    width: 100%;
+    max-width: 350px;
+    font-weight: 100;
     text-align: left;
     text-indent: 10px;
-
-}
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #f8f9fa;
+    color: #000000;
+  }
+  
+  .filtrado:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  .filtrado option {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  

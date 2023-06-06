@@ -1,9 +1,5 @@
 
 
-
-
-
-
 import ListGroup from 'react-bootstrap/ListGroup';
 import '../hojas-de-estilo/Lista.css';
 
@@ -51,13 +47,13 @@ function Lista({ estado, reasignacion, filtroValue }) {
     <div className="lista-container">
       <div className="encabezado">
         <ListGroup horizontal={"lg"} className="my-2">
-          <ListGroup.Item className="mt-2 mb-2 item encabezado-item"  style={{ flexBasis: '10.0%' }}>
-          Ingresar
+          <ListGroup.Item className="mt-2 mb-2 item encabezado-item" style={{ flexBasis: '10.0%' }}>
+            Ingresar
           </ListGroup.Item>
           <ListGroup.Item className="mt-2 mb-2 item encabezado-item" style={{ flexBasis: '60.0%' }}>
             Asunto
           </ListGroup.Item>
-          <ListGroup.Item className="mt-2 mb-2 item encabezado-item"  style={{ flexBasis: '30.0%' }}>
+          <ListGroup.Item className="mt-2 mb-2 item encabezado-item" style={{ flexBasis: '30.0%' }}>
             Fecha de emisión
           </ListGroup.Item>
         </ListGroup>
@@ -69,9 +65,21 @@ function Lista({ estado, reasignacion, filtroValue }) {
             .filter((list) => list.reasignacion === false)
             .map((reporte, index) => (
               <ListGroup key={index} horizontal={"lg"} className="my-2">
-                <ListGroup.Item as={Link} to={rutaReporte(reporte.id)} className="mt-2 mb-2 item" id="probar" variant="dark" style={{ flexBasis: '10.0%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <VscDebugStart size={24} />
-            </ListGroup.Item>
+                <ListGroup.Item
+                  as={Link}
+                  to={rutaReporte(reporte.id)}
+                  className="mt-2 mb-2 item ingresar"
+                  id="probar"
+                  variant="dark"
+                  style={{
+                    flexBasis: '10.0%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}
+                >
+                  <VscDebugStart size={24} />
+                </ListGroup.Item>
                 <ListGroup.Item className="mt-2 mb-2 item" variant="dark" style={{ flexBasis: '70.0%' }}>
                   {reporte.asunto}
                 </ListGroup.Item>
@@ -87,9 +95,21 @@ function Lista({ estado, reasignacion, filtroValue }) {
             .filter((list) => list.reasignacion === true)
             .map((reporte, index) => (
               <ListGroup key={index} horizontal={"lg"} className="my-2">
-                <ListGroup.Item as={Link} to={rutaReporte(reporte.id)} className="mt-2 mb-2 item" id="probar" variant="dark" style={{ flexBasis: '10.0%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <VscDebugStart size={24} />
-            </ListGroup.Item>
+                <ListGroup.Item
+                  as={Link}
+                  to={rutaReporte(reporte.id)}
+                  className="mt-2 mb-2 item ingresar"
+                  id="probar"
+                  variant="dark"
+                  style={{
+                    flexBasis: '10.0%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}
+                >
+                  <VscDebugStart size={24} />
+                </ListGroup.Item>
                 <ListGroup.Item className="mt-2 mb-2 item" variant="dark" style={{ flexBasis: '70.0%' }}>
                   {reporte.asunto}
                 </ListGroup.Item>
@@ -103,9 +123,21 @@ function Lista({ estado, reasignacion, filtroValue }) {
         {estado !== 2 &&
           listaReportes.map((reporte, index) => (
             <ListGroup key={index} horizontal={"lg"} className="my-2">
-              <ListGroup.Item as={Link} to={rutaReporte(reporte.id)} className="mt-2 mb-2 item" id="probar" variant="dark" style={{ flexBasis: '10.0%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <VscDebugStart size={24} />
-            </ListGroup.Item>
+              <ListGroup.Item
+                as={Link}
+                to={rutaReporte(reporte.id)}
+                className="mt-2 mb-2 item ingresar"
+                id="probar"
+                variant="dark"
+                style={{
+                  flexBasis: '10.0%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}
+              >
+                <VscDebugStart size={24} />
+              </ListGroup.Item>
               <ListGroup.Item className="mt-2 mb-2 item" variant="dark" style={{ flexBasis: '60.0%' }}>
                 {reporte.asunto}
               </ListGroup.Item>

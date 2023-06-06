@@ -1,9 +1,13 @@
-//import Filtrado from "./Filtrado";
+import Filtrado from "./Filtrado";
 import Lista from "./Lista"
 
 import { Badge,Container,Row,Col } from "react-bootstrap";
 
+
+
 import '../hojas-de-estilo/BugsPendientes.css';
+
+
 
 
 const BugsPendientes = ({titulo1,titulo2}) => {
@@ -12,9 +16,14 @@ const BugsPendientes = ({titulo1,titulo2}) => {
     <>
     
       <Container flex className="d-flex  flex-column justify-content-start align-items-start ">
-        <Row className="">
-          <Col className="mb-3 " >
+        <Row >
+          <Col className="mb-4" >
           <h1 className="titulo" ><strong>{titulo1}</strong> <Badge bg='primary'>{titulo2}</Badge></h1>   
+          </Col>
+        </Row>
+        <Row>
+          <Col className="mb-4">
+            <Filtrado ></Filtrado>
           </Col>
         </Row>
         <Row className="w-100">

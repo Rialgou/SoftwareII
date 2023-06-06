@@ -222,7 +222,7 @@ const enviarReporte = async () => {
           <Col  xs={12} md={5} id='columna-1' className='d-flex flex-column justify-content-center align-items-center ' >
               <h2 className=''><strong>Visualizador de </strong> <Badge pill bg='primary'> información </Badge></h2>
 
-              <Container fluid className="mt-4 ms-3 me-3 contenedor-formulario">
+              <Container fluid className="mt-4 ms-5 me-3 contenedor-formulario">
   <ListGroup as="ul" id="listas">
     <ListGroup.Item
       as="li"
@@ -475,7 +475,7 @@ const enviarReporte = async () => {
           <Col xs={12} md={4} id='columna-3' className='d-flex flex-column justify-content-center  align-items-center' >
             <h1 className='ss'><strong> Carta de  </strong> <Badge  bg='primary'> resumen </Badge></h1>
 
-            <Container fluid className="mt-4 contenedor-formulario">
+            <Container fluid className="my-3  contenedor-formulario">
     <ListGroup as="ul" id="listas">
       <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start lista-item" variant="dark">
         <Col md={12}>

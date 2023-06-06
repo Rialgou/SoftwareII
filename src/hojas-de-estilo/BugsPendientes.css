@@ -1,7 +1,7 @@
 .col-Lista {
-    max-height: 53vh;
+    max-height: 60vh;
     overflow-y: scroll;
-    background-color: #ffffffad;
+    background-color:white;
     border-radius: 15px;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2), 0px 10px 20px rgba(0, 0, 0, 0.2);
     padding: 10px;
@@ -10,7 +10,7 @@
   
   .col-Lista::-webkit-scrollbar {
     width: 8px;
-    background-color: #ccc;
+    background-color:rgb(0, 0, 0);
     border-radius: 5px;
   }
   

@@ -12,7 +12,7 @@ function RadioButton({ radioValue, setRadioValue }) {
     { name: 'Bugs pendientes', value: '1', logo: <VscNewFile /> },
     { name: 'Bugs por confirmar', value: '2', logo: <GiConfirmed /> },
     { name: 'Bugs en proceso', value: '3', logo: <GiConfirmed /> },
-    { name: 'Solicitudes de reasignación', value: '4', logo: <MdOutlineAssignment /> },
+    { name: 'Reasignación', value: '4', logo: <MdOutlineAssignment /> },
     { name: 'Reportes finales', value: '5', logo: <AiOutlineCheckSquare /> },
     { name: 'Lista depuradores', value: '6', logo: <BsCardChecklist /> },
     { name: 'Lista de clientes', value: '7', logo: <BsCardChecklist /> },
@@ -26,19 +26,21 @@ function RadioButton({ radioValue, setRadioValue }) {
           <ButtonGroup vertical>
             {radios.map((radio, idx) => (
               <ToggleButton
-                key={idx}
-                id={`radio-${idx}`}
-                type="radio"
-                variant="outline-dark"
-                name="radio"
-                value={radio.value}
-                checked={radioValue === radio.value}
-                onChange={(e) => setRadioValue(e.currentTarget.value)}
-                className="opciones my-3"
-              >
+              key={idx}
+              id={`radio-${idx}`}
+              type="radio"
+              variant="outline-dark"
+              name="radio"
+              value={radio.value}
+              checked={radioValue === radio.value}
+              onChange={(e) => setRadioValue(e.currentTarget.value)}
+              className="opciones my-3"
+            >
+              <div className="texto">
                 <span className="logo">{radio.logo}</span>
                 <span className="name">{radio.name}</span>
-              </ToggleButton>
+              </div>
+            </ToggleButton>
             ))}
           </ButtonGroup>
         </Col>
