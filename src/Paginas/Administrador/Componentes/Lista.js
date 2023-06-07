@@ -71,7 +71,7 @@ function Lista({ estado, reasignacion, selectedItem}) {
                   <VscDebugStart size={24} />
                 </ListGroup.Item>
                 <ListGroup.Item className="mt-2 mb-2 item" variant="dark" style={{ flexBasis: '70.0%' }}>
-                  {reporte.comentarioFinal}
+                  <pre className='descripcion-bug'>{reporte.comentarioFinal}</pre>
                 </ListGroup.Item>
                 <ListGroup.Item className="mt-2 mb-2 item" variant="dark" style={{ flexBasis: '20.0%' }}>
                   {reporte.fechaEmision.toDate().toLocaleString()}
@@ -131,7 +131,7 @@ function Lista({ estado, reasignacion, selectedItem}) {
                   <VscDebugStart size={24} />
                 </ListGroup.Item>
                 <ListGroup.Item className="mt-2 mb-2 item" variant="dark" style={{ flexBasis: '70.0%' }}>
-                  {reporte.mensaje}
+                  <pre className='descripcion-bug'>{reporte.mensaje}</pre>
                 </ListGroup.Item>
                 <ListGroup.Item className="mt-2 mb-2 item" variant="dark" style={{ flexBasis: '20.0%' }}>
                   {reporte.fechaEmision.toDate().toLocaleString()}

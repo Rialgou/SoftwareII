@@ -248,7 +248,7 @@ const enviarReporte = async () => {
         
         <Row >
 
-          <Col  xs={12} md={5} id='columna-1' className='d-flex flex-column justify-content-center align-items-center ' >
+          <Col  xs={12} md={5} id='columna-1' className='d-flex flex-column justify-content-start align-items-center ' >
               <h2 className='sss'><strong className='margen'>Visualizador de </strong> <Badge pill bg='primary'> información </Badge></h2>
 
               <Container fluid className="mt-4 ms-5 me-3 contenedor-formulario">
@@ -491,7 +491,7 @@ const enviarReporte = async () => {
 
 
 
-          <Col xs={12} md={4} >
+          <Col xs={12} md={4}>
             <h1 className='my-4 sss'><strong className='margen'> Carta de  </strong> <Badge pill bg='primary' className='margen'> resumen </Badge></h1>
 
             <Container fluid className="  contenedor-formulario">
@@ -541,7 +541,7 @@ const enviarReporte = async () => {
         </Col>
         <Col xs={12} md={20}>
           <p className={`parrafo ${descripcion ? '' : 'parrafo-placeholder'}`}>
-            {descripcion ? descripcion : "Escoger descripción"}
+            <pre className='descripcion-bug'>{descripcion ? descripcion : "Escoger descripción"}</pre>
           </p>
         </Col>
       </ListGroup.Item>

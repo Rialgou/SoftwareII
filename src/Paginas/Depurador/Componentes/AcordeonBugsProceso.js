@@ -98,7 +98,7 @@ function AcordeonBugsProceso() {
                 </div>
               </Accordion.Header>
               <Accordion.Body>
-                <strong className="descripcion-titulo">Descripción del Bug</strong> <br /> {list.descripcionAdministrador}
+                <strong className="descripcion-titulo">Descripción del Bug</strong> <br /> <pre className='descripcion-bug'>{list.descripcionAdministrador}</pre>
                 <textarea className="textarea-custom textarea-basic"
                   value={descripcionReporte}
                   onChange={handleDescripcionReporte}

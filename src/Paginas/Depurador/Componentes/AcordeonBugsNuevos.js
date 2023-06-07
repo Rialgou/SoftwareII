@@ -63,7 +63,7 @@ function AcordeonBugsNuevos() {
                 </div>
               </Accordion.Header>
               <Accordion.Body>
-                <strong className="descripcion-titulo">Descripción del Bug</strong> <br /> {list.descripcionAdministrador}
+                <strong className="descripcion-titulo">Descripción del Bug</strong> <br /> <pre className='descripcion-bug'>{list.descripcionAdministrador}</pre>
                 <br/>
                 <div>
                   <Button variant="success" className="boton-aceptar" onClick={()=>handleAceptarBug(list.id)}>
