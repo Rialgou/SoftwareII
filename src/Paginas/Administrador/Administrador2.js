@@ -364,7 +364,10 @@ const enviarReporte = async () => {
       </p>
     </Col>
     <Col xs={12} md={10}>
-      <p className="parrafo">{reporte.descripcionUsuario}</p>
+      <div>
+        <pre className="descripcion-bug">{reporte.descripcionUsuario}</pre>
+      </div>
+      {/* <p className="parrafo">{reporte.descripcionUsuario}</p> */}
     </Col>
   </ListGroup.Item>
 </ListGroup>

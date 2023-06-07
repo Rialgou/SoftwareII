@@ -55,8 +55,10 @@ const ReportesUsuarios = () => {
                   {list.fechaEstimadaTermino ? <span>{list.fechaEstimadaTermino.toDate().toLocaleString()}</span> : <span>Por determinar</span>}
                   <br/>
                   <br/>
-                  <strong className="descripcion-titulo">Descripción del Bug: </strong>
-                  <span>{list.descripcionUsuario}</span>
+                    <div>
+                      <strong className="descripcion-titulo">Descripción del Bug: </strong>
+                      <pre className="descripcion-bug">{list.descripcionUsuario}</pre>
+                    </div>
                 </div>
               </Accordion.Body>
             </Card>
