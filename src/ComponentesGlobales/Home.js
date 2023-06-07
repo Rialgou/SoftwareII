@@ -51,9 +51,9 @@ const Home = () => {
           <Row style={{ flex: '20%' }}>
             <Col className='textColo'>
               <p className='parrafooo'>
-                BugFixer es la solución perfecta para tus proyectos. Colabora con clientes, administradores y
-                depuradores de forma ágil y sencilla. Resuelve errores y fallos de manera rápida y eficiente. Optimiza
-                tu proceso de desarrollo y garantiza la calidad de tu proyecto
+              BugFixer es la solución perfecta para tus proyectos. Colaboración de clientes, administradores y
+              depuradores de forma ágil y sencilla. Resuelve errores y fallos de manera rápida y eficiente. Optimiza
+              tu proceso de desarrollo y garantiza la calidad de tu proyecto
               </p>
             </Col>
           </Row>
