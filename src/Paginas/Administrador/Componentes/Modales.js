@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 function Modales(props) {
     return (
       <Modal
+        className='modal-basic'
         {...props}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
@@ -16,13 +17,12 @@ function Modales(props) {
         </Modal.Header>
         <Modal.Body>
           <h4>{props.h4}</h4>
-          <br></br>
           <p>
             {props.p}
           </p>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
+          <Button onClick={props.onHide} variant='secondary'>Cerrar</Button>
         </Modal.Footer>
       </Modal>
     );

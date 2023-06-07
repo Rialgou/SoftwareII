@@ -5,4 +5,10 @@
 
 .descripcion-bug {
     white-space: pre-wrap;
+    font-family: sans-serif;
+    font-size: 1em;
+}
+
+pre{
+    font-family: serif;
 }

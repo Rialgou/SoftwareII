@@ -94,8 +94,6 @@ const Reporte = () => {
     };
   }, [modalShow2]);
   
-  
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -232,7 +230,7 @@ const enviarReporte = async () => {
         show={modalShow}
         Title={ "¡ Cuidado !"}
         h4 = {"Recordatorio"}
-        p = {"No olvides rellenar todos los campos obligatorios en la carta de resumen , son vitales para poder enviar una correcta asignación"}
+        p = {"No olvides rellenar todos los campos obligatorios en la carta de resumen , son vitales para una correcta asignación."}
 
         onHide={() => setModalShow(false)}
       />
@@ -240,7 +238,7 @@ const enviarReporte = async () => {
       <Modales
         show={modalShow2}
         Title={ "¡ Logrado !"}
-        p = {"Su asigna miento se ha logrado de manera exitosa"}
+        p = {"Se ha asignado el depurador de manera exitosa."}
 
         onHide={() => setModalShow2(false)}
       />
