@@ -550,7 +550,7 @@ const enviarReporte = async () => {
     </ListGroup>
 </Container>
               <div>
-              <Button variant = "danger" className=' botoness  mt-5 ms-5 '>Rechazar reporte</Button>
+              <Button variant = "danger" className=' botoness  mt-5 ms-5 'onClick={handleAdminButtonClick}>Rechazar reporte</Button>
               <Button variant = "success" className=' botoness mt-5 ms-5 ' onClick={enviarReporte}>Enviar reporte</Button>
               </div>
           </Col>
