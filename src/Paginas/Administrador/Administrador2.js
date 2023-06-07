@@ -503,10 +503,10 @@ const enviarReporte = async () => {
       </ListGroup.Item>
 
       <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start lista-item" variant="dark">
-        <Col xs={12} md={1}>
+        <Col xs={12} md={2}>
           <p><strong>Depurador</strong></p>
         </Col>
-        <Col xs={12} md={20}>
+        <Col xs={12} md={10}>
           <p className={`parrafo ${depuradorSeleccionado ? '' : 'parrafo-placeholder'}`}>
             {depuradorSeleccionado ? depuradorSeleccionado.nombre : "Escoger depurador"}
           </p>
@@ -514,10 +514,10 @@ const enviarReporte = async () => {
       </ListGroup.Item>
 
       <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start lista-item" variant="dark">
-        <Col xs={12} md={1}>
+        <Col xs={12} md={2}>
           <p><strong>Plazo de entrega</strong></p>
         </Col>
-        <Col xs={12} md={20}>
+        <Col xs={12} md={10}>
           <p className={`parrafo ${fechaSeleccionada ? '' : 'parrafo-placeholder'}`}>
             {fechaSeleccionada ? fechaSeleccionada.toString() : "Escoger fecha de entrega"}
           </p>
@@ -525,10 +525,10 @@ const enviarReporte = async () => {
       </ListGroup.Item>
 
       <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start lista-item" variant="dark">
-        <Col xs={12} md={1}>
+        <Col xs={12} md={2}>
           <p><strong>Prioridad</strong></p>
         </Col>
-        <Col xs={12} md={20}>
+        <Col xs={12} md={10}>
           <p className={`parrafo ${prioridadSeleccionada ? '' : 'parrafo-placeholder'}`}>
             {prioridadSeleccionada ? prioridadSeleccionada : "Escoger prioridad"}
           </p>
@@ -536,10 +536,10 @@ const enviarReporte = async () => {
       </ListGroup.Item>
 
       <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start lista-item" variant="dark">
-        <Col xs={12} md={1}>
+        <Col xs={12} md={2}>
           <p><strong>Descripción</strong></p>
         </Col>
-        <Col xs={12} md={20}>
+        <Col xs={12} md={10}>
           <p className={`parrafo ${descripcion ? '' : 'parrafo-placeholder'}`}>
             <pre className='descripcion-bug'>{descripcion ? descripcion : "Escoger descripción"}</pre>
           </p>
