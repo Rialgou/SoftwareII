@@ -290,7 +290,7 @@ const enviarReporte = async () => {
     >
       <Col xs={12} md={2}>
         <p>
-          <strong>Fecha emision</strong>
+          <strong>Fecha emisión</strong>
         </p>
       </Col>
       <Col xs={12} md={10}>
@@ -341,7 +341,7 @@ const enviarReporte = async () => {
   >
     <Col xs={12} md={2}>
       <p>
-        <strong>Fecha emision</strong>
+        <strong>Fecha emisión</strong>
       </p>
     </Col>
     <Col xs={12} md={10}>
