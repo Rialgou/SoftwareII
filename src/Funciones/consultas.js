@@ -490,18 +490,32 @@ export const solicitarReasignacion = async(reporteId, comentario) => {
       
       const reporteRef = doc(db, "reportes", reporteId);
       const nuevoMensaje = {
-        reporte:reporteRef,
-        mensaje:comentario
+        mensaje:comentario,
+        reasignacion:true
       };
-      
-      await addDoc(collection(db, 'mensaje-reasignaciones'), nuevoMensaje);
-      const reasignacion = {reasignacion:true };
-
-      await updateDoc(reporteRef,reasignacion);
+      await updateDoc(reporteRef,nuevoMensaje);
       return true;
       
     }catch(error){
       console.log(error);
       return false;
     }
+}
+
+export const enviarReporteFinal = async(reporteId, comentario) =>{
+  try{
+    const db = getFirestore();
+
+    const reporteRef = doc(db, "reportes", reporteId);
+    const reporteFinal = {
+      comentarioFinal: comentario,
+      estado:4
+    };
+    await updateDoc(reporteRef,reporteFinal);
+    return true;
+  }catch(error){
+    console.log(error);
+    return false;
+  }
+
 }

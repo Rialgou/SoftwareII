@@ -9,7 +9,7 @@ import { VscDebugStart } from 'react-icons/vsc';
 
 import '../Estilos/Lista.css';
 
-function Lista({ estado, reasignacion, selectedItem,setSelectedItem}) {
+function Lista({ estado, reasignacion, selectedItem}) {
 
   const [listaReportes, setListaReportes] = useState([]);
   const administradorId = "oWcvYKoA3pnS6oJpBUhQ"; // Reemplazar con el ID del administrador
@@ -49,6 +49,37 @@ function Lista({ estado, reasignacion, selectedItem,setSelectedItem}) {
       </div>
 
       <div className="contenido">
+
+      {estado === 4  && (
+          listaReportes
+            .filter((list) => list.reasignacion === false)
+            .map((reporte, index) => (
+              <ListGroup key={index} horizontal={"lg"} className="my-2">
+                <ListGroup.Item
+                  as={Link}
+                  to={rutaReporte(reporte.id)}
+                  className="mt-2 mb-2 item ingresar"
+                  id="probar"
+                  variant="dark"
+                  style={{
+                    flexBasis: '10.0%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}
+                >
+                  <VscDebugStart size={24} />
+                </ListGroup.Item>
+                <ListGroup.Item className="mt-2 mb-2 item" variant="dark" style={{ flexBasis: '70.0%' }}>
+                  {reporte.comentarioFinal}
+                </ListGroup.Item>
+                <ListGroup.Item className="mt-2 mb-2 item" variant="dark" style={{ flexBasis: '20.0%' }}>
+                  {reporte.fechaEmision.toDate().toLocaleString()}
+                </ListGroup.Item>
+              </ListGroup>
+            ))
+        )}
+
         {estado === 2 && reasignacion === false && (
           listaReportes
             .filter((list) => list.reasignacion === false)
@@ -100,7 +131,7 @@ function Lista({ estado, reasignacion, selectedItem,setSelectedItem}) {
                   <VscDebugStart size={24} />
                 </ListGroup.Item>
                 <ListGroup.Item className="mt-2 mb-2 item" variant="dark" style={{ flexBasis: '70.0%' }}>
-                  {reporte.asunto}
+                  {reporte.mensaje}
                 </ListGroup.Item>
                 <ListGroup.Item className="mt-2 mb-2 item" variant="dark" style={{ flexBasis: '20.0%' }}>
                   {reporte.fechaEmision.toDate().toLocaleString()}
@@ -109,7 +140,7 @@ function Lista({ estado, reasignacion, selectedItem,setSelectedItem}) {
             ))
         )}
 
-        {estado !== 2 &&
+        {estado !== 2 && estado !== 4 &&
           listaReportes.map((reporte, index) => (
             <ListGroup key={index} horizontal={"lg"} className="my-2">
               <ListGroup.Item

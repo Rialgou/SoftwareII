@@ -4,10 +4,11 @@ import Button from 'react-bootstrap/Button';
 import { ButtonToolbar, Modal } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import "../Estilos/AcordeonBugsProceso.css";
-import { getReportesDepurador } from '../../../Funciones/consultas';
+import { enviarReporteFinal, getReportesDepurador } from '../../../Funciones/consultas';
 
 function AcordeonBugsProceso() {
-  
+
+  const [actualizarComponente, setActualizarComponente] = useState(false);
   const [listaReportes, setListaReportes] = useState([]);
   const depuradorId = "qjM7ExaUwt7Zv7ApAVHL";
 
@@ -17,9 +18,6 @@ function AcordeonBugsProceso() {
       console.log(listaReportes);
   }
 
-  useEffect( () => {
-    ReportesDepurador();
-  },[]);
 
   const [activeItem, setActiveItem] = useState(null);
   const [descripcionReporte, setdescripcionReporte] = useState("");
@@ -42,11 +40,18 @@ function AcordeonBugsProceso() {
       setShowAlertParcial(true);
   };
 
-  const handleClickButtonFinal = () => {
+  const handleClickButtonFinal = async (reporteId,comentario) => {
     if (descripcionReporte.trim().length === 0) 
       setShowAlertSinContenido(true);
-    else 
-      setShowAlertFinal(true);
+    else{
+      if(await enviarReporteFinal(reporteId,comentario)){
+        setShowAlertFinal(true);
+        setActualizarComponente(true);
+      }
+      else{
+        alert("Error");
+      }
+    }
   };
 
   const handleCloseAlertParcial = () => {
@@ -64,6 +69,13 @@ function AcordeonBugsProceso() {
   const handleCloseAlertSinContenido = () => {
     setShowAlertSinContenido(false);
   };
+
+  useEffect( () => {
+    ReportesDepurador();
+    if(actualizarComponente){
+      setActualizarComponente(false);
+    }
+  },[actualizarComponente]);
 
   return (
     <>
@@ -95,7 +107,7 @@ function AcordeonBugsProceso() {
                   <Button variant="secondary" className="boton-parcial" onClick={handleClickButtonParcial}>
                     Enviar reporte parcial
                   </Button>
-                  <Button variant="primary" className="boton-final" onClick={handleClickButtonFinal}>
+                  <Button variant="primary" className="boton-final" onClick={()=>handleClickButtonFinal(list.id,descripcionReporte)}>
                     Enviar reporte final
                   </Button>
                 </ButtonToolbar>
