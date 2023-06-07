@@ -5,6 +5,7 @@ import "../Estilos/RechazoAcordeon.css";
 import { solicitarReasignacion } from '../../../Funciones/consultas';
 
 function Rechazar({reporteId, ...props}) {
+  const [showModalClose, setShowModalClose] = useState(false);
   const [show, setShow] = useState(false);
   const [textareaValue, setTextareaValue] = useState('');
   const [showModal, setShowModal] = useState(false);
@@ -14,9 +15,11 @@ function Rechazar({reporteId, ...props}) {
     setTextareaValue(''); 
     setShowModal(true);
   };
-  
+  const handleCancel = () =>{
+    setShow(false);
+    setTextareaValue('');
+  }
   const handleShow = () => setShow(true);
-  
   const handleTextareaChange = (event) => {
     setTextareaValue(event.target.value);
   };
@@ -43,7 +46,7 @@ function Rechazar({reporteId, ...props}) {
         Solicitar reasignación 
       </Button>
 
-      <Modal centered show={show} onHide={handleClose} dialogClassName="modal-basic" contentClassName="modal-reasignacion">
+      <Modal centered show={show} onHide={handleCancel} dialogClassName="modal-basic" contentClassName="modal-reasignacion">
         <Modal.Header closeButton>
           <Modal.Title>
             ¿Por qué estas solicitando una reasignación?
