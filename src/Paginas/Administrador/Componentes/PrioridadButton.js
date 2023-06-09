@@ -2,7 +2,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import React, { useState } from "react";
 
 import "../Estilos/PrioridadButton.css";
-import "../Estilos/Administrador2.css";
+import "../Estilos/AsignarReporte.css";
 
 function PrioridadButton({ setPrioridadSeleccionada }) {
   const [hoveredOption, setHoveredOption] = useState(null);

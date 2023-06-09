@@ -1,12 +1,3 @@
-.probar-contenedor {
-    background-color: rgba(250, 250, 250, 0.377);
-    min-height: 65vh;
-    min-width: 65vh;
-    border-radius: 25px;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-    padding: 10px 20px;
-    border: 1px solid #ccc;
-  }
 
   .lista-item {
     margin-bottom: 10px;
@@ -99,13 +90,7 @@
     border-radius: 25px;
   }
   
-  .parrafo {
-    word-wrap: break-word;
-    margin: 0;
-    text-align: left;
-    font-size: 16px;
-  }
-  
+ 
   .cards-container {
     display: flex;
     flex-wrap: wrap;
@@ -200,33 +185,37 @@
   .margen
   {
     margin-right: 1vh;
+    margin-top: 4vh
   }
+
+  .parrafo {
+    word-wrap: break-word;
+    margin: 0;
+    text-align: left;
+    font-size: 16px;
+    max-height: 22vh !important; /* Altura máxima antes de habilitar el scroll */
+    overflow-y: auto; /* Habilitar el scroll vertical cuando se supera la altura máxima */
+  }
+  
 
   .parrafo-placeholder {
     opacity: 0.5; /* Ejemplo de transparencia */
     /* Otros estilos para los campos no seleccionados */
   }
 
-  .xddd
-  {
-    max-height: 22vh !important; /* Altura máxima antes de habilitar el scroll */
-    overflow-y: auto; /* Habilitar el scroll vertical cuando se supera la altura máxima */
-    margin-right: 10px; /* Margen derecho para evitar colisión con el scroll */
-  }
-
-  .xddd::-webkit-scrollbar {
+  .parrafo::-webkit-scrollbar {
     width: 8px; /* Ancho del scrollbar */
   }
   
-  .xddd::-webkit-scrollbar-track {
+  .parrafo::-webkit-scrollbar-track {
     background: #f1f1f1; /* Color de fondo del track */
   }
   
-  .xddd::-webkit-scrollbar-thumb {
+  .parrafo::-webkit-scrollbar-thumb {
     background: #888; /* Color del thumb (barra deslizante) */
   }
   
-  .xddd::-webkit-scrollbar-thumb:hover {
+  .parrafo::-webkit-scrollbar-thumb:hover {
     background: #555; /* Color del thumb en hover */
   }
 
