@@ -1,5 +1,3 @@
-// Importa las funciones necesarias de la biblioteca Firestore de Firebase.
-import { type } from '@testing-library/user-event/dist/type';
 import { getFirestore,updateDoc, doc, getDoc, collection, query, where, getDocs, serverTimestamp, addDoc, orderBy } from 'firebase/firestore';
 
 

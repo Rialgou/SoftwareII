@@ -1,11 +1,17 @@
 import { Container, Nav, Navbar, NavDropdown,Stack} from 'react-bootstrap';
+import { useContext} from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { RiAccountPinCircleLine   } from "react-icons/ri";
+import ContextoAdministrador from './../Paginas/Administrador/Contextos/ContextoAdministrador';
 
 import '../EstilosGlovales/BarraSuperior.css';
 
+const BarraSuperior = () => {
 
-const BarraSuperior = ({nombre}) => {
+  
+  const {administrador} = useContext(ContextoAdministrador);
+
+
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -24,7 +30,7 @@ const BarraSuperior = ({nombre}) => {
             <Stack direction='horizontal' gap={5}>
             <Nav className="Barra-usuario">
               <RiAccountPinCircleLine size={38} color="#F2F2F2" />
-              <NavDropdown title={nombre} id="collasible-nav-dropdown">
+              <NavDropdown title={administrador.nombre} id="collasible-nav-dropdown">
                 <NavDropdown.Item as={NavLink} to="/Cuenta">
                   Cuenta
                 </NavDropdown.Item>

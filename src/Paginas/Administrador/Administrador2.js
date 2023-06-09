@@ -3,21 +3,26 @@ import BarraSuperior from '../../ComponentesGlobales/BarraSuperior';
 import DynamicCard from './Componentes/DynamicCard';
 import PrioridadButton from './Componentes/PrioridadButton';
 import Modales from './Componentes/Modales';
+import DatePicker ,{registerLocale} from 'react-datepicker';
+import es from "date-fns/locale/es";
 
-import { DatePicker } from '@material-ui/pickers';
-import { Container,Row,Col,Badge,Stack,Button, ListGroup,Modal,Alert} from 'react-bootstrap';
+import { Container,Row,Col,Badge,Stack,Button, ListGroup,Modal} from 'react-bootstrap';
 import { obtenerDatosAdministrador } from '../../Funciones/consultas';
 import {obtenerDatosReporte} from '../../Funciones/consultas';
 import {obtenerInfoProyectoDesdeReporte} from '../../Funciones/consultas';
 import {obtenerInformacionUsuario} from '../../Funciones/consultas';
-import { obtenerDepuradoresDesdeProyecto } from '../../Funciones/consultas';
+import { obtenerDepuradoresDesdeProyecto }  from '../../Funciones/consultas';
 import { actualizarReporte } from '../../Funciones/consultas';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState ,useRef } from 'react';
 import {motion} from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { AdministradorProvider } from './Contextos/ContextoAdministrador';
 
 import "./Estilos/Administrador2.css";
+import "react-datepicker/dist/react-datepicker.css";
+
+registerLocale("es",es);
 
 const Reporte = () => {
 
@@ -30,7 +35,6 @@ const Reporte = () => {
 
 
   const [reporte,setReporte] = useState(0);
-  const [administrador, setAdministrador] = useState({});
   const [proyecto , setProyecto] = useState(0);
   const [depuradores,setDepuradores] = useState(0);
   const [usuario,setUsuario] = useState(0);
@@ -95,14 +99,6 @@ const Reporte = () => {
   }, [modalShow2]);
   
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const datosAdministrador = await obtenerDatosAdministrador(administradorId);
-      setAdministrador(datosAdministrador);
-    };
-
-    fetchData();
-  }, [administradorId]);
 
 
   let reporteoId = reporte.id;
@@ -222,9 +218,9 @@ const enviarReporte = async () => {
       transition={{ duration: 0.3 }}>
 
 
-      <div>
-        <BarraSuperior nombre={administrador.nombre} />
-      </div>
+      <AdministradorProvider>
+        <BarraSuperior/>
+      </AdministradorProvider>
 
       <Modales
         show={modalShow}
@@ -424,7 +420,9 @@ const enviarReporte = async () => {
                   </Modal.Header>
 
                   <Modal.Body className='d-flex justify-content-center align-items-center'>
-                    <DatePicker value = {fechaSeleccionada} onChange = {cambiarFechaSelecionada}></DatePicker>
+                    <div>
+                      <DatePicker className = "pickers" dateFormat="dd 'de' MMMM 'de' yyyy" selected = {fechaSeleccionada} onChange = {cambiarFechaSelecionada} locale={es}></DatePicker>
+                    </div>
                   </Modal.Body>
 
                   <Modal.Footer>

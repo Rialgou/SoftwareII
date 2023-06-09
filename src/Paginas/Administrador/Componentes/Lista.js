@@ -32,6 +32,10 @@ function Lista({ estado, reasignacion, selectedItem}) {
     return `/administrador/${id}`;
   };
 
+  const Modificar = () => {
+    return `/administrador`;
+  };
+
   return (
     <div className="lista-container">
       <div className="encabezado">
@@ -57,7 +61,7 @@ function Lista({ estado, reasignacion, selectedItem}) {
               <ListGroup key={index} horizontal={"lg"} className="my-2">
                 <ListGroup.Item
                   as={Link}
-                  to={rutaReporte(reporte.id)}
+                  to={Modificar}
                   className="mt-2 mb-2 item ingresar"
                   id="probar"
                   variant="dark"
@@ -87,7 +91,7 @@ function Lista({ estado, reasignacion, selectedItem}) {
               <ListGroup key={index} horizontal={"lg"} className="my-2">
                 <ListGroup.Item
                   as={Link}
-                  to={rutaReporte(reporte.id)}
+                  to={Modificar}
                   className="mt-2 mb-2 item ingresar"
                   id="probar"
                   variant="dark"
@@ -117,7 +121,7 @@ function Lista({ estado, reasignacion, selectedItem}) {
               <ListGroup key={index} horizontal={"lg"} className="my-2">
                 <ListGroup.Item
                   as={Link}
-                  to={rutaReporte(reporte.id)}
+                  to={Modificar}
                   className="mt-2 mb-2 item ingresar"
                   id="probar"
                   variant="dark"
