@@ -1,43 +1,35 @@
-import Button from 'react-bootstrap/Button';
-import Offcanvas from 'react-bootstrap/Offcanvas';
-import RadioButton from './RadioButton';
+import Offcanvas from "react-bootstrap/Offcanvas";
+import RadioButton from "./RadioButton";
+import ContextoOpciones from "../Contextos/ContextoOpciones";
 
-import { AiOutlineAlignLeft } from 'react-icons/ai';
-import { FcLock } from 'react-icons/fc';
+import { FcLock } from "react-icons/fc";
+import { useContext } from "react";
 
-import '../Estilos/BarraOpciones.css';
+import "../Estilos/BarraOpciones.css";
 
-
-function BarraOpciones({ radioValue, setRadioValue, toggleOffcanvas, showCol }) {
-  const handleClose = () => {
-    toggleOffcanvas(); // Call the toggleOffcanvas function to update showCol
-  };
-
-  const handleShow = () => {
-    toggleOffcanvas(); // Call the toggleOffcanvas function to update showCol
-  };
+function BarraOpciones({ radioValue, setRadioValue }) {
+  const { toggleOffcanvas, showCol } = useContext(ContextoOpciones);
 
   return (
     <>
-      <div className="position-fixed top-0 start-0">
-        <Button variant="dark" onClick={handleShow} autoFocus={false} className="boton">
-          <AiOutlineAlignLeft />
-        </Button>
-
-        <Offcanvas show={showCol} onHide={handleClose} backdrop={false} autoFocus={false} className="offcanvas-custom">
-          <Offcanvas.Header closeButton>
-            <Offcanvas.Title>
-              <FcLock />
-            </Offcanvas.Title>
-          </Offcanvas.Header>
-          <Offcanvas.Body>
-            <RadioButton radioValue={radioValue} setRadioValue={setRadioValue} />
-          </Offcanvas.Body>
-        </Offcanvas>
-      </div>
+      <Offcanvas
+        show={showCol}
+        onHide={toggleOffcanvas}
+        backdrop={false}
+        autoFocus={false}
+        className="offcanvas-custom"
+      >
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>
+            <FcLock />
+          </Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          <RadioButton radioValue={radioValue} setRadioValue={setRadioValue} />
+        </Offcanvas.Body>
+      </Offcanvas>
     </>
   );
 }
 
 export default BarraOpciones;
-

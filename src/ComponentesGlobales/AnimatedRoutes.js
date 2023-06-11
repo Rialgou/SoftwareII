@@ -11,8 +11,9 @@ import NuevoReporte from "../Paginas/Usuario/NuevoReporte";
 import Depurador from "../Paginas/Depurador/Depurador";
 
 import { AdministradorProvider } from "../Paginas/Administrador/Contextos/ContextoAdministrador";
+import { AsignacionProvider } from "../Paginas/Administrador/Contextos/ContextoAsignacion";
+import { OpcionesProvider } from "../Paginas/Administrador/Contextos/ContextoOpciones";
 import { Routes, Route, useLocation } from "react-router-dom";
-
 import { AnimatePresence } from "framer-motion";
 
 function AnimatedRoutes() {
@@ -20,33 +21,28 @@ function AnimatedRoutes() {
 
   return (
     <AnimatePresence>
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Home />} />
-        <Route path="/como-funciona" element={<ComoFunciona />} />
-        <Route
-          path="/cuenta"
-          element={
-            <AdministradorProvider>
-              <Cuenta />
-            </AdministradorProvider>
-          }
-        />
-        <Route path="/ajustes" element={<Ajustes />} />
-        <Route path="/salir-cuenta" element={<SalirCuenta />} />
-        <Route path="/acerca-de-nosotros" element={<AcercaDeNosotros />} />
-        <Route path="/administrador" element={<Administrador />} />
-        <Route
-          path="/administrador/:id"
-          element={
-            <AdministradorProvider>
-              <Reporte></Reporte>
-            </AdministradorProvider>
-          }
-        />
-        <Route path="/Usuario" element={<Usuario />} />
-        <Route path="/usuario/reporte" element={<NuevoReporte />} />
-        <Route path="/depurador" element={<Depurador />} />
-      </Routes>
+      <AdministradorProvider>
+        <AsignacionProvider>
+          <OpcionesProvider>
+            <Routes location={location} key={location.pathname}>
+              <Route path="/" element={<Home />} />
+              <Route path="/como-funciona" element={<ComoFunciona />} />
+              <Route path="/cuenta" element={<Cuenta />} />
+              <Route path="/ajustes" element={<Ajustes />} />
+              <Route path="/salir-cuenta" element={<SalirCuenta />} />
+              <Route
+                path="/acerca-de-nosotros"
+                element={<AcercaDeNosotros />}
+              />
+              <Route path="/administrador" element={<Administrador />} />
+              <Route path="/administrador/:id" element={<Reporte></Reporte>} />
+              <Route path="/Usuario" element={<Usuario />} />
+              <Route path="/usuario/reporte" element={<NuevoReporte />} />
+              <Route path="/depurador" element={<Depurador />} />
+            </Routes>
+          </OpcionesProvider>
+        </AsignacionProvider>
+      </AdministradorProvider>
     </AnimatePresence>
   );
 }

@@ -21,7 +21,6 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState, useRef, useContext } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { AdministradorProvider } from "../Contextos/ContextoAdministrador";
 
 import "../Estilos/AsignarReporte.css";
 import "react-datepicker/dist/react-datepicker.css";
@@ -145,9 +144,7 @@ const Reporte = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <AdministradorProvider>
-        <BarraSuperior />
-      </AdministradorProvider>
+      <BarraSuperior />
 
       <Modales
         show={modalShow}

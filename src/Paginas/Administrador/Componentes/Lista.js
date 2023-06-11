@@ -1,5 +1,5 @@
 import ListGroup from "react-bootstrap/ListGroup";
-import ContextoAdministrador from "../Contextos/ContextoAdministrador";
+import ContextoAsignacion from "../Contextos/ContextoAsignacion";
 
 import { useContext } from "react";
 import { Link } from "react-router-dom";
@@ -8,7 +8,7 @@ import { VscDebugStart } from "react-icons/vsc";
 import "../Estilos/Lista.css";
 
 function Lista({ estado, reasignacion }) {
-  const { listaReportes, setEstado } = useContext(ContextoAdministrador);
+  const { listaReportes, setEstado } = useContext(ContextoAsignacion);
 
   setEstado(estado);
 

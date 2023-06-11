@@ -2,7 +2,6 @@ import Filtrado from "./Filtrado";
 import Lista from "./Lista";
 
 import { Badge, Container, Row, Col } from "react-bootstrap";
-import { ReportesFiltradosProvider } from "../Contextos/ContextoAdministrador";
 
 import "../Estilos/Opciones.css";
 
@@ -21,23 +20,21 @@ const Opciones = ({ titulo1, titulo2, estado, reasignacion }) => {
           </Col>
         </Row>
 
-        <ReportesFiltradosProvider>
-          <Row>
-            <Col className="mb-5">
-              <Filtrado></Filtrado>
-            </Col>
-          </Row>
-          <Row className="w-100">
-            <Col className="col-Lista ">
-              <Lista
-                estado={estado}
-                reasignacion={
-                  reasignacion !== undefined ? reasignacion : undefined
-                }
-              />
-            </Col>
-          </Row>
-        </ReportesFiltradosProvider>
+        <Row>
+          <Col className="mb-5">
+            <Filtrado></Filtrado>
+          </Col>
+        </Row>
+        <Row className="w-100">
+          <Col className="col-Lista ">
+            <Lista
+              estado={estado}
+              reasignacion={
+                reasignacion !== undefined ? reasignacion : undefined
+              }
+            />
+          </Col>
+        </Row>
       </Container>
     </>
   );

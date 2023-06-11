@@ -1,13 +1,24 @@
-import { Container, Nav, Navbar, NavDropdown, Stack } from "react-bootstrap";
+import {
+  Button,
+  Container,
+  Nav,
+  Navbar,
+  NavDropdown,
+  Stack,
+} from "react-bootstrap";
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { RiAccountPinCircleLine } from "react-icons/ri";
+import { AiOutlineAlignLeft } from "react-icons/ai";
+
 import ContextoAdministrador from "../Contextos/ContextoAdministrador";
+import ContextoOpciones from "../Contextos/ContextoOpciones";
 
 import "../../Administrador/Estilos/BarraSuperiorAdministrador.css";
 
-const BarraSuperiorAdministrador = () => {
+const BarraSuperiorAdministrador = ({ VistaPrincipal }) => {
   const { administrador } = useContext(ContextoAdministrador);
+  const { toggleOffcanvas } = useContext(ContextoOpciones);
 
   return (
     <>
@@ -22,6 +33,18 @@ const BarraSuperiorAdministrador = () => {
               <Nav.Link as={NavLink} to="/como-funciona">
                 ¿Cómo funciona?
               </Nav.Link>
+              {VistaPrincipal === true && (
+                <div className="boton-Opciones ml-auto">
+                  <Nav.Link
+                    as={Button}
+                    variant="dark"
+                    onClick={toggleOffcanvas}
+                    autoFocus={false}
+                  >
+                    <AiOutlineAlignLeft />
+                  </Nav.Link>
+                </div>
+              )}
             </Nav>
 
             <Stack direction="horizontal" gap={5}>

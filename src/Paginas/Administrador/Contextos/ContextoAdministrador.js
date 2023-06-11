@@ -4,7 +4,6 @@ import { obtenerDatosReporte } from "../../../Funciones/consultas";
 import { obtenerInfoProyectoDesdeReporte } from "../../../Funciones/consultas";
 import { obtenerInformacionUsuario } from "../../../Funciones/consultas";
 import { obtenerDepuradoresDesdeProyecto } from "../../../Funciones/consultas";
-import { obtenerReportesAdministrador } from "../../../Funciones/consultas";
 
 /*Agregar funcion para obtener el id despues de la autentificacion*/
 
@@ -93,56 +92,6 @@ const AdministradorProvider = ({ children }) => {
   );
 };
 
-const ReportesFiltradosProvider = ({ children }) => {
-  const [selectedItem, setSelectedItem] = useState(1); // Estado para almacenar el elemento seleccionado
-  const [toggleText, setToggleText] = useState("Ordenar por");
-  const [listaReportes, setListaReportes] = useState([]);
-  const [estado, setEstado] = useState(null);
-
-  const handleItemClick = (value) => {
-    setSelectedItem(value);
-    console.log(estado);
-    switch (value) {
-      case 1:
-        setToggleText("Fecha de emisión");
-        break;
-      case 2:
-        setToggleText("Prioridad");
-        break;
-      case 3:
-        setToggleText("Fecha estimada de término");
-        break;
-      default:
-        setToggleText("Ordenar por");
-    }
-  };
-
-  const getReportesAdministrador = async () => {
-    try {
-      const reportes = await obtenerReportesAdministrador(
-        administradorId,
-        estado,
-        selectedItem
-      );
-      setListaReportes(reportes);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getReportesAdministrador();
-  }, [selectedItem, estado]);
-
-  const data = { toggleText, handleItemClick, listaReportes, setEstado };
-
-  return (
-    <ContextoAdministrador.Provider value={data}>
-      {children}
-    </ContextoAdministrador.Provider>
-  );
-};
-
-export { AdministradorProvider, ReportesFiltradosProvider };
+export { AdministradorProvider };
 
 export default ContextoAdministrador;

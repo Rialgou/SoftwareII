@@ -1,10 +1,11 @@
 import React, { useState, useContext } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
-import ContextoAdministrador from "../Contextos/ContextoAdministrador";
+import ContextoAsignacion from "../Contextos/ContextoAsignacion";
+
 import "../Estilos/Filtrado.css";
 
 function Filtrado() {
-  const { toggleText, handleItemClick } = useContext(ContextoAdministrador);
+  const { toggleText, handleItemClick } = useContext(ContextoAsignacion);
 
   return (
     <Dropdown>

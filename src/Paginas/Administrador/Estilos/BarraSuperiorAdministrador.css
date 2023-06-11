@@ -12,3 +12,10 @@
     object-fit: cover;
     margin-right: 10px;
   }
+
+  .boton-Opciones
+  {
+    position: fixed;
+    left: 0;
+    margin-left: 2vh;
+  }
