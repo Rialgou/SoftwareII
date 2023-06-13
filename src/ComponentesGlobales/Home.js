@@ -1,11 +1,45 @@
-import React from "react";
-import { Container, Row, Col, Stack, Button } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import {
+  Container,
+  Row,
+  Col,
+  Stack,
+  Button,
+  Image,
+  Form,
+} from "react-bootstrap";
 import { BsFillBugFill, BsArrowDown } from "react-icons/bs";
+import { AiOutlineUserAdd } from "react-icons/ai";
+import { RiLockPasswordLine } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import Usuario from "../Imagenes/Usuario.png";
 
 const Home = () => {
   const navigate = useNavigate();
+
+  const [formulario, setFormulario] = useState({
+    email: "",
+    contrasena: "",
+  });
+
+  const { email, contrasena } = formulario;
+  const [textVisible, setTextVisible] = useState(false);
+
+  useEffect(() => {
+    setTextVisible(true);
+  }, []);
+
+  const handleInputChangue = (event) => {
+    const { name, value } = event.target;
+    setFormulario({ ...formulario, [name]: value });
+  };
+
+  const handleSubmit = (event) => {
+    // Realizar acciones con los valores del formulario
+    event.preventDefault();
+    console.log(formulario);
+  };
 
   const handleDebButtonClick = () => {
     navigate("/depurador");
@@ -37,19 +71,308 @@ const Home = () => {
           </Row>
           <Row style={{ flex: "55%" }}>
             <Col className="headerColo">
-              <motion.h1
-                className="headerTexto"
-                initial={{ rotate: 0 }}
-                animate={{ rotate: 360 }}
-                transition={{
-                  duration: 0.6,
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  repeatDelay: 5,
-                }}
-              >
-                Soluciona tus errores junto a BugFixer
-              </motion.h1>
+              <h1 className="headerTexto">
+                {textVisible && (
+                  <>
+                    <motion.span
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      S
+                    </motion.span>
+                    <motion.span
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 0.1 }}
+                    >
+                      o
+                    </motion.span>
+                    <motion.span
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 0.2 }}
+                    >
+                      l
+                    </motion.span>
+                    <motion.span
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 0.3 }}
+                    >
+                      u
+                    </motion.span>
+                    <motion.span
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 0.4 }}
+                    >
+                      c
+                    </motion.span>
+                    <motion.span
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 0.5 }}
+                    >
+                      i
+                    </motion.span>
+                    <motion.span
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 0.6 }}
+                    >
+                      o
+                    </motion.span>
+                    <motion.span
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 0.7 }}
+                    >
+                      n
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 0.8 }}
+                    >
+                      a
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 0.9 }}
+                    >
+                      {" "}
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 1 }}
+                    >
+                      t
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 1.1 }}
+                    >
+                      u
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 1.2 }}
+                    >
+                      s
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 1.3 }}
+                    >
+                      {" "}
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 1.4 }}
+                    >
+                      e
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 1.5 }}
+                    >
+                      r
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 1.6 }}
+                    >
+                      r
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 1.7 }}
+                    >
+                      o
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 1.8 }}
+                    >
+                      r
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 1.9 }}
+                    >
+                      e
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 2.0 }}
+                    >
+                      s
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 2.1 }}
+                    >
+                      {" "}
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 2.2 }}
+                    >
+                      j
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 2.3 }}
+                    >
+                      u
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 2.4 }}
+                    >
+                      n
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 2.5 }}
+                    >
+                      t
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 2.6 }}
+                    >
+                      o
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 2.7 }}
+                    >
+                      {" "}
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 2.8 }}
+                    >
+                      a
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 2.9 }}
+                    >
+                      {" "}
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 3.0 }}
+                    >
+                      B
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 3.1 }}
+                    >
+                      u
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 3.2 }}
+                    >
+                      g
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 3.3 }}
+                    >
+                      F
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 3.4 }}
+                    >
+                      i
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 3.5 }}
+                    >
+                      x
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 3.6 }}
+                    >
+                      e
+                    </motion.span>
+                    <motion.span
+                      className="slideInControls"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 3.7 }}
+                    >
+                      r
+                    </motion.span>
+                  </>
+                )}
+              </h1>
             </Col>
           </Row>
           <Row style={{ flex: "20%" }}>
@@ -69,30 +392,64 @@ const Home = () => {
           </Row>
         </Col>
 
-        <Col md={4} className="columna222">
-          <Stack direction="horizontal" gap={5}>
-            <Button
-              variant="outline-primary"
-              className="botones-home"
-              onClick={handleDebButtonClick}
+        <Col md={4} className="d-flex flex-column columna2 ">
+          <Row style={{ flex: "100%" }}>
+            <Col
+              md={4}
+              className="d-flex justify-content-center align-items-center a"
             >
-              Depurador
-            </Button>
-            <Button
-              variant="outline-danger"
-              className="botones-home"
-              onClick={handleAdminButtonClick}
+              <Image
+                src={Usuario}
+                alt={"Imagen usuario estandar"}
+                className="Imagen"
+              />
+            </Col>
+
+            <Col
+              md={8}
+              className="d-flex justify-content-center align-items-center Columna-formulario "
             >
-              Administrador
-            </Button>
-            <Button
-              variant="outline-success"
-              className="botones-home"
-              onClick={handleUserButtonClick}
-            >
-              Usuario
-            </Button>
-          </Stack>
+              <Form>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    className="formulario"
+                    type="email"
+                    placeholder="Ingresar Email"
+                    name="email"
+                    value={email}
+                    onChange={handleInputChangue}
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Label>Contraseña</Form.Label>
+                  <Form.Control
+                    className="formulario"
+                    type="password"
+                    placeholder="Ingresar contraseña"
+                    onChange={handleInputChangue}
+                    value={contrasena}
+                    name="contrasena"
+                  />
+                </Form.Group>
+                <Form.Group className="mb-4 ss" controlId="formBasicCheckbox">
+                  <Form.Check type="checkbox" label="Recordarme" />
+                  <Form.Text className="text-muted sssssss">
+                    ¿Contraseña olvidada?
+                  </Form.Text>
+                </Form.Group>
+                <Button
+                  className="formulario"
+                  onClick={handleSubmit}
+                  variant="dark"
+                  type="submit"
+                >
+                  Iniciar sesion
+                </Button>
+              </Form>
+            </Col>
+          </Row>
         </Col>
       </Row>
     </Container>

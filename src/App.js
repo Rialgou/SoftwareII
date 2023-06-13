@@ -1,24 +1,17 @@
+import "./App.css";
 
+import { BrowserRouter as Router } from "react-router-dom";
 
-import './App.css';
-
-import { BrowserRouter as Router } from 'react-router-dom';
-
-import AnimatedRoutes from './ComponentesGlobales/AnimatedRoutes';
+import AnimatedRoutes from "./Rutas/AnimatedRoutes";
 
 function App() {
+  return (
+    <div className="App">
+      <Router>
+        <AnimatedRoutes />
+      </Router>
+    </div>
+  );
+}
 
-
-    return (
-      <div className='App'>
-        <Router>
-          <AnimatedRoutes />
-        </Router>
-
-      </div>
-    );
-  }
-
-
-  
-  export default App;
+export default App;
