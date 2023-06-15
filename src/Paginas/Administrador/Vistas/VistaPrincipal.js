@@ -1,11 +1,11 @@
-import { Container, Row, Col } from "react-bootstrap";
 import { useState, useContext } from "react";
 import { motion } from "framer-motion";
-
+import { Container, Row, Col, Badge } from "react-bootstrap";
 import BarraOpciones from "../Componentes/BarraOpciones";
 import Opciones from "../Componentes/Opciones";
 import BarraSuperiorAdministrador from "../Componentes/BarraSuperiorAdministrador";
 import ContextoOpciones from "../Contextos/ContextoOpciones";
+import ContextoListaDepuradores from "../Contextos/ContextoListaDepuradores";
 
 import "../Estilos/VistaPrincipal.css";
 
@@ -70,6 +70,18 @@ function Home() {
           {radioValue === "5" && (
             <Col md={showCol ? 9 : 12} className="d-flex ms-3">
               <Opciones titulo1={"Reportes"} titulo2={"Finales"} estado={4} />
+            </Col>
+          )}
+          {radioValue === "6" && (
+            <Col md={showCol ? 9 : 12} className="d-flex ms-3">
+              <Container>
+                <h2 className="Titulo-Lista">
+                  <strong>Lista de</strong> <Badge bg="primary">Depuradores</Badge>
+                </h2>
+                <div className="overflow-auto h-75">
+                <ContextoListaDepuradores />
+                </div>
+              </Container>
             </Col>
           )}
         </Row>
