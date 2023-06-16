@@ -5,7 +5,7 @@ import BarraOpciones from "../Componentes/BarraOpciones";
 import Opciones from "../Componentes/Opciones";
 import BarraSuperiorAdministrador from "../Componentes/BarraSuperiorAdministrador";
 import ContextoOpciones from "../Contextos/ContextoOpciones";
-import ContextoListaDepuradores from "../Contextos/ContextoListaDepuradores";
+import ContextoListaDepuradores from "../Componentes/ListaDepuradores";
 
 import "../Estilos/VistaPrincipal.css";
 

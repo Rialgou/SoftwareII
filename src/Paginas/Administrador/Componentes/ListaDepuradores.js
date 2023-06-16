@@ -1,6 +1,4 @@
 import React from "react";
-import { Container, Row, Col, Badge } from "react-bootstrap";
-
 import CartaPresentacion from "../Componentes/CartaPresentacion";
 import "../Estilos/ContextoLista.css";
 
@@ -16,6 +14,42 @@ const listaDepuradores = [
     
     Contacto: "ejemplo2@ejemplo.com",
     
+  },
+  {
+    Depurador: "Nombre Depurador 3",
+    Sobrecarga: 1,
+    Contacto: "ejemplo3@ejemplo.com",
+    proyectos: "proyecto 1, proyecto 2, proyecto 3",
+  },
+  {
+    Depurador: "Nombre Depurador 3",
+    Sobrecarga: 1,
+    Contacto: "ejemplo3@ejemplo.com",
+    proyectos: "proyecto 1, proyecto 2, proyecto 3",
+  },
+  {
+    Depurador: "Nombre Depurador 3",
+    Sobrecarga: 1,
+    Contacto: "ejemplo3@ejemplo.com",
+    proyectos: "proyecto 1, proyecto 2, proyecto 3",
+  },
+  {
+    Depurador: "Nombre Depurador 3",
+    Sobrecarga: 1,
+    Contacto: "ejemplo3@ejemplo.com",
+    proyectos: "proyecto 1, proyecto 2, proyecto 3",
+  },
+  {
+    Depurador: "Nombre Depurador 3",
+    Sobrecarga: 1,
+    Contacto: "ejemplo3@ejemplo.com",
+    proyectos: "proyecto 1, proyecto 2, proyecto 3",
+  },
+  {
+    Depurador: "Nombre Depurador 3",
+    Sobrecarga: 1,
+    Contacto: "ejemplo3@ejemplo.com",
+    proyectos: "proyecto 1, proyecto 2, proyecto 3",
   },
   {
     Depurador: "Nombre Depurador 3",
