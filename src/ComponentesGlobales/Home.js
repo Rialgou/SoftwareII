@@ -14,6 +14,7 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Usuario from "../Imagenes/Usuario.png";
+import {signIn} from "../Funciones/login"
 
 const Home = () => {
   const navigate = useNavigate();
@@ -35,10 +36,11 @@ const Home = () => {
     setFormulario({ ...formulario, [name]: value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     // Realizar acciones con los valores del formulario
     event.preventDefault();
     console.log(formulario);
+    await signIn(formulario.email,formulario.contrasena);
   };
 
   const handleDebButtonClick = () => {
