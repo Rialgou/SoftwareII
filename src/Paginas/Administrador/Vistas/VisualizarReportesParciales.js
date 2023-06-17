@@ -1,6 +1,6 @@
 import BarraSuperior from "../Componentes/BarraSuperiorAdministrador";
 import ContextoAdministrador from "../Contextos/ContextoAdministrador";
-import DatePicker, { registerLocale } from "react-datepicker";
+import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
 
 import {
@@ -9,16 +9,13 @@ import {
   Row,
   Col,
   Badge,
-  Stack,
   Button,
   ListGroup,
-  Modal,
 } from "react-bootstrap";
-import { actualizarReporte } from "../../../Funciones/consultas";
 import { useParams } from "react-router-dom";
-import { useEffect, useState, useRef, useContext } from "react";
+import { useState, useContext } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+
 
 import "../Estilos/AsignarReporte.css";
 import "../Estilos/VisualizarReportesParciales.css"
