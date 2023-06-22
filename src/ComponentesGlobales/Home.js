@@ -14,11 +14,12 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Usuario from "../Imagenes/Usuario.png";
-import {signIn} from "../Funciones/login"
+import {currentUser, signIn} from "../Funciones/login"
+import { conseguirTipoDeCuenta } from "../Funciones/consultas";
 
 const Home = () => {
   const navigate = useNavigate();
-
+  
   const [formulario, setFormulario] = useState({
     email: "",
     contrasena: "",
@@ -26,7 +27,10 @@ const Home = () => {
 
   const { email, contrasena } = formulario;
   const [textVisible, setTextVisible] = useState(false);
-
+  const [cuenta, setCuenta] = useState({
+    id:'-1',
+    accType: -1
+  });
   useEffect(() => {
     setTextVisible(true);
   }, []);
@@ -39,8 +43,13 @@ const Home = () => {
   const handleSubmit = async (event) => {
     // Realizar acciones con los valores del formulario
     event.preventDefault();
-    console.log(formulario);
-    await signIn(formulario.email,formulario.contrasena);
+    const newCuenta = await signIn(formulario.email,formulario.contrasena);
+    setCuenta(newCuenta);
+    console.log(newCuenta);
+    if(cuenta.accType === 1) handleUserButtonClick();
+    if(cuenta.accType === 2) handleAdminButtonClick();
+    if(cuenta.accType === 3) handleDebButtonClick();
+    if(cuenta.accType === -1) handleError();
   };
 
   const handleDebButtonClick = () => {
@@ -54,6 +63,9 @@ const Home = () => {
   const handleUserButtonClick = () => {
     navigate("/usuario");
   };
+  const handleError = ()=>{
+    alert("Cuenta no disponible");
+  }
 
   return (
     <Container fluid style={{ height: "100vh" }}>

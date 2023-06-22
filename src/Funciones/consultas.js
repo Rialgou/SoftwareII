@@ -1,4 +1,4 @@
-import { getFirestore,updateDoc, doc, getDoc, collection, query, where, getDocs, serverTimestamp, addDoc, orderBy } from 'firebase/firestore';
+import { getFirestore,updateDoc, doc, getDoc, collection, query, where, getDocs, serverTimestamp, addDoc, orderBy, QuerySnapshot } from 'firebase/firestore';
 
 
 export const obtenerReportesAdministrador = async (administradorId, estado, selectedItem) => {
@@ -516,4 +516,61 @@ export const enviarReporteFinal = async(reporteId, comentario) =>{
     return false;
   }
 
+}
+
+export const conseguirTipoDeCuenta = async (email) =>{
+  // se busca en cada colección al usuario, y dependiendo de la colección a la que pertenezca
+  // se le asigna su tipo de cuenta
+  // usuarios == 1
+  // administradores == 2
+  // depuradores == 3
+  // ninguno == -1
+  try{
+
+    const db = getFirestore();
+    
+    const usuariosRef = collection(db, "usuarios");
+    
+    let q = query(usuariosRef, where('cuenta.correo', '==', email));
+
+    let querySnaspshot = await getDocs(q);
+
+    if(querySnaspshot.size > 0){
+      console.log("el usuario es usuario");
+      const id = querySnaspshot.docs[0].id;
+      return {id:id, accType:1};
+    }
+
+    const administradoresRef = collection(db, "administradores");
+
+    q = query(administradoresRef, where('cuenta.correo', '==', email));
+
+    querySnaspshot = await getDocs(q);
+
+    if(querySnaspshot.size > 0){
+      console.log("el usuario es administrador");
+      const id = querySnaspshot.docs[0].id;
+      return {id:id, accType:2};
+    }
+
+    const depuradoresRef = collection(db, "depuradores");
+
+    q = query(depuradoresRef, where('cuenta.correo', '==', email));
+
+    querySnaspshot = await getDocs(q);
+
+    if(querySnaspshot.size > 0){
+      console.log("el usuario es depurador");
+      const id = querySnaspshot.docs[0].id;
+      return {id:id, accType:3};
+    }
+
+    console.log("el usuario no es nada xd");
+    return {id:'-1',accType:-1};
+    
+  }catch(error){
+    console.log(error);
+    console.log("no se pudo encontrar en la base de datos");
+    return {id:'-1',accType:-1};
+  }
 }
