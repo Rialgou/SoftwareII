@@ -16,6 +16,10 @@ function Lista({ estado, reasignacion }) {
     return `/administrador/${id}`;
   };
 
+  const rutaEnProceso= (id) => {
+    return `/administrador/en-proceso/${id}`;
+  };
+
   const Modificar = () => {
     return `/administrador`;
   };
@@ -161,13 +165,47 @@ function Lista({ estado, reasignacion }) {
               </ListGroup>
             ))}
 
-        {estado !== 2 &&
+        {estado !== 2 && estado !== 3 &&
           estado !== 4 &&
           listaReportes.map((reporte, index) => (
             <ListGroup key={index} horizontal={"lg"} className="my-2">
               <ListGroup.Item
                 as={Link}
                 to={rutaReporte(reporte.id)}
+                className="mt-2 mb-2 item ingresar"
+                id="probar"
+                variant="dark"
+                style={{
+                  flexBasis: "10.0%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <VscDebugStart size={24} />
+              </ListGroup.Item>
+              <ListGroup.Item
+                className="mt-2 mb-2 item"
+                variant="dark"
+                style={{ flexBasis: "60.0%" }}
+              >
+                {reporte.asunto}
+              </ListGroup.Item>
+              <ListGroup.Item
+                className="mt-2 mb-2 item"
+                variant="dark"
+                style={{ flexBasis: "30.0%" }}
+              >
+                {reporte.fechaEmision.toDate().toLocaleString()}
+              </ListGroup.Item>
+            </ListGroup>
+          ))}
+          {estado === 3 &&
+          listaReportes.map((reporte, index) => (
+            <ListGroup key={index} horizontal={"lg"} className="my-2">
+              <ListGroup.Item
+                as={Link}
+                to={rutaEnProceso(reporte.id)}
                 className="mt-2 mb-2 item ingresar"
                 id="probar"
                 variant="dark"
