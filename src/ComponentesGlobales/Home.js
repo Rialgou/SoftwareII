@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Container,
   Row,
@@ -16,21 +16,23 @@ import { useNavigate } from "react-router-dom";
 import Usuario from "../Imagenes/Usuario.png";
 import {currentUser, signIn} from "../Funciones/login"
 import { conseguirTipoDeCuenta } from "../Funciones/consultas";
+import { HomeContext} from "./Contextos/HomeContext";
+
 
 const Home = () => {
   const navigate = useNavigate();
   
+
   const [formulario, setFormulario] = useState({
     email: "",
     contrasena: "",
   });
 
+  const { setCuenta } = useContext(HomeContext);
+
   const { email, contrasena } = formulario;
   const [textVisible, setTextVisible] = useState(false);
-  const [cuenta, setCuenta] = useState({
-    id:'-1',
-    accType: -1
-  });
+  
   useEffect(() => {
     setTextVisible(true);
   }, []);

@@ -16,12 +16,17 @@ import Depurador from "../Paginas/Depurador/Depurador";
 import { AdministradorProvider } from "../Paginas/Administrador/Contextos/ContextoAdministrador";
 import { AsignacionProvider } from "../Paginas/Administrador/Contextos/ContextoAsignacion";
 import { OpcionesProvider } from "../Paginas/Administrador/Contextos/ContextoOpciones";
+import { HomeProvider } from "../ComponentesGlobales/Contextos/HomeContext";
 
 function AnimatedRoutes() {
   const routing = useRoutes([
     {
       path: "/",
-      element: <Home />,
+      element: (
+        <HomeProvider>
+          <Home />
+        </HomeProvider>
+      ),
     },
     {
       path: "/como-funciona",
