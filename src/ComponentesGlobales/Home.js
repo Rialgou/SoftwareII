@@ -41,29 +41,37 @@ const Home = () => {
   };
 
   const handleSubmit = async (event) => {
-    // Realizar acciones con los valores del formulario
     event.preventDefault();
-    const newCuenta = await signIn(formulario.email,formulario.contrasena);
-    setCuenta(newCuenta);
-    console.log(newCuenta);
-    if(cuenta.accType === 1) handleUserButtonClick();
-    if(cuenta.accType === 2) handleAdminButtonClick();
-    if(cuenta.accType === 3) handleDebButtonClick();
-    if(cuenta.accType === -1) handleError();
-  };
 
-  const handleDebButtonClick = () => {
+    return new Promise(async(resolve) => {
+      // Realizar acciones con los valores del formulario
+      const newCuenta = await signIn(formulario.email,formulario.contrasena);
+      console.log(newCuenta);
+      resolve(newCuenta);
+    }).then((newCuenta)=>{
+      if(newCuenta.accType === 1) handleUserButtonClick(newCuenta);
+      if(newCuenta.accType === 2) handleAdminButtonClick(newCuenta);
+      if(newCuenta.accType === 3) handleDebButtonClick(newCuenta);
+      if(newCuenta.accType === -1) handleError(newCuenta);
+    }) 
+  }; 
+
+  const handleDebButtonClick = (newCuenta) => {
+    setCuenta(newCuenta);
     navigate("/depurador");
   };
 
-  const handleAdminButtonClick = () => {
+  const handleAdminButtonClick = (newCuenta) => {
+    setCuenta(newCuenta);
     navigate("/administrador");
   };
 
-  const handleUserButtonClick = () => {
+  const handleUserButtonClick = (newCuenta) => {
+    setCuenta(newCuenta);
     navigate("/usuario");
   };
-  const handleError = ()=>{
+  const handleError = (newCuenta)=>{
+    setCuenta(newCuenta);
     alert("Cuenta no disponible");
   }
 
