@@ -1,17 +1,24 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import { obtenerDatosAdministrador } from "../../../Funciones/consultas";
 import { obtenerDatosReporte } from "../../../Funciones/consultas";
 import { obtenerInfoProyectoDesdeReporte } from "../../../Funciones/consultas";
 import { obtenerInformacionUsuario } from "../../../Funciones/consultas";
 import { obtenerDepuradoresDesdeProyecto } from "../../../Funciones/consultas";
-
+import { HomeContext } from "../../../ComponentesGlobales/Contextos/HomeContext";
 /*Agregar funcion para obtener el id despues de la autentificacion*/
 
 const ContextoAdministrador = createContext();
 
-const administradorId = "oWcvYKoA3pnS6oJpBUhQ"; // Reemplazar con el ID del administrador
+
+
+ // Reemplazar con el ID del administrador
 
 const AdministradorProvider = ({ children }) => {
+
+  const {cuenta} = useContext(HomeContext);
+
+  const administradorId = cuenta.id;
+
   const [IDReporte, SetIDReporte] = useState({});
   const [administrador, setAdministrador] = useState({});
   const [reporte, setReporte] = useState(0);

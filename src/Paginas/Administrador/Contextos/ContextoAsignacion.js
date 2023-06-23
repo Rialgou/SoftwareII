@@ -1,11 +1,15 @@
 import { obtenerReportesAdministrador } from "../../../Funciones/consultas";
-import { createContext, useState, useEffect } from "react";
-
+import { createContext, useState, useEffect, useContext } from "react";
+import { HomeContext } from "../../../ComponentesGlobales/Contextos/HomeContext";
 const ContextoAsignacion = createContext();
 
-const administradorId = "oWcvYKoA3pnS6oJpBUhQ"; // Reemplazar con el ID del administrador
 
 const AsignacionProvider = ({ children }) => {
+
+  const {cuenta} = useContext(HomeContext);
+
+  const administradorId = cuenta.id; // Reemplazar con el ID del administrador
+
   const [selectedItem, setSelectedItem] = useState(1); // Estado para almacenar el elemento seleccionado
   const [toggleText, setToggleText] = useState("Ordenar por");
   const [listaReportes, setListaReportes] = useState([]);

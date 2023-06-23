@@ -47,46 +47,65 @@ function AnimatedRoutes() {
     {
       path: "/administrador/*",
       element: (
-        <AdministradorProvider>
-          <AsignacionProvider>
-            <OpcionesProvider>
-              <AdministradorVistaPrincipal />
-            </OpcionesProvider>
-          </AsignacionProvider>
-        </AdministradorProvider>
+        <HomeProvider>
+          <AdministradorProvider>
+            <AsignacionProvider>
+              <OpcionesProvider>
+                <AdministradorVistaPrincipal />
+              </OpcionesProvider>
+            </AsignacionProvider>
+          </AdministradorProvider>
+        </HomeProvider>
+        
       ),
     },
     {
       path: "/administrador/:id",
       element: (
-        <AdministradorProvider>
-          <OpcionesProvider>
-            <AdministradorAsignarReporte />
-          </OpcionesProvider>
-        </AdministradorProvider>
+        <HomeProvider>
+          <AdministradorProvider>
+            <OpcionesProvider>
+              <AdministradorAsignarReporte />
+            </OpcionesProvider>
+          </AdministradorProvider>
+        </HomeProvider>
       ),
     },
     {
       path: "/administrador/en-proceso/:id",
       element: (
-        <AdministradorProvider>
-          <OpcionesProvider>
-            <AdministradorVisualizarReportesParciales />
-          </OpcionesProvider>
-        </AdministradorProvider>
+        <HomeProvider>
+          <AdministradorProvider>
+            <OpcionesProvider>
+              <AdministradorVisualizarReportesParciales />
+            </OpcionesProvider>
+          </AdministradorProvider>
+        </HomeProvider>
       ),
     },
     {
       path: "/Usuario",
-      element: <Usuario />,
+      element: (
+      <HomeProvider>
+        <Usuario />
+      </HomeProvider>
+      ),
     },
     {
       path: "/usuario/reporte",
-      element: <NuevoReporte />,
+      element: (
+      <HomeProvider>
+        <NuevoReporte />
+      </HomeProvider>
+      ),
     },
     {
       path: "/depurador",
-      element: <Depurador />,
+      element: (
+      <HomeProvider>
+        <Depurador />
+      </HomeProvider>
+      ),
     },
   ]);
 
