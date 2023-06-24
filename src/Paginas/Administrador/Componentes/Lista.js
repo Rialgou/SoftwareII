@@ -16,8 +16,12 @@ function Lista({ estado, reasignacion }) {
     return `/administrador/${id}`;
   };
 
-  const rutaEnProceso= (id) => {
+  const rutaEnProceso = (id) => {
     return `/administrador/en-proceso/${id}`;
+  };
+
+  const rutaPorConfirmar = (id) => {
+    return `/administrador/por-confirmar/${id}`;
   };
 
   const Modificar = () => {
@@ -99,7 +103,7 @@ function Lista({ estado, reasignacion }) {
               <ListGroup key={index} horizontal={"lg"} className="my-2">
                 <ListGroup.Item
                   as={Link}
-                  to={Modificar}
+                  to={rutaPorConfirmar(reporte.id)}
                   className="mt-2 mb-2 item ingresar"
                   id="probar"
                   variant="dark"

@@ -10,6 +10,7 @@ import Usuario from "../Paginas/Usuario/Usuario";
 import AdministradorVistaPrincipal from "../Paginas/Administrador/Vistas/VistaPrincipal";
 import AdministradorAsignarReporte from "../Paginas/Administrador/Vistas/AsignarReporte";
 import AdministradorVisualizarReportesParciales from "../Paginas/Administrador/Vistas/VisualizarReportesParciales";
+import AdministradorVisualizarBugsPorConfirmar from "../Paginas/Administrador/Vistas/VisualizarBugsPorConfirmar";
 import NuevoReporte from "../Paginas/Usuario/NuevoReporte";
 import Depurador from "../Paginas/Depurador/Depurador";
 
@@ -67,6 +68,16 @@ function AnimatedRoutes() {
         <AdministradorProvider>
           <OpcionesProvider>
             <AdministradorVisualizarReportesParciales />
+          </OpcionesProvider>
+        </AdministradorProvider>
+      ),
+    },
+    {
+      path: "/administrador/por-confirmar/:id",
+      element: (
+        <AdministradorProvider>
+          <OpcionesProvider>
+            <AdministradorVisualizarBugsPorConfirmar />
           </OpcionesProvider>
         </AdministradorProvider>
       ),
