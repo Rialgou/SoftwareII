@@ -332,7 +332,7 @@ const ReasignacionDepurador = () => {
 
                       <Col xs={7} md={11}>
                         <div>
-                          <pre className="descripcion-bug descripcion-bug2 parrafo">{datos[0].detalles}</pre>
+                          <pre className="descripcion-bug descripcion-bug2 parrafo">{reporte.comentarioFinal}</pre>
                         </div>
                       </Col>
                     </ListGroup.Item>

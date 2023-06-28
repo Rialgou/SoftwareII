@@ -6,9 +6,9 @@ import "../Estilos/BarraBusqueda.css";
 function BarraBusqueda() {
 
   return (
-    <div className="input-wrapper">
+    <div className="input-wrapperbusqueda">
       <FaSearch id="search-icon" />
-      <input
+      <input className="input2"
         placeholder="Buscar..."
       />
     </div>

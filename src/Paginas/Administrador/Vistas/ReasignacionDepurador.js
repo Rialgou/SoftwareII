@@ -1,6 +1,7 @@
 import BarraSuperior from "../Componentes/BarraSuperiorAdministrador";
 import ContextoAdministrador from "../Contextos/ContextoAdministrador";
 import Modal from 'react-bootstrap/Modal';
+import DynamicCard from "../Componentes/DynamicCard";
 import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
 
@@ -13,7 +14,7 @@ import {
   Button,
   ListGroup,
 } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useContext } from "react";
 import { motion } from "framer-motion";
 
@@ -48,9 +49,18 @@ const ReasignacionDepurador = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
+  const [depuradorSeleccionado, setDepuradorSeleccionado] = useState(null);
+  const [showDepurador, setShowDepurador] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
+  const handleCloseDepurador = () => setShowDepurador(false);
+  const handleShowDepurador = () => setShowDepurador(true);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
+  };
+  const noCambios = () => {
+    setDepuradorSeleccionado(null);
+    handleCloseDepurador();
   };
 
   const lastIndex = currentPage * itemsPerPage;
@@ -90,6 +100,10 @@ const ReasignacionDepurador = () => {
   const handleModalClose = () =>{
     setShowModal(false);
     setActualizarComponente(true);
+  }
+  const navigate = useNavigate();
+  const handleNav = () => {
+    navigate("/administrador")
   }
 
   return (
@@ -312,9 +326,38 @@ const ReasignacionDepurador = () => {
               <Button
                 variant="success"
                 className=" botoness mt-5 ms-5 "
+                onClick={handleShowDepurador}
               >
                 Aceptar reasignación
               </Button>
+              <Modal
+                show={showDepurador}
+                onHide={handleCloseDepurador}
+                animation={true}
+                size="lg"
+                centered
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title>Seleccionar depurador</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <Container className="cards-container">
+                    <DynamicCard
+                      listadeDepuradores={depuradores}
+                      depuradorSeleccionado={depuradorSeleccionado}
+                      setDepuradorSeleccionado={setDepuradorSeleccionado}
+                    />
+                  </Container>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={handleNav}>
+                    Asignar en otro momento
+                  </Button>
+                  <Button variant="primary" onClick={handleCloseDepurador}>
+                    Reasignar
+                  </Button>
+                </Modal.Footer>
+              </Modal>
             </div>
           </Col>
         </Row>

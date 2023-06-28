@@ -1,4 +1,4 @@
-.input-wrapper {
+.input-wrapperbusqueda {
     width: 20%;
     border-radius: 10px;
     border: 1px solid #ccc; /* Borde fijo */
@@ -11,7 +11,7 @@
     color: rgba(0, 0, 0, 0.5);
   }
   
-  input {
+  .input2{
     background-color: transparent;
     border: none;
     height: 100%;
