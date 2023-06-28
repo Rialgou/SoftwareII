@@ -94,9 +94,11 @@ const ReasignacionDepurador = () => {
     setTextareaValue('');
   }
   const handleShow = () => setShow(true);
+  
   const handleTextareaChange = (event) => {
     setTextareaValue(event.target.value);
   };
+
   const handleModalClose = () =>{
     setShowModal(false);
     setActualizarComponente(true);

@@ -44,6 +44,11 @@ const Reporte = () => {
   const [prioridadSeleccionada, setPrioridadSeleccionada] = useState(null);
   const [descripcion, setDescripcion] = useState(null);
 
+
+
+  const [show, setShow] = useState(false);
+  const [textareaValue, setTextareaValue] = useState('');
+
   const [showDepurador, setShowDepurador] = useState(false);
   const [showCalendario, setShowCalendario] = useState(false);
   const [showText, setShowText] = useState(false);
@@ -87,16 +92,24 @@ const Reporte = () => {
     return fechaFormaterada.toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
   };
 
-  const handleAdminButtonClick = async() => {
-    if(await rechazarReporteUsuario(reporte.id)){
-      alert("exito");
+  const handleAdminButtonClick = async(comentario) => {
+    if(await rechazarReporteUsuario(reporte.id, comentario)){
       navigate("/administrador");
     }
     else{
       console.log("hubo un error");
       alert("fallou");
     }
-    
+  };
+
+  const handleShow = () => setShow(true);
+
+  const handleCancel = () =>{
+    setShow(false);
+    setTextareaValue('');
+  }
+  const handleTextareaChange = (event) => {
+    setTextareaValue(event.target.value);
   };
 
   const noCambios = () => {
@@ -558,10 +571,36 @@ const Reporte = () => {
               <Button
                 variant="danger"
                 className=" botoness  mt-5 ms-5 "
-                onClick={handleAdminButtonClick}
+                onClick={handleShow}
               >
                 Rechazar reporte
               </Button>
+              <Modal centered show={show} onHide={handleCancel} dialogClassName="modal-basic" contentClassName="modal-reasignacion">
+                <Modal.Header closeButton>
+                  <Modal.Title>
+                    ¿Por qué está rechazando la solicitud de reasignación?
+                    <span role="img" aria-label="Emoticono Cara Pensativa"> 🤔</span>
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <textarea
+                    className="textarea-custom textarea-basic"
+                    placeholder="Ingrese las razones por las cuales está rechazando la solicitud de reasignación"
+                    value={textareaValue}
+                    onChange={handleTextareaChange}
+                  />
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button
+                    variant="success"
+                    disabled={textareaValue.trim() === ''}
+                    onClick={()=> handleAdminButtonClick(textareaValue)}
+                  >
+                    Enviar
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+
               <Button
                 variant="success"
                 className=" botoness mt-5 ms-5 "

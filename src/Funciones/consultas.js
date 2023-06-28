@@ -570,7 +570,7 @@ export const getDepurador = async(depuradorRef) => {
   }
 }
 
-export const rechazarReporteUsuario = async(reporteId) =>{
+export const rechazarReporteUsuario = async(reporteId,comentario) =>{
   try{
     console.log("rechazarReporteUsuario");
     const db = getFirestore();
@@ -578,6 +578,7 @@ export const rechazarReporteUsuario = async(reporteId) =>{
 
     const cambioEstado = {
       estado:-1,
+      comentarioRechazo:comentario,
     }
     await updateDoc(reporteRef,cambioEstado);
     return true;

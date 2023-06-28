@@ -62,10 +62,18 @@ const ReportesUsuarios = () => {
                   <strong className="descripcion-titulo">Fecha de emisión del reporte: </strong>
                   <span>{list.fechaEmision.toDate().toLocaleString()}</span>
                   <br />
-                  <strong className="descripcion-titulo">Fecha estimada  de termino: </strong>
-                  {list.fechaEstimadaTermino ? <span>{list.fechaEstimadaTermino.toDate().toLocaleString()}</span> : <span>Por determinar</span>}
-                  <br />
-                  <br />
+                  {list.estado === -1 && (
+                  <>
+                  <strong className="descripcion-titulo">Motivo de rechazo </strong>
+                  {<pre className="descripcion-bug parrafo2">{list.comentarioRechazo}</pre>}
+                  </>
+                  )}
+                  {list.estado!== -1 && (
+                    <>
+                    <strong className="descripcion-titulo">Fecha estimada  de termino: </strong>
+                    {list.fechaEstimadaTermino ? <span>{list.fechaEstimadaTermino.toDate().toLocaleString()}<br /></span>  : "Por determinar"}
+                    </>
+                  )}
                   <div>
                     <strong className="descripcion-titulo">Descripción del Bug: </strong>
                     <pre className="descripcion-bug parrafo2">{list.descripcionUsuario}</pre>
