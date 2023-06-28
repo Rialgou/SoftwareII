@@ -84,7 +84,7 @@ const Reporte = () => {
   const formatoFecha = (fecha) => {
     const fechaFormaterada = fecha.toDate();
 
-    return fechaFormaterada.toLocaleString();
+    return fechaFormaterada.toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
   };
 
   const handleAdminButtonClick = () => {
@@ -493,8 +493,8 @@ const Reporte = () => {
                       }`}
                     >
                       {fechaSeleccionada
-                        ? fechaSeleccionada.toString()
-                        : "Escoger fecha de entrega"}
+                        ? fechaSeleccionada.toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
+                        : <span>Escoger fecha de entrega</span>}
                     </p>
                   </Col>
                 </ListGroup.Item>
