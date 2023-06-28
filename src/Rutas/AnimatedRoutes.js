@@ -16,6 +16,8 @@ import Depurador from "../Paginas/Depurador/Depurador";
 import { AdministradorProvider } from "../Paginas/Administrador/Contextos/ContextoAdministrador";
 import { AsignacionProvider } from "../Paginas/Administrador/Contextos/ContextoAsignacion";
 import { OpcionesProvider } from "../Paginas/Administrador/Contextos/ContextoOpciones";
+import { OpcionesProviderDepurador } from "../Paginas/Depurador/Contextos/ContextoOpcionesDepurador";
+import { DepuradorProvider } from "../Paginas/Depurador/Contextos/ContextoDepurador";
 import { HomeContext } from "../ComponentesGlobales/Contextos/HomeContext";
 
 import { useRoutes, Navigate, Outlet } from "react-router-dom";
@@ -27,7 +29,7 @@ function AnimatedRoutes() {
   const { accType } = cuenta;
 
   const PrivateRoute = ({ path, element }) => {
-    if (accType === 1 && path.startsWith("/Usuario")) {
+    if (accType === 1 && path.startsWith("/usuario")) {
       return element;
     } else if (accType === 2 && path.startsWith("/administrador")) {
       return element;
@@ -134,19 +136,31 @@ function AnimatedRoutes() {
       ),
     },
     {
-      path: "/Usuario",
-      element: <Usuario />,
+      path: "/usuario/*",
+      element: <PrivateRoute path="/usuario/*" element={<Usuario />} />,
     },
     {
       path: "/usuario/reporte",
       element: (
-        <PrivateRoute path="/Usuario/reporte" element={<NuevoReporte />} />
+        <PrivateRoute path="/usuario/reporte" element={<NuevoReporte />} />
       ),
     },
     {
-      path: "/depurador",
-      element: <PrivateRoute path="/depurador" element={<Depurador />} />,
+      path: "/depurador/*",
+      element: (
+        <PrivateRoute
+          path="/depurador/*"
+          element={
+            <DepuradorProvider>
+              <OpcionesProviderDepurador>
+                <Depurador />
+              </OpcionesProviderDepurador>
+            </DepuradorProvider>
+          }
+        />
+      ),
     },
+
     {
       path: "*",
       element: <Navigate to="/" />,

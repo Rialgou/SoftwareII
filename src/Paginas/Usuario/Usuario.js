@@ -13,7 +13,7 @@ function Usuario() {
   const navigate = useNavigate();
 
   const handleNewReportClick = () => {
-    navigate("/Usuario/reporte");
+    navigate("/usuario/reporte");
   };
 
   const [usuario, setUsuario] = useState({});
@@ -59,14 +59,14 @@ function Usuario() {
           <Col className="mx-auto acordeon">
             <Col className="mb-5">
               <div className="d-flex">
-              <BarraBusqueda />
-              <FiltroUsuario onFilterChange={handleFilterChange}/>
+                <BarraBusqueda />
+                <FiltroUsuario onFilterChange={handleFilterChange} />
               </div>
             </Col>
           </Col>
 
           <div className="mx-auto acordeon">
-            <ReportesUsuarios filtro={filtro}/>
+            <ReportesUsuarios filtro={filtro} />
           </div>
 
           <div className="contenedor-boton">

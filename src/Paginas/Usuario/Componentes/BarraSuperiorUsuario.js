@@ -1,16 +1,31 @@
-import { Container, Nav, Navbar, NavDropdown, Stack } from "react-bootstrap";
+import {
+  Container,
+  Nav,
+  Navbar,
+  NavDropdown,
+  Stack,
+  Button,
+} from "react-bootstrap";
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { RiAccountPinCircleLine } from "react-icons/ri";
 
+import { HomeContext } from "../../../ComponentesGlobales/Contextos/HomeContext";
+
 import "../../Usuario/Estilos/BarraSuperiorUsuario.css";
 
 const BarraSuperiorUsuario = () => {
+  const { setCuenta } = useContext(HomeContext);
+
+  const CerrarSesion = () => {
+    setCuenta({ id: -1, accType: -1 });
+  };
+
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
         <Container>
-          <Navbar.Brand as={Link} to="/" className="nombre-software">
+          <Navbar.Brand as={Link} to="/usuario" className="nombre-software">
             BugFixer
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -34,8 +49,8 @@ const BarraSuperiorUsuario = () => {
                   <NavDropdown.Item as={NavLink} to="/ajustes">
                     Ajustes
                   </NavDropdown.Item>
-                  <NavDropdown.Item as={NavLink} to="/salir-cuenta">
-                    Salir cuenta
+                  <NavDropdown.Item as={Button} onClick={() => CerrarSesion()}>
+                    Cerrar sesion
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item as={NavLink} to="/acerca-de-nosotros">

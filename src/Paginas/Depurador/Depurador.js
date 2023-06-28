@@ -1,35 +1,21 @@
 import { Container, Row, Col, Badge } from "react-bootstrap";
 import { motion } from "framer-motion";
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 
-import RadioButtonDepurador from "./Componentes/RadioButtonDepurador";
+import BarraOpcionesDepurador from "./Componentes/BarraOpcionesDepurador";
 import BarraSuperiorDepurador from "./Componentes/BarraSuperiorDepurador";
 import AcordeonBugsProceso from "./Componentes/AcordeonBugsProceso";
 import AcordeonBugsNuevos from "./Componentes/AcordeonBugsNuevos";
 import EsperaReasignacion from "./Componentes/EsperaReasignacion";
-import AcordeonBugsCompletados from "./Componentes/AcordeonBugsCompletados"
+import AcordeonBugsCompletados from "./Componentes/AcordeonBugsCompletados";
+import ContextoOpcionesDepurador from "./Contextos/ContextoOpcionesDepurador";
 
 import "./Estilos/Depurador.css";
-import { obtenerDepurador } from "../../Funciones/consultas";
-import { HomeContext } from "../../ComponentesGlobales/Contextos/HomeContext";
 
 function Depurador() {
+  const { showCol } = useContext(ContextoOpcionesDepurador);
+
   const [radioValue, setRadioValue] = useState("1");
-  const [showCol, setShowCol] = useState(true); // Mostrar por defecto cuando se carga la página
-  const [depurador, setDepurador] = useState({});
-  
-  const {cuenta} = useContext(HomeContext);
-
-  const depuradorId = cuenta.id;
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const datosDepurador = await obtenerDepurador(depuradorId);
-      setDepurador(datosDepurador);
-    };
-
-    fetchData();
-  }, [depuradorId]);
 
   return (
     <motion.div
@@ -38,9 +24,7 @@ function Depurador() {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <BarraSuperiorDepurador></BarraSuperiorDepurador>
-
-      <hr></hr>
+      <BarraSuperiorDepurador VistaPrincipal={true}></BarraSuperiorDepurador>
 
       <Container
         fluid
@@ -48,16 +32,16 @@ function Depurador() {
       >
         <Row className="d-flex flex-row justify-content-center align-items-center">
           <Col
-            md={3}
-            className="d-flex justify-content-center align-items-end  mx-5 "
+            md={2}
+            className="d-flex justify-content-center align-items-end  mx-3 "
           >
-            <RadioButtonDepurador
+            <BarraOpcionesDepurador
               radioValue={radioValue}
               setRadioValue={setRadioValue}
-            ></RadioButtonDepurador>
+            ></BarraOpcionesDepurador>
           </Col>
-          {showCol && radioValue === "1" && (
-            <Col md={8} className="d-flex ">
+          {radioValue === "1" && (
+            <Col md={showCol ? 9 : 12} className="d-flex ms-3">
               <Container className="bugs-proceso-container">
                 <h2 className="titulo-bugs-proceso">
                   <strong>Bugs en</strong> <Badge bg="primary">Proceso</Badge>
@@ -66,8 +50,8 @@ function Depurador() {
               </Container>
             </Col>
           )}
-          {showCol && radioValue === "2" && (
-            <Col md={8} className="d-flex">
+          {radioValue === "2" && (
+            <Col md={showCol ? 9 : 12} className="d-flex ms-3">
               <Container className="bugs-nuevos-container">
                 <h2 className="titulo-bugs-nuevos">
                   <strong>Bugs </strong> <Badge bg="primary">Nuevos</Badge>
@@ -76,8 +60,8 @@ function Depurador() {
               </Container>
             </Col>
           )}
-          {showCol && radioValue === "3" && (
-            <Col md={8} className="d-flex">
+          {radioValue === "3" && (
+            <Col md={showCol ? 9 : 12} className="d-flex ms-3">
               <Container className="bugs-nuevos-container">
                 <h2 className="titulo-bugs-nuevos">
                   <strong>Espera </strong>{" "}
@@ -87,16 +71,18 @@ function Depurador() {
               </Container>
             </Col>
           )}
-          {showCol && radioValue === '4' && (
-            <Col md={8} className="d-flex">
-              <Container className='bugs-nuevos-container'>
-                <h2 className="titulo-bugs-nuevos"><strong>Bugs </strong> <Badge bg='primary'>Completados</Badge></h2>
+          {radioValue === "4" && (
+            <Col md={showCol ? 9 : 12} className="d-flex ms-3">
+              <Container className="bugs-nuevos-container">
+                <h2 className="titulo-bugs-nuevos">
+                  <strong>Bugs </strong> <Badge bg="primary">Completados</Badge>
+                </h2>
                 <AcordeonBugsCompletados />
               </Container>
             </Col>
           )}
-          {showCol && radioValue === "5" && (
-            <Col md={8} className="d-flex">
+          {radioValue === "5" && (
+            <Col md={showCol ? 9 : 12} className="d-flex ms-3">
               <Container className="bugs-nuevos-container">
                 <h2 className="titulo-bugs-nuevos">
                   <strong>Espera </strong>{" "}

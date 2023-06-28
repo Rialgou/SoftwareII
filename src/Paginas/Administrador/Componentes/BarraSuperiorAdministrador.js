@@ -30,7 +30,11 @@ const BarraSuperiorAdministrador = ({ VistaPrincipal }) => {
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
         <Container>
-          <Navbar.Brand as={Link} to="/" className="nombre-software">
+          <Navbar.Brand
+            as={Link}
+            to="/administrador"
+            className="nombre-software"
+          >
             BugFixer
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -66,11 +70,7 @@ const BarraSuperiorAdministrador = ({ VistaPrincipal }) => {
                   <NavDropdown.Item as={NavLink} to="/ajustes">
                     Tema
                   </NavDropdown.Item>
-                  <NavDropdown.Item
-                    as={Button}
-                    onClick={() => CerrarSesion()}
-                    to="/salir-cuenta"
-                  >
+                  <NavDropdown.Item as={Button} onClick={() => CerrarSesion()}>
                     Cerrar sesion
                   </NavDropdown.Item>
                   <NavDropdown.Divider />

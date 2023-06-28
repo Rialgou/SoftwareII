@@ -59,7 +59,7 @@ function NuevoReporte() {
     setDatosReporte((prevState) => ({ ...prevState, descripcion }));
   };
 
-  const {cuenta} = useContext(HomeContext);
+  const { cuenta } = useContext(HomeContext);
 
   const [usuario, setUsuario] = useState({});
 
