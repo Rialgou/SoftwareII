@@ -49,7 +49,7 @@ function Rechazar({reporteId, ...props}) {
       <Modal centered show={show} onHide={handleCancel} dialogClassName="modal-basic" contentClassName="modal-reasignacion">
         <Modal.Header closeButton>
           <Modal.Title>
-            ¿Por qué estas solicitando una reasignación?
+            ¿Por qué estás solicitando una reasignación?
             <span role="img" aria-label="Emoticono Cara Pensativa"> 🤔</span>
           </Modal.Title>
         </Modal.Header>

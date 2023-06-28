@@ -9,6 +9,8 @@ function RadioButton({radioValue,setRadioValue}) {
     { name: 'Bugs en proceso', value: '1' },
     { name: 'Bugs nuevos', value: '2' },
     { name: 'Espera reasignación', value: '3' },
+    { name: 'Bugs completados', value: '4' },
+    { name: 'Estadísticas', value: '5' }
   ];
 
   return (

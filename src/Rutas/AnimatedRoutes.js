@@ -11,6 +11,8 @@ import AdministradorVistaPrincipal from "../Paginas/Administrador/Vistas/VistaPr
 import AdministradorAsignarReporte from "../Paginas/Administrador/Vistas/AsignarReporte";
 import AdministradorVisualizarReportesParciales from "../Paginas/Administrador/Vistas/VisualizarReportesParciales";
 import AdministradorVisualizarBugsPorConfirmar from "../Paginas/Administrador/Vistas/VisualizarBugsPorConfirmar";
+import AdministradorReportesFinales from "../Paginas/Administrador/Vistas/ReportesFinales";
+import AdministradorReasignacionDepurador from "../Paginas/Administrador/Vistas/ReasignacionDepurador";
 import NuevoReporte from "../Paginas/Usuario/NuevoReporte";
 import Depurador from "../Paginas/Depurador/Depurador";
 
@@ -78,6 +80,26 @@ function AnimatedRoutes() {
         <AdministradorProvider>
           <OpcionesProvider>
             <AdministradorVisualizarBugsPorConfirmar />
+          </OpcionesProvider>
+        </AdministradorProvider>
+      ),
+    },
+    {
+      path: "/administrador/reasignar/:id",
+      element: (
+        <AdministradorProvider>
+          <OpcionesProvider>
+            <AdministradorReasignacionDepurador />
+          </OpcionesProvider>
+        </AdministradorProvider>
+      ),
+    },
+    {
+      path: "/administrador/reporte-final/:id",
+      element: (
+        <AdministradorProvider>
+          <OpcionesProvider>
+            <AdministradorReportesFinales />
           </OpcionesProvider>
         </AdministradorProvider>
       ),

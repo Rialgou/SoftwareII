@@ -23,9 +23,12 @@ function Lista({ estado, reasignacion }) {
   const rutaPorConfirmar = (id) => {
     return `/administrador/por-confirmar/${id}`;
   };
+  const rutaReasignacion = (id) => {
+    return `/administrador/reasignar/${id}`;
+  };
 
-  const Modificar = () => {
-    return `/administrador`;
+  const rutaReporteFinal = (id) => {
+    return `/administrador/reporte-final/${id}`;
   };
 
   return (
@@ -63,7 +66,7 @@ function Lista({ estado, reasignacion }) {
               <ListGroup key={index} horizontal={"lg"} className="my-2">
                 <ListGroup.Item
                   as={Link}
-                  to={Modificar}
+                  to={rutaReporteFinal(reporte.id)}
                   className="mt-2 mb-2 item ingresar"
                   id="probar"
                   variant="dark"
@@ -141,7 +144,7 @@ function Lista({ estado, reasignacion }) {
               <ListGroup key={index} horizontal={"lg"} className="my-2">
                 <ListGroup.Item
                   as={Link}
-                  to={rutaReporte(reporte.id)}
+                  to={rutaReasignacion(reporte.id)}
                   className="mt-2 mb-2 item ingresar"
                   id="probar"
                   variant="dark"
