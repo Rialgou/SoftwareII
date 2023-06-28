@@ -161,7 +161,7 @@ const ReasignacionDepurador = () => {
                   </Col>
                   <Col xs={12} md={10}>
                     <p className="parrafo">
-                      Fecha plazo de entrega
+                      {reporte.fechaEstimadaTermino.toDate().toLocaleString()}
                     </p>
                   </Col>
                 </ListGroup.Item>
@@ -197,7 +197,7 @@ const ReasignacionDepurador = () => {
                   <Col xs={12} md={10} className="parrafo">
                     <div>
                       <pre className="descripcion-bug">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        {reporte.descripcionAdministrador}
                       </pre>
                     </div>
                   </Col>
