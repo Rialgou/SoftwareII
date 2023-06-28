@@ -1,4 +1,4 @@
-import { getFirestore,updateDoc, doc, getDoc, collection, query, where, getDocs, serverTimestamp, addDoc, orderBy } from 'firebase/firestore';
+import { getFirestore,updateDoc, doc, getDoc, collection, query, where, getDocs, serverTimestamp, addDoc, orderBy, Timestamp } from 'firebase/firestore';
 
 
 export const obtenerReportesAdministrador = async (administradorId, estado, selectedItem) => {
@@ -216,9 +216,6 @@ export const obtenerDatosReporte = async (reporteId) => {
         }
     };
 
-
-
-
 // Función asíncrona para obtener la información del proyecto y su identificador a partir del id de un reporte.
 export const obtenerInfoProyectoDesdeReporte = async (reporteId) => {
     try {
@@ -394,11 +391,6 @@ export const getReportesDepurador = async(depuradorId,estado) => {
     }
   };
 
-
-
-
-
-
   export const actualizarReporte = async (reporteId, depuradorId, descripcionAdministrador, fechaEstimadaTermino, prioridad) => {
     try {
       // Obtener una referencia al documento del reporte en Firestore
@@ -426,8 +418,6 @@ export const getReportesDepurador = async(depuradorId,estado) => {
     }
   };
   
-
-
 
   export const obtenerInformacionUsuario = async (proyectoId) => {
     try {
@@ -465,7 +455,7 @@ export const getReportesDepurador = async(depuradorId,estado) => {
       return null;
     }
   };
-  
+
 export const aceptarBug = async (reporteId) => {
   try{
     const db = getFirestore();
@@ -518,6 +508,48 @@ export const enviarReporteFinal = async(reporteId, comentario) =>{
 
 }
 
+export const enviarReporteParcial = async(reporteId, comentario) =>{
+  try{
+    const db = getFirestore();
+    const reporteRef = doc(db, "reportes", reporteId);
+    const reporteParcial = {
+      fechaReporte: serverTimestamp(),
+      comentario: comentario,
+      reporte: reporteRef
+    };
+    await addDoc(collection(db,"reportesParciales"),reporteParcial);
+    return true;
+  }catch(error){
+    console.log(error);
+    return false;
+  }
+
+}
+
+export const getReportesParciales = async(reporteId) =>{
+  try{
+    console.log("getReportesParciales");
+    const db = getFirestore();
+    console.log("muero aqui?1");
+    const reporteRef = doc(db, 'reportes', reporteId);
+    
+    const reportesParcialesQuery = query(collection(db,"reportesParciales"), where("reporte", '==', reporteRef), orderBy("fechaReporte")); 
+
+    const reportesParcialesQuerySnapshot = await getDocs(reportesParcialesQuery);
+    const reportesParciales = [];
+    reportesParcialesQuerySnapshot.forEach((doc) => {
+        reportesParciales.push({...doc.data(), id:doc.id});
+    });
+    console.log(reportesParciales);
+    return(reportesParciales.reverse());
+
+    }catch(error){
+      console.log(error);
+      return {};
+    }
+}
+
+
 export const getDepurador = async(depuradorRef) => {
   try {
     console.log("getDepurador");
@@ -535,5 +567,121 @@ export const getDepurador = async(depuradorRef) => {
   } catch (error) {
     console.log("Error al obtener el documento:", error);
     return {};
+  }
+}
+
+export const rechazarReporteUsuario = async(reporteId,comentario) =>{
+  try{
+    console.log("rechazarReporteUsuario");
+    const db = getFirestore();
+    const reporteRef = doc(db, "reportes", reporteId);
+
+    const cambioEstado = {
+      estado:-1,
+      comentarioRechazo:comentario,
+    }
+    await updateDoc(reporteRef,cambioEstado);
+    return true;
+
+  }catch(error){
+    console.log(error);
+    return false;
+  }
+}
+
+export const aceptarBugFinal = async(reporteId) =>{
+  try{
+    console.log("aceptarBugFinal");
+    const db = getFirestore();
+    const reporteRef = doc(db, "reportes", reporteId);
+
+    const cambioEstado = {
+      estado: 5,
+    }
+    await updateDoc(reporteRef,cambioEstado);
+    return true;
+
+  }catch(error){
+    console.log(error);
+    return false;
+  }
+}
+
+export const rechazarReporteFinal = async(reporteId) =>{
+  try{
+    console.log("aceptarBugFinal");
+    const db = getFirestore();
+    const reporteRef = doc(db, "reportes", reporteId);
+
+    const cambioEstado = {
+      estado: 3,
+    }
+    await updateDoc(reporteRef,cambioEstado);
+    return true;
+
+  }catch(error){
+    console.log(error);
+    return false;
+  }
+}
+
+export const rechazarReasignacion = async(reporteId) =>{
+  try{
+    console.log("aceptarBugFinal");
+    const db = getFirestore();
+    const reporteRef = doc(db, "reportes", reporteId);
+
+    const cambioEstado = {
+      estado: 3,
+      reasignacion:false,
+    }
+    await updateDoc(reporteRef,cambioEstado);
+    return true;
+
+  }catch(error){
+    console.log(error);
+    return false;
+  }
+}
+
+export const reasignarDepurador = async(depuradorSeleccionado,reporte) =>{
+  try{
+    console.log("reasignarDepurador");
+    const db = getFirestore();
+    const reporteRef = doc(db,"reportes",reporte);
+    const depuradorRef = doc(db,"depuradores",depuradorSeleccionado);
+    const nuevoDepurador = {
+      depurador: depuradorRef,
+      reasignacion: false,
+    }
+
+    await updateDoc(reporteRef,nuevoDepurador);
+    return true;
+  }catch(error){
+    console.log(error);
+    return false;
+  }
+}
+
+export const reasignarDepuradorOtroMomento = async(reporteId) =>{
+  try{
+    console.log("reasignarDepuradorOtroMomento");
+    const db = getFirestore();
+    const reporteRef = doc(db, "reportes", reporteId);
+
+    const cambioEstado = {
+      estado: 1,
+      depurador: null,
+      fechaEstimadaTermino: null,
+      prioridad: null,
+      descripcionAdministrador: null,
+      mensaje: null,
+      reasignacion: false,
+    }
+    await updateDoc(reporteRef,cambioEstado);
+    return true;
+  }catch(error){
+    console.log(error);
+    return false;
   }
 }

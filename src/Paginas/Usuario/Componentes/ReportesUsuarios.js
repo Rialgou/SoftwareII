@@ -5,38 +5,53 @@ import Button from 'react-bootstrap/Button';
 import { getReportesUsuario } from '../../../Funciones/consultas';
 import "../Estilos/ReportesUsuarios.css";
 
-const ReportesUsuarios = () => {
+const ReportesUsuarios = ({filtro}) => {
   const usuarioId = "umlvgp6OkqUwNtDeh1aA";
   const [listaReportesUsuario, setListaReportesUsuario] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [reportesFiltrados, setReportesFiltrados] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const reportesUsuario = await getReportesUsuario(usuarioId);
       setListaReportesUsuario(reportesUsuario);
-      setTotalPages(Math.ceil(reportesUsuario.length / 5));
+      setTotalPages(Math.ceil(reportesUsuario.length / 7));
     };
 
     fetchData();
   }, []);
 
+  useEffect(() => {
+    filtrarReportes();
+  }, [filtro, listaReportesUsuario]);
   const handlePreviousPage = () => {
     setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  const filtrarReportes = () => {
+    if (filtro === 0) {
+      setReportesFiltrados(listaReportesUsuario);
+    } else {
+      const reportesFiltrados = listaReportesUsuario.filter(
+        (reporte) => reporte.estado === filtro
+      );
+      setReportesFiltrados(reportesFiltrados);
+    }
   };
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
 
-  const startIndex = (currentPage - 1) * 5;
-  const endIndex = startIndex + 5;
+  const startIndex = (currentPage - 1) * 7;
+  const endIndex = startIndex + 7;
   const reportesPaginados = listaReportesUsuario.slice(startIndex, endIndex);
 
   return (
     <>
       <Accordion alwaysOpen>
-        {reportesPaginados.map((list, index) => (
+        {reportesFiltrados.slice(startIndex, endIndex).map((list, index) => (
           <Accordion.Item key={index} eventKey={index}>
             <Card>
               <Accordion.Header>
@@ -62,10 +77,18 @@ const ReportesUsuarios = () => {
                   <strong className="descripcion-titulo">Fecha de emisión del reporte: </strong>
                   <span>{list.fechaEmision.toDate().toLocaleString()}</span>
                   <br />
-                  <strong className="descripcion-titulo">Fecha estimada  de termino: </strong>
-                  {list.fechaEstimadaTermino ? <span>{list.fechaEstimadaTermino.toDate().toLocaleString()}</span> : <span>Por determinar</span>}
-                  <br />
-                  <br />
+                  {list.estado === -1 && (
+                  <>
+                  <strong className="descripcion-titulo">Motivo de rechazo </strong>
+                  {<pre className="descripcion-bug parrafo2">{list.comentarioRechazo}</pre>}
+                  </>
+                  )}
+                  {list.estado!== -1 && (
+                    <>
+                    <strong className="descripcion-titulo">Fecha estimada  de termino: </strong>
+                    {list.fechaEstimadaTermino ? <span>{list.fechaEstimadaTermino.toDate().toLocaleString()}<br /></span>  : "Por determinar"}
+                    </>
+                  )}
                   <div>
                     <strong className="descripcion-titulo">Descripción del Bug: </strong>
                     <pre className="descripcion-bug parrafo2">{list.descripcionUsuario}</pre>

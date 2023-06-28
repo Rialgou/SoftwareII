@@ -1,6 +1,7 @@
 import BarraSuperior from "../Componentes/BarraSuperiorAdministrador";
 import ContextoAdministrador from "../Contextos/ContextoAdministrador";
 import Modal from 'react-bootstrap/Modal';
+import DynamicCard from "../Componentes/DynamicCard";
 import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
 
@@ -13,10 +14,10 @@ import {
   Button,
   ListGroup,
 } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useContext } from "react";
 import { motion } from "framer-motion";
-
+import { reasignarDepurador, reasignarDepuradorOtroMomento, rechazarReasignacion } from "../../../Funciones/consultas";
 
 import "../Estilos/ReasignacionDepurador.css";
 import "../Estilos/VisualizarReportesParciales.css"
@@ -48,9 +49,23 @@ const ReasignacionDepurador = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
+  const [depuradorSeleccionado, setDepuradorSeleccionado] = useState(null);
+  const [showDepurador, setShowDepurador] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
+  
+  const handleCloseDepurador = () => setShowDepurador(false);
+
+  const handleShowDepurador = () => setShowDepurador(true);
+
+
+ 
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
+  };
+  const noCambios = () => {
+    setDepuradorSeleccionado(null);
+    handleCloseDepurador();
   };
 
   const lastIndex = currentPage * itemsPerPage;
@@ -73,6 +88,7 @@ const ReasignacionDepurador = () => {
   const [show, setShow] = useState(false);
   const [textareaValue, setTextareaValue] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [showModalReasignar, setShowModalReasignar] = useState(false);
   const [actualizarComponente, setActualizarComponente] = useState(false);
   const handleClose = () => {
     setShow(false);
@@ -84,12 +100,57 @@ const ReasignacionDepurador = () => {
     setTextareaValue('');
   }
   const handleShow = () => setShow(true);
+  
   const handleTextareaChange = (event) => {
     setTextareaValue(event.target.value);
   };
+
+  const handleSendClick = async() =>{
+    if(await rechazarReasignacion(reporte.id)){
+      handleClose();
+    }
+    else{
+      console.log("hubo un error");
+      alert("fallou");
+    }
+  }
+
+  const handleReasignar = async () => {
+    if(depuradorSeleccionado !== null){
+      if(await reasignarDepurador(depuradorSeleccionado.id,reporte.id)){
+        handleCloseListaDepurador();
+      }
+      else{
+        console.log("hubo un error");
+        alert("fallo");
+      }
+    }
+    else{
+      alert("selecciona un depurador");
+    }
+  }
+  const handleCloseListaDepurador = () =>{
+    setShowDepurador(false);
+    setShowModalReasignar(true);
+    
+  }
+  const handleModalCloseReasignar = () =>{
+    setShowModalReasignar(false);
+    navigate("/administrador");
+  }
+
   const handleModalClose = () =>{
     setShowModal(false);
     setActualizarComponente(true);
+    navigate("/administrador");
+  }
+  const navigate = useNavigate();
+  const handleNav = async() => {
+    if(await reasignarDepuradorOtroMomento(reporte.id))
+      navigate("/administrador");
+    else{
+      console.log("error");
+    }
   }
 
   return (
@@ -141,7 +202,7 @@ const ReasignacionDepurador = () => {
                   </Col>
                   <Col xs={12} md={10}>
                     <p className="parrafo"> 
-                    {depurador.nombre ? <span>{depurador.nombre}</span> : <span>no encontrado</span>} 
+                    {depurador.nombre ? <span>{depurador.nombre}</span> : <span>Cargando...</span>} 
                     </p>
                   </Col>
                 </ListGroup.Item>
@@ -158,7 +219,7 @@ const ReasignacionDepurador = () => {
                   </Col>
                   <Col xs={12} md={10}>
                     <p className="parrafo">
-                    {reporte.fechaEstimadaTermino ? <span>{reporte.fechaEstimadaTermino.toDate().toLocaleString()}</span> : <span>no encontrado</span>} 
+                    {reporte.fechaEstimadaTermino ? <span>{reporte.fechaEstimadaTermino.toDate().toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</span> : <span>Cargando...</span>} 
                     </p>
                   </Col>
                 </ListGroup.Item>
@@ -255,7 +316,7 @@ const ReasignacionDepurador = () => {
                   <Col xs={12} md={10} className="parrafodepurador">
                     <div>
                       <pre className="descripcion-bug">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        {reporte.mensaje}
                       </pre>
                     </div>
                   </Col>
@@ -289,6 +350,7 @@ const ReasignacionDepurador = () => {
           <Button
             variant="success"
             disabled={textareaValue.trim() === ''}
+            onClick={()=> handleSendClick()}
           >
             Enviar
           </Button>
@@ -312,9 +374,53 @@ const ReasignacionDepurador = () => {
               <Button
                 variant="success"
                 className=" botoness mt-5 ms-5 "
+                onClick={handleShowDepurador}
               >
                 Aceptar reasignación
               </Button>
+              <Modal
+                show={showDepurador}
+                onHide={handleCloseDepurador}
+                animation={true}
+                size="lg"
+                centered
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title>Seleccionar depurador</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <Container className="cards-container">
+                    <DynamicCard
+                      listadeDepuradores={depuradores.filter((dep) => dep.nombre !== depurador.nombre )}
+                      depuradorSeleccionado={depuradorSeleccionado}
+                      setDepuradorSeleccionado={setDepuradorSeleccionado}
+                    />
+                  </Container>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={handleNav}>
+                    Asignar en otro momento
+                  </Button>
+                  <Button variant="primary" onClick={handleReasignar}>
+                    Reasignar
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+              <Modal centered className="modal-basic" show={showModalReasignar} onHide={() => setShowModalReasignar(false)}>
+                    <Modal.Header closeButton>
+                      <Modal.Title>
+                        Depurador reasignado con éxito
+                      </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                    El depurador se ha reasignado con éxito
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button variant="secondary" onClick={() => handleModalCloseReasignar()}>
+                        Cerrar
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
             </div>
           </Col>
         </Row>

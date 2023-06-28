@@ -16,7 +16,7 @@ import {
   ListGroup,
   Modal,
 } from "react-bootstrap";
-import { actualizarReporte } from "../../../Funciones/consultas";
+import { actualizarReporte, rechazarReporteUsuario } from "../../../Funciones/consultas";
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useRef, useContext } from "react";
 import { motion } from "framer-motion";
@@ -44,12 +44,19 @@ const Reporte = () => {
   const [prioridadSeleccionada, setPrioridadSeleccionada] = useState(null);
   const [descripcion, setDescripcion] = useState(null);
 
+
+  const [showAlertParcial, setShowAlertParcial] = useState(false);
+  const [show, setShow] = useState(false);
+  const [textareaValue, setTextareaValue] = useState('');
+  const [showModal, setShowModal] = useState(false);
+
   const [showDepurador, setShowDepurador] = useState(false);
   const [showCalendario, setShowCalendario] = useState(false);
   const [showText, setShowText] = useState(false);
 
   const [modalShow, setModalShow] = useState(false);
   const [modalShow2, setModalShow2] = useState(false);
+  const [modalShow3, setModalShow3] = useState(false);
 
   const handleCloseDepurador = () => setShowDepurador(false);
   const handleShowDepurador = () => setShowDepurador(true);
@@ -57,6 +64,20 @@ const Reporte = () => {
   const handleShowCalendario = () => setShowCalendario(true);
   const handleCloseText = () => setShowText(false);
   const handleShowText = () => setShowText(true);
+
+  const handleCloseAlertParcial = () => {
+    navigate("/administrador");
+  };
+
+  const handleModalClose = () =>{
+    setShowModal(false);
+    navigate("/administrador");
+  }
+
+  const handleClose = () => {
+    setShow(false);
+    setShowModal(true);
+  };
 
   useEffect(() => {
     timerRef.current = setTimeout(() => {
@@ -84,11 +105,31 @@ const Reporte = () => {
   const formatoFecha = (fecha) => {
     const fechaFormaterada = fecha.toDate();
 
-    return fechaFormaterada.toLocaleString();
+    return fechaFormaterada.toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
   };
-
+  
   const handleAdminButtonClick = () => {
     navigate("/administrador");
+  };
+
+  const handleAdminButtonClickReject = async(comentario) => {
+    if(await rechazarReporteUsuario(reporte.id, comentario)){
+      handleClose();
+    }
+    else{
+      console.log("hubo un error");
+      alert("fallou");
+    }
+  };
+
+  const handleShow = () => setShow(true);
+
+  const handleCancel = () =>{
+    setShow(false);
+    setTextareaValue('');
+  }
+  const handleTextareaChange = (event) => {
+    setTextareaValue(event.target.value);
   };
 
   const noCambios = () => {
@@ -493,8 +534,8 @@ const Reporte = () => {
                       }`}
                     >
                       {fechaSeleccionada
-                        ? fechaSeleccionada.toString()
-                        : "Escoger fecha de entrega"}
+                        ? fechaSeleccionada.toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
+                        : <span>Escoger fecha de entrega</span>}
                     </p>
                   </Col>
                 </ListGroup.Item>
@@ -550,10 +591,51 @@ const Reporte = () => {
               <Button
                 variant="danger"
                 className=" botoness  mt-5 ms-5 "
-                onClick={handleAdminButtonClick}
+                onClick={handleShow}
               >
                 Rechazar reporte
               </Button>
+              <Modal centered show={show} onHide={handleCancel} dialogClassName="modal-basic" contentClassName="modal-reasignacion">
+                <Modal.Header closeButton>
+                  <Modal.Title>
+                    ¿Por qué está rechazando el reporte?
+                    <span role="img" aria-label="Emoticono Cara Pensativa"> 🤔</span>
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <textarea
+                    className="textarea-custom textarea-basic"
+                    placeholder="Ingrese las razones por las cuales está rechazando el reporte"
+                    value={textareaValue}
+                    onChange={handleTextareaChange}
+                  />
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button
+                    variant="success"
+                    disabled={textareaValue.trim() === ''}
+                    onClick={()=> handleAdminButtonClickReject(textareaValue)}
+                  >
+                    Enviar
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+              <Modal centered className="modal-basic" show={showModal} onHide={() => setShowModal(false)}>
+                <Modal.Header closeButton>
+                  <Modal.Title>
+                  Motivo de rechazo de reporte enviado
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                El motivo de rechazo de reporte se ha enviado con éxito.
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={() => handleModalClose()}>
+                    Cerrar
+                  </Button>
+                </Modal.Footer>
+            </Modal>
+
               <Button
                 variant="success"
                 className=" botoness mt-5 ms-5 "
