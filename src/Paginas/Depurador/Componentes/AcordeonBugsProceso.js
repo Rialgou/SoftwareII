@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import { ButtonToolbar, Modal } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import "../Estilos/AcordeonBugsProceso.css";
-import { enviarReporteFinal, getReportesDepurador } from '../../../Funciones/consultas';
+import { enviarReporteFinal, enviarReporteParcial, getReportesDepurador } from '../../../Funciones/consultas';
 
 function AcordeonBugsProceso() {
 
@@ -33,11 +33,18 @@ function AcordeonBugsProceso() {
     setdescripcionReporte(event.target.value);
   };
 
-  const handleClickButtonParcial = () => {
+  const handleClickButtonParcial = async(reporteId,comentario) => {
     if (descripcionReporte.trim().length === 0) 
       setShowAlertSinContenido(true);
-    else 
-      setShowAlertParcial(true);
+    else{
+      if(await enviarReporteParcial(reporteId,comentario)){
+        setShowAlertParcial(true);
+        setActualizarComponente(true);
+      }
+      else{
+        alert("error");
+      }
+    }
   };
 
   const handleClickButtonFinal = async (reporteId,comentario) => {
@@ -104,7 +111,7 @@ function AcordeonBugsProceso() {
                   onChange={handleDescripcionReporte}
                   placeholder="Ingrese los detalles del avance a enviar" />
                 <ButtonToolbar className="botones-container">
-                  <Button variant="secondary" className="boton-parcial" onClick={handleClickButtonParcial}>
+                  <Button variant="secondary" className="boton-parcial" onClick={()=>handleClickButtonParcial(list.id,descripcionReporte)}>
                     Enviar reporte parcial
                   </Button>
                   <Button variant="primary" className="boton-final" onClick={()=>handleClickButtonFinal(list.id,descripcionReporte)}>

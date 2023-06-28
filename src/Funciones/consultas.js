@@ -1,4 +1,4 @@
-import { getFirestore,updateDoc, doc, getDoc, collection, query, where, getDocs, serverTimestamp, addDoc, orderBy } from 'firebase/firestore';
+import { getFirestore,updateDoc, doc, getDoc, collection, query, where, getDocs, serverTimestamp, addDoc, orderBy, Timestamp } from 'firebase/firestore';
 
 
 export const obtenerReportesAdministrador = async (administradorId, estado, selectedItem) => {
@@ -510,6 +510,24 @@ export const enviarReporteFinal = async(reporteId, comentario) =>{
       estado:4
     };
     await updateDoc(reporteRef,reporteFinal);
+    return true;
+  }catch(error){
+    console.log(error);
+    return false;
+  }
+
+}
+
+export const enviarReporteParcial = async(reporteId, comentario) =>{
+  try{
+    const db = getFirestore();
+    const reporteRef = doc(db, "reportes", reporteId);
+    const reporteParcial = {
+      fechaReporte: serverTimestamp(),
+      comentario: comentario,
+      reporte: reporteRef
+    };
+    await addDoc(collection(db,"reportesParciales"),reporteParcial);
     return true;
   }catch(error){
     console.log(error);
