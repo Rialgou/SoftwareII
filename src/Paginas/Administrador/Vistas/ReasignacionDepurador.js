@@ -63,18 +63,13 @@ const ReasignacionDepurador = () => {
     pageNumbers.push(i);
   }
 
-  let { reporte, proyecto, depuradores, usuario, SetIDReporte, nombreDepurador } = useContext(
+  let { reporte, proyecto, depuradores, usuario, SetIDReporte, depurador } = useContext(
     ContextoAdministrador
   );
 
   const { id } = useParams();
   SetIDReporte(id);
 
-  const formatoFecha = (fecha) => {
-    const fechaFormaterada = fecha.toDate();
-
-    return fechaFormaterada.toLocaleString();
-  };
   const [show, setShow] = useState(false);
   const [textareaValue, setTextareaValue] = useState('');
   const [showModal, setShowModal] = useState(false);
@@ -145,7 +140,9 @@ const ReasignacionDepurador = () => {
                     </p>
                   </Col>
                   <Col xs={12} md={10}>
-                    <p className="parrafo"> {nombreDepurador} </p>
+                    <p className="parrafo"> 
+                    {depurador.nombre ? <span>{depurador.nombre}</span> : <span>no encontrado</span>} 
+                    </p>
                   </Col>
                 </ListGroup.Item>
 
@@ -161,7 +158,7 @@ const ReasignacionDepurador = () => {
                   </Col>
                   <Col xs={12} md={10}>
                     <p className="parrafo">
-                      {reporte.fechaEstimadaTermino.toDate().toLocaleString()}
+                    {reporte.fechaEstimadaTermino ? <span>{reporte.fechaEstimadaTermino.toDate().toLocaleString()}</span> : <span>no encontrado</span>} 
                     </p>
                   </Col>
                 </ListGroup.Item>
@@ -178,7 +175,9 @@ const ReasignacionDepurador = () => {
                   </Col>
                   <Col xs={12} md={10}>
                     <p className="parrafo">
-                      {reporte.prioridad}
+                      {reporte.prioridad === 1 && <span>Baja</span>}
+                      {reporte.prioridad === 2 && <span>Media</span>}
+                      {reporte.prioridad === 3 && <span>Alta</span>}
                     </p>
                   </Col>
                 </ListGroup.Item>
@@ -238,7 +237,7 @@ const ReasignacionDepurador = () => {
                     </p>
                   </Col>
                   <Col xs={12} md={10}>
-                    <p className="parrafo"> Carga de trabajo </p>
+                    <p className="parrafo"> {depurador.nivelCarga} </p>
                   </Col>
                 </ListGroup.Item>
 

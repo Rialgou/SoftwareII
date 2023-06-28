@@ -518,18 +518,22 @@ export const enviarReporteFinal = async(reporteId, comentario) =>{
 
 }
 
-export const getNombreDepurador = async(depuradorRef) => {
+export const getDepurador = async(depuradorRef) => {
   try {
+    console.log("getDepurador");
     const documentSnapshot = await getDoc(depuradorRef);
 
     if (documentSnapshot.exists()) {
-      const nombreDepurador = documentSnapshot.get("nombre");
-      return nombreDepurador;
+      const data = documentSnapshot.data();
+      return data;
+
     } else {
+
       console.log("El documento no existe");
-      return '';
+      return {};
     }
   } catch (error) {
     console.log("Error al obtener el documento:", error);
+    return {};
   }
 }
