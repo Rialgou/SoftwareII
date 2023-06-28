@@ -71,12 +71,11 @@ const Reporte = () => {
 
   const handleModalClose = () =>{
     setShowModal(false);
-    navigate("/administrador")
+    navigate("/administrador");
   }
 
   const handleClose = () => {
     setShow(false);
-    setTextareaValue(''); 
     setShowModal(true);
   };
 
@@ -619,22 +618,6 @@ const Reporte = () => {
                   >
                     Enviar
                   </Button>
-                  <Modal centered show={modalShow3} onHide={handleCloseAlertParcial} className="modal-basic">
-                    <Modal.Header closeButton>
-                    <Modal.Title>
-                      Motivo de rechazo de reporte enviado
-                      <span role="img" aria-label="Emoticono OK"> 👌</span>
-                    </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                      El motivo de rechazo de reporte se ha enviado con éxito
-                    </Modal.Body>
-                    <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseAlertParcial}>
-                      Cerrar
-                    </Button>
-                  </Modal.Footer>
-                </Modal>
                 </Modal.Footer>
               </Modal>
               <Modal centered className="modal-basic" show={showModal} onHide={() => setShowModal(false)}>
