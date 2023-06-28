@@ -21,7 +21,7 @@ import { motion } from "framer-motion";
 import "../Estilos/AsignarReporte.css";
 import "../Estilos/VisualizarReportesParciales.css"
 import "react-datepicker/dist/react-datepicker.css";
-import { aceptarBugFinal } from "../../../Funciones/consultas";
+import { aceptarBugFinal, rechazarReporteFinal } from "../../../Funciones/consultas";
 
 registerLocale("es", es);
 
@@ -70,6 +70,15 @@ const ReasignacionDepurador = () => {
 
 
 
+  const handleAdminButtonClickReject = async() =>{
+    if(await rechazarReporteFinal(reporte.id)){
+      handleClose();
+    }
+    else{
+      console.log("hubo un error");
+      alert("fallou");
+    }
+  }
   const handleClose = () => {
     setShow(false);
     setTextareaValue(''); 
@@ -90,6 +99,7 @@ const ReasignacionDepurador = () => {
   const handleModalClose = () =>{
     setShowModal(false);
     setActualizarComponente(true);
+    navigate("/administrador");
   };
   const handleModalAceptarClose = ()=>{
     setShowModalAceptar(false);
@@ -440,7 +450,7 @@ const ReasignacionDepurador = () => {
           <Button
             variant="success"
             disabled={textareaValue.trim() === ''}
-            
+            onClick={()=> handleAdminButtonClickReject()}
           >
             Enviar
           </Button>
@@ -449,11 +459,11 @@ const ReasignacionDepurador = () => {
       <Modal centered className="modal-basic" show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>
-            Solicitud enviada
+            Completado
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        ¡Tu solicitud ha sido enviada con éxito!
+        Se ha rechazado la solicitud con éxito
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => handleModalClose()}>

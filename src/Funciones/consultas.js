@@ -606,3 +606,21 @@ export const aceptarBugFinal = async(reporteId) =>{
     return false;
   }
 }
+
+export const rechazarReporteFinal = async(reporteId) =>{
+  try{
+    console.log("aceptarBugFinal");
+    const db = getFirestore();
+    const reporteRef = doc(db, "reportes", reporteId);
+
+    const cambioEstado = {
+      estado: 3,
+    }
+    await updateDoc(reporteRef,cambioEstado);
+    return true;
+
+  }catch(error){
+    console.log(error);
+    return false;
+  }
+}
