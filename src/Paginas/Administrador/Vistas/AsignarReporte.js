@@ -578,14 +578,14 @@ const Reporte = () => {
               <Modal centered show={show} onHide={handleCancel} dialogClassName="modal-basic" contentClassName="modal-reasignacion">
                 <Modal.Header closeButton>
                   <Modal.Title>
-                    ¿Por qué está rechazando la solicitud de reasignación?
+                    ¿Por qué está rechazando el reporte?
                     <span role="img" aria-label="Emoticono Cara Pensativa"> 🤔</span>
                   </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                   <textarea
                     className="textarea-custom textarea-basic"
-                    placeholder="Ingrese las razones por las cuales está rechazando la solicitud de reasignación"
+                    placeholder="Ingrese las razones por las cuales está rechazando el reporte"
                     value={textareaValue}
                     onChange={handleTextareaChange}
                   />
