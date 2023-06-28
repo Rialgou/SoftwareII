@@ -9,8 +9,6 @@ import {
   Form,
 } from "react-bootstrap";
 import { BsFillBugFill, BsArrowDown } from "react-icons/bs";
-import { AiOutlineUserAdd } from "react-icons/ai";
-import { RiLockPasswordLine } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Usuario from "../Imagenes/Usuario.png";
