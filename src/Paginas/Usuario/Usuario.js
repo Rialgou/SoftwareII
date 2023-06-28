@@ -29,6 +29,12 @@ function Usuario() {
     fetchData();
   }, [usuarioId]);
 
+  const [filtro, setFiltro] = useState(1);
+
+  const handleFilterChange = (filtroSeleccionado) => {
+    setFiltro(filtroSeleccionado);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -53,13 +59,13 @@ function Usuario() {
             <Col className="mb-5">
               <div className="d-flex">
               <BarraBusqueda />
-              <FiltroUsuario/>
+              <FiltroUsuario onFilterChange={handleFilterChange}/>
               </div>
             </Col>
           </Col>
 
           <div className="mx-auto acordeon">
-            <ReportesUsuarios />
+            <ReportesUsuarios filtro={filtro}/>
           </div>
 
           <div className="contenedor-boton">

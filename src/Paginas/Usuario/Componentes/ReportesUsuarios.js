@@ -5,11 +5,12 @@ import Button from 'react-bootstrap/Button';
 import { getReportesUsuario } from '../../../Funciones/consultas';
 import "../Estilos/ReportesUsuarios.css";
 
-const ReportesUsuarios = () => {
+const ReportesUsuarios = ({filtro}) => {
   const usuarioId = "umlvgp6OkqUwNtDeh1aA";
   const [listaReportesUsuario, setListaReportesUsuario] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [reportesFiltrados, setReportesFiltrados] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,8 +22,22 @@ const ReportesUsuarios = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    filtrarReportes();
+  }, [filtro, listaReportesUsuario]);
   const handlePreviousPage = () => {
     setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  const filtrarReportes = () => {
+    if (filtro === 0) {
+      setReportesFiltrados(listaReportesUsuario);
+    } else {
+      const reportesFiltrados = listaReportesUsuario.filter(
+        (reporte) => reporte.estado === filtro
+      );
+      setReportesFiltrados(reportesFiltrados);
+    }
   };
 
   const handleNextPage = () => {
@@ -36,7 +51,7 @@ const ReportesUsuarios = () => {
   return (
     <>
       <Accordion alwaysOpen>
-        {reportesPaginados.map((list, index) => (
+        {reportesFiltrados.slice(startIndex, endIndex).map((list, index) => (
           <Accordion.Item key={index} eventKey={index}>
             <Card>
               <Accordion.Header>
