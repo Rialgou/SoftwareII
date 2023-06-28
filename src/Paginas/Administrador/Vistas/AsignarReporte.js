@@ -45,9 +45,10 @@ const Reporte = () => {
   const [descripcion, setDescripcion] = useState(null);
 
 
-
+  const [showAlertParcial, setShowAlertParcial] = useState(false);
   const [show, setShow] = useState(false);
   const [textareaValue, setTextareaValue] = useState('');
+  const [showModal, setShowModal] = useState(false);
 
   const [showDepurador, setShowDepurador] = useState(false);
   const [showCalendario, setShowCalendario] = useState(false);
@@ -55,6 +56,7 @@ const Reporte = () => {
 
   const [modalShow, setModalShow] = useState(false);
   const [modalShow2, setModalShow2] = useState(false);
+  const [modalShow3, setModalShow3] = useState(false);
 
   const handleCloseDepurador = () => setShowDepurador(false);
   const handleShowDepurador = () => setShowDepurador(true);
@@ -62,6 +64,21 @@ const Reporte = () => {
   const handleShowCalendario = () => setShowCalendario(true);
   const handleCloseText = () => setShowText(false);
   const handleShowText = () => setShowText(true);
+
+  const handleCloseAlertParcial = () => {
+    navigate("/administrador");
+  };
+
+  const handleModalClose = () =>{
+    setShowModal(false);
+    navigate("/administrador")
+  }
+
+  const handleClose = () => {
+    setShow(false);
+    setTextareaValue(''); 
+    setShowModal(true);
+  };
 
   useEffect(() => {
     timerRef.current = setTimeout(() => {
@@ -94,7 +111,7 @@ const Reporte = () => {
 
   const handleAdminButtonClick = async(comentario) => {
     if(await rechazarReporteUsuario(reporte.id, comentario)){
-      navigate("/administrador");
+      handleClose();
     }
     else{
       console.log("hubo un error");
@@ -598,8 +615,39 @@ const Reporte = () => {
                   >
                     Enviar
                   </Button>
+                  <Modal centered show={modalShow3} onHide={handleCloseAlertParcial} className="modal-basic">
+                    <Modal.Header closeButton>
+                    <Modal.Title>
+                      Motivo de rechazo de reporte enviado
+                      <span role="img" aria-label="Emoticono OK"> 👌</span>
+                    </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      El motivo de rechazo de reporte se ha enviado con éxito
+                    </Modal.Body>
+                    <Modal.Footer>
+                    <Button variant="secondary" onClick={handleCloseAlertParcial}>
+                      Cerrar
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
                 </Modal.Footer>
               </Modal>
+              <Modal centered className="modal-basic" show={showModal} onHide={() => setShowModal(false)}>
+                <Modal.Header closeButton>
+                  <Modal.Title>
+                  Motivo de rechazo de reporte enviado
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                El motivo de rechazo de reporte se ha enviado con éxito.
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={() => handleModalClose()}>
+                    Cerrar
+                  </Button>
+                </Modal.Footer>
+            </Modal>
 
               <Button
                 variant="success"
