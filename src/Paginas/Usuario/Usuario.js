@@ -29,7 +29,7 @@ function Usuario() {
     fetchData();
   }, [usuarioId]);
 
-  const [filtro, setFiltro] = useState(1);
+  const [filtro, setFiltro] = useState(0);
 
   const handleFilterChange = (filtroSeleccionado) => {
     setFiltro(filtroSeleccionado);
