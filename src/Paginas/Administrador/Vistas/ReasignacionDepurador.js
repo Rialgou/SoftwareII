@@ -63,7 +63,7 @@ const ReasignacionDepurador = () => {
     pageNumbers.push(i);
   }
 
-  let { reporte, proyecto, depuradores, usuario, SetIDReporte } = useContext(
+  let { reporte, proyecto, depuradores, usuario, SetIDReporte, nombreDepurador } = useContext(
     ContextoAdministrador
   );
 
@@ -145,7 +145,7 @@ const ReasignacionDepurador = () => {
                     </p>
                   </Col>
                   <Col xs={12} md={10}>
-                    <p className="parrafo"> Nombre depurador </p>
+                    <p className="parrafo"> {nombreDepurador} </p>
                   </Col>
                 </ListGroup.Item>
 
@@ -178,7 +178,7 @@ const ReasignacionDepurador = () => {
                   </Col>
                   <Col xs={12} md={10}>
                     <p className="parrafo">
-                      Prioridad
+                      {reporte.prioridad}
                     </p>
                   </Col>
                 </ListGroup.Item>

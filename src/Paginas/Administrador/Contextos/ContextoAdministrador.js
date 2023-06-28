@@ -4,7 +4,7 @@ import { obtenerDatosReporte } from "../../../Funciones/consultas";
 import { obtenerInfoProyectoDesdeReporte } from "../../../Funciones/consultas";
 import { obtenerInformacionUsuario } from "../../../Funciones/consultas";
 import { obtenerDepuradoresDesdeProyecto } from "../../../Funciones/consultas";
-
+import { getNombreDepurador } from "../../../Funciones/consultas";
 /*Agregar funcion para obtener el id despues de la autentificacion*/
 
 const ContextoAdministrador = createContext();
@@ -18,6 +18,7 @@ const AdministradorProvider = ({ children }) => {
   const [proyecto, setProyecto] = useState(0);
   const [depuradores, setDepuradores] = useState(0);
   const [usuario, setUsuario] = useState(0);
+  const [nombreDepurador, setNombreDepurador] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,10 +35,13 @@ const AdministradorProvider = ({ children }) => {
     try {
       const reporte = await obtenerDatosReporte(IDReporte);
       setReporte(reporte);
+      const nombred = await getNombreDepurador(reporte.depurador);
+      setNombreDepurador(nombred);
     } catch (error) {
       console.log(error);
     }
   };
+
 
   useEffect(() => {
     getReportesAdministrador(IDReporte);
@@ -83,6 +87,7 @@ const AdministradorProvider = ({ children }) => {
     depuradores,
     usuario,
     SetIDReporte,
+    nombreDepurador,
   };
 
   return (

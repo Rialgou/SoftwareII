@@ -517,3 +517,19 @@ export const enviarReporteFinal = async(reporteId, comentario) =>{
   }
 
 }
+
+export const getNombreDepurador = async(depuradorRef) => {
+  try {
+    const documentSnapshot = await getDoc(depuradorRef);
+
+    if (documentSnapshot.exists()) {
+      const nombreDepurador = documentSnapshot.get("nombre");
+      return nombreDepurador;
+    } else {
+      console.log("El documento no existe");
+      return '';
+    }
+  } catch (error) {
+    console.log("Error al obtener el documento:", error);
+  }
+}
