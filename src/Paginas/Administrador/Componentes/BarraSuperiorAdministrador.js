@@ -10,6 +10,7 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { RiAccountPinCircleLine } from "react-icons/ri";
 import { AiOutlineAlignLeft } from "react-icons/ai";
+import { HomeContext } from "../../../ComponentesGlobales/Contextos/HomeContext";
 
 import ContextoAdministrador from "../Contextos/ContextoAdministrador";
 import ContextoOpciones from "../Contextos/ContextoOpciones";
@@ -19,6 +20,11 @@ import "../../Administrador/Estilos/BarraSuperiorAdministrador.css";
 const BarraSuperiorAdministrador = ({ VistaPrincipal }) => {
   const { administrador } = useContext(ContextoAdministrador);
   const { toggleOffcanvas } = useContext(ContextoOpciones);
+  const { setCuenta } = useContext(HomeContext);
+
+  const CerrarSesion = () => {
+    setCuenta({ id: -1, accType: -1 });
+  };
 
   return (
     <>
@@ -60,7 +66,11 @@ const BarraSuperiorAdministrador = ({ VistaPrincipal }) => {
                   <NavDropdown.Item as={NavLink} to="/ajustes">
                     Tema
                   </NavDropdown.Item>
-                  <NavDropdown.Item as={NavLink} to="/salir-cuenta">
+                  <NavDropdown.Item
+                    as={Button}
+                    onClick={() => CerrarSesion()}
+                    to="/salir-cuenta"
+                  >
                     Cerrar sesion
                   </NavDropdown.Item>
                   <NavDropdown.Divider />

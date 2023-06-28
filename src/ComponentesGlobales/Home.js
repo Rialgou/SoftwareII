@@ -9,19 +9,15 @@ import {
   Form,
 } from "react-bootstrap";
 import { BsFillBugFill, BsArrowDown } from "react-icons/bs";
-import { AiOutlineUserAdd } from "react-icons/ai";
-import { RiLockPasswordLine } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import Usuario from "../Imagenes/Usuario.png";
-import {currentUser, signIn} from "../Funciones/login"
-import { conseguirTipoDeCuenta } from "../Funciones/consultas";
-import { HomeContext} from "./Contextos/HomeContext";
+import { currentUser, signIn } from "../Funciones/login";
+import { HomeContext } from "./Contextos/HomeContext";
 
+import Usuario from "../Imagenes/Usuario.png";
 
 const Home = () => {
   const navigate = useNavigate();
-  
 
   const [formulario, setFormulario] = useState({
     email: "",
@@ -32,7 +28,7 @@ const Home = () => {
 
   const { email, contrasena } = formulario;
   const [textVisible, setTextVisible] = useState(false);
-  
+
   useEffect(() => {
     setTextVisible(true);
   }, []);
@@ -45,18 +41,18 @@ const Home = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    return new Promise(async(resolve) => {
+    return new Promise(async (resolve) => {
       // Realizar acciones con los valores del formulario
-      const newCuenta = await signIn(formulario.email,formulario.contrasena);
+      const newCuenta = await signIn(formulario.email, formulario.contrasena);
       console.log(newCuenta);
       resolve(newCuenta);
-    }).then((newCuenta)=>{
-      if(newCuenta.accType === 1) handleUserButtonClick(newCuenta);
-      if(newCuenta.accType === 2) handleAdminButtonClick(newCuenta);
-      if(newCuenta.accType === 3) handleDebButtonClick(newCuenta);
-      if(newCuenta.accType === -1) handleError(newCuenta);
-    }) 
-  }; 
+    }).then((newCuenta) => {
+      if (newCuenta.accType === 1) handleUserButtonClick(newCuenta);
+      if (newCuenta.accType === 2) handleAdminButtonClick(newCuenta);
+      if (newCuenta.accType === 3) handleDebButtonClick(newCuenta);
+      if (newCuenta.accType === -1) handleError(newCuenta);
+    });
+  };
 
   const handleDebButtonClick = (newCuenta) => {
     setCuenta(newCuenta);
@@ -72,10 +68,10 @@ const Home = () => {
     setCuenta(newCuenta);
     navigate("/usuario");
   };
-  const handleError = (newCuenta)=>{
+  const handleError = (newCuenta) => {
     setCuenta(newCuenta);
     alert("Cuenta no disponible");
-  }
+  };
 
   return (
     <Container fluid style={{ height: "100vh" }}>

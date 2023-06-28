@@ -1,6 +1,3 @@
-import { useRoutes } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
-
 import Home from "../ComponentesGlobales/Home";
 import ComoFunciona from "../ComponentesGlobales/ComoFunciona";
 import Cuenta from "../ComponentesGlobales/Cuenta";
@@ -16,17 +13,34 @@ import Depurador from "../Paginas/Depurador/Depurador";
 import { AdministradorProvider } from "../Paginas/Administrador/Contextos/ContextoAdministrador";
 import { AsignacionProvider } from "../Paginas/Administrador/Contextos/ContextoAsignacion";
 import { OpcionesProvider } from "../Paginas/Administrador/Contextos/ContextoOpciones";
-import { HomeProvider } from "../ComponentesGlobales/Contextos/HomeContext";
+import { HomeContext } from "../ComponentesGlobales/Contextos/HomeContext";
+
+import { useRoutes, Navigate, Outlet } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import React, { useContext } from "react";
 
 function AnimatedRoutes() {
+  const { cuenta } = useContext(HomeContext);
+  const { accType } = cuenta;
+
+  const PrivateRoute = ({ path, element }) => {
+    if (accType === 1 && path.startsWith("/Usuario")) {
+      return element;
+    } else if (accType === 2 && path.startsWith("/administrador")) {
+      return element;
+    } else if (accType === 3 && path.startsWith("/depurador")) {
+      return element;
+    } else if (accType === -1 && path === "/") {
+      return element;
+    } else {
+      return <Navigate to="/" />;
+    }
+  };
+
   const routing = useRoutes([
     {
       path: "/",
-      element: (
-        <HomeProvider>
-          <Home />
-        </HomeProvider>
-      ),
+      element: <Home />,
     },
     {
       path: "/como-funciona",
@@ -47,69 +61,76 @@ function AnimatedRoutes() {
     {
       path: "/administrador/*",
       element: (
-        <HomeProvider>
-          <AdministradorProvider>
-            <AsignacionProvider>
-              <OpcionesProvider>
-                <AdministradorVistaPrincipal />
-              </OpcionesProvider>
-            </AsignacionProvider>
-          </AdministradorProvider>
-        </HomeProvider>
-        
+        <PrivateRoute
+          path="/administrador/*"
+          element={
+            <AdministradorProvider>
+              <AsignacionProvider>
+                <OpcionesProvider>
+                  <AdministradorVistaPrincipal />
+                </OpcionesProvider>
+              </AsignacionProvider>
+            </AdministradorProvider>
+          }
+        />
       ),
     },
     {
       path: "/administrador/:id",
       element: (
-        <HomeProvider>
-          <AdministradorProvider>
-            <OpcionesProvider>
-              <AdministradorAsignarReporte />
-            </OpcionesProvider>
-          </AdministradorProvider>
-        </HomeProvider>
+        <PrivateRoute
+          path="/administrador/:id"
+          element={
+            <AdministradorProvider>
+              <OpcionesProvider>
+                <AdministradorAsignarReporte />
+              </OpcionesProvider>
+            </AdministradorProvider>
+          }
+        />
       ),
     },
     {
       path: "/administrador/en-proceso/:id",
       element: (
-        <HomeProvider>
-          <AdministradorProvider>
-            <OpcionesProvider>
-              <AdministradorVisualizarReportesParciales />
-            </OpcionesProvider>
-          </AdministradorProvider>
-        </HomeProvider>
+        <PrivateRoute
+          path="/administrador/en-proceso/:id"
+          element={
+            <AdministradorProvider>
+              <OpcionesProvider>
+                <AdministradorVisualizarReportesParciales />
+              </OpcionesProvider>
+            </AdministradorProvider>
+          }
+        />
       ),
     },
     {
-      path: "/Usuario",
-      element: (
-      <HomeProvider>
-        <Usuario />
-      </HomeProvider>
-      ),
+      path: "/Usuario/*",
+      element: <PrivateRoute path="/Usuario/*" element={<Usuario />} />,
     },
     {
       path: "/usuario/reporte",
       element: (
-      <HomeProvider>
-        <NuevoReporte />
-      </HomeProvider>
+        <PrivateRoute path="/Usuario/reporte" element={<NuevoReporte />} />
       ),
     },
     {
       path: "/depurador",
-      element: (
-      <HomeProvider>
-        <Depurador />
-      </HomeProvider>
-      ),
+      element: <PrivateRoute path="/depurador" element={<Depurador />} />,
+    },
+    {
+      path: "*",
+      element: <Navigate to="/" />,
     },
   ]);
 
-  return <AnimatePresence>{routing}</AnimatePresence>;
+  return (
+    <AnimatePresence>
+      <Outlet />
+      {routing}
+    </AnimatePresence>
+  );
 }
 
 export default AnimatedRoutes;

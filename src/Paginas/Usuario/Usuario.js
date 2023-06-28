@@ -11,11 +11,11 @@ function Usuario() {
   const navigate = useNavigate();
 
   const handleNewReportClick = () => {
-    navigate("/usuario/reporte");
+    navigate("/Usuario/reporte");
   };
 
   const [usuario, setUsuario] = useState({});
-  const {cuenta} = useContext(HomeContext);
+  const { cuenta } = useContext(HomeContext);
 
   const usuarioId = cuenta.id;
 

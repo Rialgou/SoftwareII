@@ -4,18 +4,16 @@ import { obtenerDatosReporte } from "../../../Funciones/consultas";
 import { obtenerInfoProyectoDesdeReporte } from "../../../Funciones/consultas";
 import { obtenerInformacionUsuario } from "../../../Funciones/consultas";
 import { obtenerDepuradoresDesdeProyecto } from "../../../Funciones/consultas";
+import { obtenerUsuariosPorAdministrador } from "../../../Funciones/consultas";
 import { HomeContext } from "../../../ComponentesGlobales/Contextos/HomeContext";
 /*Agregar funcion para obtener el id despues de la autentificacion*/
 
 const ContextoAdministrador = createContext();
 
-
-
- // Reemplazar con el ID del administrador
+// Reemplazar con el ID del administrador
 
 const AdministradorProvider = ({ children }) => {
-
-  const {cuenta} = useContext(HomeContext);
+  const { cuenta } = useContext(HomeContext);
 
   const administradorId = cuenta.id;
 
@@ -25,6 +23,7 @@ const AdministradorProvider = ({ children }) => {
   const [proyecto, setProyecto] = useState(0);
   const [depuradores, setDepuradores] = useState(0);
   const [usuario, setUsuario] = useState(0);
+  const [listaClientes, setlistaClientes] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -83,6 +82,21 @@ const AdministradorProvider = ({ children }) => {
     fetchData();
   }, [proyectoid]);
 
+  const getListaClientes = async () => {
+    try {
+      const listaClientes = await obtenerUsuariosPorAdministrador(
+        administradorId
+      );
+      setlistaClientes(listaClientes);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getListaClientes();
+  }, [administradorId]);
+
   const data = {
     administrador,
     reporte,
@@ -90,6 +104,7 @@ const AdministradorProvider = ({ children }) => {
     depuradores,
     usuario,
     SetIDReporte,
+    listaClientes,
   };
 
   return (
