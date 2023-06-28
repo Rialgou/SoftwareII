@@ -16,7 +16,7 @@ import {
   ListGroup,
   Modal,
 } from "react-bootstrap";
-import { actualizarReporte } from "../../../Funciones/consultas";
+import { actualizarReporte, rechazarReporteUsuario } from "../../../Funciones/consultas";
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useRef, useContext } from "react";
 import { motion } from "framer-motion";
@@ -87,8 +87,16 @@ const Reporte = () => {
     return fechaFormaterada.toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
   };
 
-  const handleAdminButtonClick = () => {
-    navigate("/administrador");
+  const handleAdminButtonClick = async() => {
+    if(await rechazarReporteUsuario(reporte.id)){
+      alert("exito");
+      navigate("/administrador");
+    }
+    else{
+      console.log("hubo un error");
+      alert("fallou");
+    }
+    
   };
 
   const noCambios = () => {
