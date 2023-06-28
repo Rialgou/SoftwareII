@@ -108,8 +108,12 @@ const Reporte = () => {
 
     return fechaFormaterada.toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
   };
+  
+  const handleAdminButtonClick = () => {
+    navigate("/administrador");
+  };
 
-  const handleAdminButtonClick = async(comentario) => {
+  const handleAdminButtonClickReject = async(comentario) => {
     if(await rechazarReporteUsuario(reporte.id, comentario)){
       handleClose();
     }
@@ -611,7 +615,7 @@ const Reporte = () => {
                   <Button
                     variant="success"
                     disabled={textareaValue.trim() === ''}
-                    onClick={()=> handleAdminButtonClick(textareaValue)}
+                    onClick={()=> handleAdminButtonClickReject(textareaValue)}
                   >
                     Enviar
                   </Button>
