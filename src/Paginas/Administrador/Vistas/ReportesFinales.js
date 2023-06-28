@@ -25,6 +25,11 @@ import "react-datepicker/dist/react-datepicker.css";
 registerLocale("es", es);
 
 const ReasignacionDepurador = () => {
+
+  let { reporte, proyecto, depurador, usuario, SetIDReporte, reportesParciales } = useContext(
+    ContextoAdministrador
+  );
+
   const datos = [
       { fecha: 'fecha 18', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
       { fecha: 'fecha 17', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
@@ -55,17 +60,15 @@ const ReasignacionDepurador = () => {
 
   const lastIndex = currentPage * itemsPerPage;
   const firstIndex = lastIndex - itemsPerPage;
-  const visibleItems = datos.slice(firstIndex + 1, lastIndex); // Se omitió el primer elemento
 
-  const totalPages = Math.ceil((datos.length - 1) / itemsPerPage); // Se resta 1 para omitir el primer elemento
+
+  const totalPages = Math.ceil((reportesParciales.length - 1) / itemsPerPage); // Se resta 1 para omitir el primer elemento
   const pageNumbers = [];
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
 
-  let { reporte, proyecto, depurador, usuario, SetIDReporte } = useContext(
-    ContextoAdministrador
-  );
+  
 
   const { id } = useParams();
   SetIDReporte(id);
@@ -337,7 +340,7 @@ const ReasignacionDepurador = () => {
                       </Col>
                     </ListGroup.Item>
 
-                    {datos.length > 1 && (
+                    {reportesParciales.length > 1 && (
                       <>
                         <hr
                           style={{ height: "2px", background: "black", margin: "20px 0" }}
@@ -361,16 +364,16 @@ const ReasignacionDepurador = () => {
                           variant="dark"
                         >
                           <Accordion className="acordion-reportes-parciales">
-                            {visibleItems.map((item, index) => (
+                            {reportesParciales.map((item, index) =>(
                               <Accordion.Item eventKey={index.toString()} key={index}>
                                 <Accordion.Header>
-                                  Reporte {datos.length - firstIndex - index - 1} 
+                                  Reporte {reportesParciales.length - firstIndex - index } 
                                   &nbsp;&nbsp;-&nbsp;&nbsp;
-                                  {item.fecha}
+                                  {item ? <span>{item.fechaReporte.toDate().toLocaleString()}</span> : <span>Cargando...</span>}
                                 </Accordion.Header>
                                 <Accordion.Body>
                                   <div>
-                                    <pre className="descripcion-bug parrafo">{item.detalles}</pre>
+                                    <pre className="descripcion-bug parrafo">{item.comentario}</pre>
                                   </div>
                                 </Accordion.Body>
                               </Accordion.Item>

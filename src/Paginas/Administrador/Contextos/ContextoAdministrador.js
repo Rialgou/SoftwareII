@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { obtenerDatosAdministrador } from "../../../Funciones/consultas";
+import { getReportesParciales, obtenerDatosAdministrador } from "../../../Funciones/consultas";
 import { obtenerDatosReporte } from "../../../Funciones/consultas";
 import { obtenerInfoProyectoDesdeReporte } from "../../../Funciones/consultas";
 import { obtenerInformacionUsuario } from "../../../Funciones/consultas";
@@ -19,7 +19,7 @@ const AdministradorProvider = ({ children }) => {
   const [depuradores, setDepuradores] = useState(0);
   const [usuario, setUsuario] = useState(0);
   const [depurador, setDepurador] = useState({});
-
+  const [reportesParciales, setReportesParciales] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       const datosAdministrador = await obtenerDatosAdministrador(
@@ -37,6 +37,8 @@ const AdministradorProvider = ({ children }) => {
       setReporte(reporte);
       const dep = await getDepurador(reporte.depurador);
       setDepurador(dep);
+      const rp = await getReportesParciales(IDReporte);
+      setReportesParciales(rp);
     } catch (error) {
       console.log(error);
     }
@@ -88,6 +90,7 @@ const AdministradorProvider = ({ children }) => {
     usuario,
     SetIDReporte,
     depurador,
+    reportesParciales,
   };
 
   return (

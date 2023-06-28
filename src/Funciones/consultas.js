@@ -216,9 +216,6 @@ export const obtenerDatosReporte = async (reporteId) => {
         }
     };
 
-
-
-
 // Función asíncrona para obtener la información del proyecto y su identificador a partir del id de un reporte.
 export const obtenerInfoProyectoDesdeReporte = async (reporteId) => {
     try {
@@ -394,11 +391,6 @@ export const getReportesDepurador = async(depuradorId,estado) => {
     }
   };
 
-
-
-
-
-
   export const actualizarReporte = async (reporteId, depuradorId, descripcionAdministrador, fechaEstimadaTermino, prioridad) => {
     try {
       // Obtener una referencia al documento del reporte en Firestore
@@ -426,8 +418,6 @@ export const getReportesDepurador = async(depuradorId,estado) => {
     }
   };
   
-
-
 
   export const obtenerInformacionUsuario = async (proyectoId) => {
     try {
@@ -465,7 +455,7 @@ export const getReportesDepurador = async(depuradorId,estado) => {
       return null;
     }
   };
-  
+
 export const aceptarBug = async (reporteId) => {
   try{
     const db = getFirestore();
@@ -536,6 +526,30 @@ export const enviarReporteParcial = async(reporteId, comentario) =>{
 
 }
 
+export const getReportesParciales = async(reporteId) =>{
+  try{
+    console.log("getReportesParciales");
+    const db = getFirestore();
+    console.log("muero aqui?1");
+    const reporteRef = doc(db, 'reportes', reporteId);
+    
+    const reportesParcialesQuery = query(collection(db,"reportesParciales"), where("reporte", '==', reporteRef), orderBy("fechaReporte")); 
+
+    const reportesParcialesQuerySnapshot = await getDocs(reportesParcialesQuery);
+    const reportesParciales = [];
+    reportesParcialesQuerySnapshot.forEach((doc) => {
+        reportesParciales.push({...doc.data(), id:doc.id});
+    });
+    console.log(reportesParciales);
+    return(reportesParciales.reverse());
+
+    }catch(error){
+      console.log(error);
+      return {};
+    }
+}
+
+
 export const getDepurador = async(depuradorRef) => {
   try {
     console.log("getDepurador");
@@ -555,3 +569,4 @@ export const getDepurador = async(depuradorRef) => {
     return {};
   }
 }
+
