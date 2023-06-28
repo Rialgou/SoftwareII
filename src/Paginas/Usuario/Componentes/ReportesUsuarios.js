@@ -15,7 +15,7 @@ const ReportesUsuarios = () => {
     const fetchData = async () => {
       const reportesUsuario = await getReportesUsuario(usuarioId);
       setListaReportesUsuario(reportesUsuario);
-      setTotalPages(Math.ceil(reportesUsuario.length / 5));
+      setTotalPages(Math.ceil(reportesUsuario.length / 7));
     };
 
     fetchData();
@@ -29,8 +29,8 @@ const ReportesUsuarios = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
 
-  const startIndex = (currentPage - 1) * 5;
-  const endIndex = startIndex + 5;
+  const startIndex = (currentPage - 1) * 7;
+  const endIndex = startIndex + 7;
   const reportesPaginados = listaReportesUsuario.slice(startIndex, endIndex);
 
   return (

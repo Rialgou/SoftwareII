@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import ReportesUsuarios from "./Componentes/ReportesUsuarios";
 import BarraSuperiorUsuario from "./Componentes/BarraSuperiorUsuario";
 import FiltroUsuario from "./Componentes/FiltroUsuario";
+import BarraBusqueda from "./Componentes/BarraBusqueda";
 
 function Usuario() {
   const navigate = useNavigate();
@@ -50,7 +51,10 @@ function Usuario() {
 
           <Col className="mx-auto acordeon">
             <Col className="mb-5">
-              <FiltroUsuario />
+              <div className="d-flex">
+              <BarraBusqueda />
+              <FiltroUsuario/>
+              </div>
             </Col>
           </Col>
 
