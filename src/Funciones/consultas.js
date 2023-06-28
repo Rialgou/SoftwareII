@@ -588,3 +588,21 @@ export const rechazarReporteUsuario = async(reporteId,comentario) =>{
     return false;
   }
 }
+
+export const aceptarBugFinal = async(reporteId) =>{
+  try{
+    console.log("aceptarBugFinal");
+    const db = getFirestore();
+    const reporteRef = doc(db, "reportes", reporteId);
+
+    const cambioEstado = {
+      estado: 5,
+    }
+    await updateDoc(reporteRef,cambioEstado);
+    return true;
+
+  }catch(error){
+    console.log(error);
+    return false;
+  }
+}

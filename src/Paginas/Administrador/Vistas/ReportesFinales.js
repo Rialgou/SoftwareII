@@ -13,7 +13,7 @@ import {
   Button,
   ListGroup,
 } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useContext } from "react";
 import { motion } from "framer-motion";
 
@@ -21,35 +21,15 @@ import { motion } from "framer-motion";
 import "../Estilos/AsignarReporte.css";
 import "../Estilos/VisualizarReportesParciales.css"
 import "react-datepicker/dist/react-datepicker.css";
+import { aceptarBugFinal } from "../../../Funciones/consultas";
 
 registerLocale("es", es);
 
 const ReasignacionDepurador = () => {
-
+  const navigate = useNavigate();
   let { reporte, proyecto, depurador, usuario, SetIDReporte, reportesParciales } = useContext(
     ContextoAdministrador
   );
-
-  const datos = [
-      { fecha: 'fecha 18', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      { fecha: 'fecha 17', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      { fecha: 'fecha 16', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      { fecha: 'fecha 15', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      // { fecha: 'fecha 14', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      // { fecha: 'fecha 13', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      // { fecha: 'fecha 12', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      // { fecha: 'fecha 11', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      // { fecha: 'fecha 10', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      // { fecha: 'fecha 9', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      // { fecha: 'fecha 8', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      // { fecha: 'fecha 7', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      // { fecha: 'fecha 6', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      // { fecha: 'fecha 5', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      // { fecha: 'fecha 4', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      // { fecha: 'fecha 3', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      // { fecha: 'fecha 2', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.' },
-      // { fecha: 'fecha 1', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-  ];
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
@@ -81,25 +61,50 @@ const ReasignacionDepurador = () => {
   const [show, setShow] = useState(false);
   const [textareaValue, setTextareaValue] = useState('');
   const [showModal, setShowModal] = useState(false);
+
+  const [showModalAceptar, setShowModalAceptar] = useState(false);
+
+
   const [actualizarComponente, setActualizarComponente] = useState(false);
+
+
+
+
   const handleClose = () => {
     setShow(false);
     setTextareaValue(''); 
     setShowModal(true);
   };
+  
   const handleCancel = () =>{
     setShow(false);
     setTextareaValue('');
-  }
+  };
+  
   const handleShow = () => setShow(true);
+  
   const handleTextareaChange = (event) => {
     setTextareaValue(event.target.value);
   };
+
   const handleModalClose = () =>{
     setShowModal(false);
     setActualizarComponente(true);
+  };
+  const handleModalAceptarClose = ()=>{
+    setShowModalAceptar(false);
+    setActualizarComponente(true);
+    navigate("/administrador");
   }
 
+  const handleAccept = async () =>{
+    if(await aceptarBugFinal(reporte.id)){
+      setShowModalAceptar(true);
+    }
+    else{
+      alert("error");
+    }
+  }
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -296,7 +301,7 @@ const ReasignacionDepurador = () => {
             </h2>
             <Container fluid className="mt-4 ms-md-3 contenedor-historial">
               <ListGroup as="ul" id="listas">
-                {datos.length === 0 ? (
+                {!reporte === 0 ? (
                   <ListGroup.Item
                   as="li"
                   className="d-flex justify-content-between align-items-start lista-item"
@@ -460,9 +465,25 @@ const ReasignacionDepurador = () => {
               <Button
                 variant="success"
                 className=" botoness mt-5 ms-5 "
+                onClick={()=> handleAccept()}
               >
                 Aceptar reporte
               </Button>
+              <Modal centered className="modal-basic" show={showModalAceptar} onHide={() => setShowModalAceptar(false)}>
+                <Modal.Header closeButton>
+                  <Modal.Title>
+                    Bug Completado
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                ¡Tu bug se ha completado con éxito!
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={() => handleModalAceptarClose()}>
+                    Cerrar
+                  </Button>
+                </Modal.Footer>
+              </Modal>
             </div>
           </Col>
           
