@@ -16,38 +16,86 @@ import { useParams } from "react-router-dom";
 import { useState, useContext } from "react";
 import { motion } from "framer-motion";
 
-
 import "../Estilos/AsignarReporte.css";
-import "../Estilos/VisualizarReportesParciales.css"
+import "../Estilos/VisualizarReportesParciales.css";
 import "react-datepicker/dist/react-datepicker.css";
 
 registerLocale("es", es);
 
 const Parcial = () => {
-
-  let { reporte, proyecto, depurador, usuario, SetIDReporte, reportesParciales } = useContext(
-    ContextoAdministrador
-  );
+  let {
+    reporte,
+    proyecto,
+    depurador,
+    usuario,
+    SetIDReporte,
+    reportesParciales,
+  } = useContext(ContextoAdministrador);
 
   const datos = [
-      { fecha: 'fecha 18', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      { fecha: 'fecha 17', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      { fecha: 'fecha 16', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      { fecha: 'fecha 15', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      { fecha: 'fecha 14', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      { fecha: 'fecha 13', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      { fecha: 'fecha 12', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      { fecha: 'fecha 11', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      { fecha: 'fecha 10', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      { fecha: 'fecha 9', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      { fecha: 'fecha 8', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      { fecha: 'fecha 7', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      // { fecha: 'fecha 6', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      // { fecha: 'fecha 5', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      // { fecha: 'fecha 4', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      // { fecha: 'fecha 3', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
-      // { fecha: 'fecha 2', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.' },
-      // { fecha: 'fecha 1', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
+    {
+      fecha: "fecha 18",
+      detalles:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
+    },
+    {
+      fecha: "fecha 17",
+      detalles:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
+    },
+    {
+      fecha: "fecha 16",
+      detalles:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
+    },
+    {
+      fecha: "fecha 15",
+      detalles: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
+    },
+    {
+      fecha: "fecha 14",
+      detalles:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
+    },
+    {
+      fecha: "fecha 13",
+      detalles:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
+    },
+    {
+      fecha: "fecha 12",
+      detalles:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
+    },
+    {
+      fecha: "fecha 11",
+      detalles: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
+    },
+    {
+      fecha: "fecha 10",
+      detalles:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
+    },
+    {
+      fecha: "fecha 9",
+      detalles:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
+    },
+    {
+      fecha: "fecha 8",
+      detalles:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
+    },
+    {
+      fecha: "fecha 7",
+      detalles: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
+    },
+    // { fecha: 'fecha 6', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
+    // { fecha: 'fecha 5', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
+    // { fecha: 'fecha 4', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
+    // { fecha: 'fecha 3', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
+    // { fecha: 'fecha 2', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.' },
+    // { fecha: 'fecha 1', detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ' },
   ];
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -66,15 +114,17 @@ const Parcial = () => {
     pageNumbers.push(i);
   }
 
- 
-
   const { id } = useParams();
   SetIDReporte(id);
 
   const formatoFecha = (fecha) => {
     const fechaFormaterada = fecha.toDate();
 
-    return fechaFormaterada.toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+    return fechaFormaterada.toLocaleString(undefined, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
   };
 
   return (
@@ -97,11 +147,11 @@ const Parcial = () => {
             <h2 className="margen text-center">
               <strong>Carta de</strong>
               <Badge pill bg="primary">
-              resumen
+                resumen
               </Badge>
             </h2>
             <Container fluid className="mt-4 ms-5 me-3 contenedor-formulario">
-            <ListGroup as="ul" id="listas">
+              <ListGroup as="ul" id="listas">
                 <ListGroup.Item
                   as="li"
                   className="d-flex justify-content-between align-items-start lista-item"
@@ -125,8 +175,12 @@ const Parcial = () => {
                     </p>
                   </Col>
                   <Col xs={12} md={10}>
-                    <p className="parrafo"> 
-                    {depurador.nombre ? <span>{depurador.nombre}</span> : <span>Cargando...</span>} 
+                    <p className="parrafo">
+                      {depurador.nombre ? (
+                        <span>{depurador.nombre}</span>
+                      ) : (
+                        <span>Cargando...</span>
+                      )}
                     </p>
                   </Col>
                 </ListGroup.Item>
@@ -143,7 +197,19 @@ const Parcial = () => {
                   </Col>
                   <Col xs={12} md={10}>
                     <p className="parrafo">
-                    {reporte.fechaEstimadaTermino ? <span>{reporte.fechaEstimadaTermino.toDate().toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</span> : <span>Cargando...</span>} 
+                      {reporte.fechaEstimadaTermino ? (
+                        <span>
+                          {reporte.fechaEstimadaTermino
+                            .toDate()
+                            .toLocaleString(undefined, {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            })}
+                        </span>
+                      ) : (
+                        <span>Cargando...</span>
+                      )}
                     </p>
                   </Col>
                 </ListGroup.Item>
@@ -177,7 +243,7 @@ const Parcial = () => {
                       <strong>Descripción</strong>
                     </p>
                   </Col>
-                  
+
                   <Col xs={12} md={10} className="parrafo">
                     <div>
                       <pre className="descripcion-bug">
@@ -204,7 +270,9 @@ const Parcial = () => {
                     </h5>
                   </Col>
                   <Col xs={12} md={10}>
-                    <p className="parrafo">&nbsp;&nbsp;&nbsp;{proyecto.nombre}</p>
+                    <p className="parrafo">
+                      &nbsp;&nbsp;&nbsp;{proyecto.nombre}
+                    </p>
                   </Col>
                 </ListGroup.Item>
 
@@ -260,7 +328,11 @@ const Parcial = () => {
             </Container>
           </Col>
 
-          <Col xs={12} md={7} className="d-flex flex-column justify-content-start align-items-center">
+          <Col
+            xs={12}
+            md={7}
+            className="d-flex flex-column justify-content-start align-items-center"
+          >
             <h2 className="margen text-center">
               <strong>Historial reportes </strong>
               <Badge pill bg="primary">
@@ -271,14 +343,14 @@ const Parcial = () => {
               <ListGroup as="ul" id="listas">
                 {datos.length === 0 ? (
                   <ListGroup.Item
-                  as="li"
-                  className="d-flex justify-content-between align-items-start lista-item"
-                  variant="dark"
+                    as="li"
+                    className="d-flex justify-content-between align-items-start lista-item"
+                    variant="dark"
                   >
                     <Col xs={12} md={5}>
-                        <h5>
-                          <strong>Sin reportes existentes</strong>
-                        </h5>
+                      <h5>
+                        <strong>Sin reportes existentes</strong>
+                      </h5>
                     </Col>
                   </ListGroup.Item>
                 ) : (
@@ -290,7 +362,22 @@ const Parcial = () => {
                     >
                       <Col xs={12} md={5}>
                         <h5>
-                          <strong>Último reporte &nbsp;&nbsp;-&nbsp;&nbsp; {reportesParciales[0] ? <span>{reportesParciales[0].fechaReporte.toDate().toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</span> : <span>Cargando...</span>}</strong>
+                          <strong>
+                            Último reporte &nbsp;&nbsp;-&nbsp;&nbsp;{" "}
+                            {reportesParciales[0] ? (
+                              <span>
+                                {reportesParciales[0].fechaReporte
+                                  .toDate()
+                                  .toLocaleString(undefined, {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                  })}
+                              </span>
+                            ) : (
+                              <span>Cargando...</span>
+                            )}
+                          </strong>
                         </h5>
                       </Col>
                     </ListGroup.Item>
@@ -308,7 +395,15 @@ const Parcial = () => {
 
                       <Col xs={7} md={11}>
                         <div>
-                          {reportesParciales[0] ? <pre className="descripcion-bug descripcion-bug2 parrafo">{reportesParciales[0].comentario}</pre> : <pre className="descripcion-bug descripcion-bug2 parrafo">Cargando...</pre>}
+                          {reportesParciales[0] ? (
+                            <pre className="descripcion-bug descripcion-bug2 parrafo">
+                              {reportesParciales[0].comentario}
+                            </pre>
+                          ) : (
+                            <pre className="descripcion-bug descripcion-bug2 parrafo">
+                              Cargando...
+                            </pre>
+                          )}
                         </div>
                       </Col>
                     </ListGroup.Item>
@@ -316,7 +411,11 @@ const Parcial = () => {
                     {reportesParciales.length > 1 && (
                       <>
                         <hr
-                          style={{ height: "2px", background: "black", margin: "20px 0" }}
+                          style={{
+                            height: "2px",
+                            background: "black",
+                            margin: "20px 0",
+                          }}
                         ></hr>
 
                         <ListGroup.Item
@@ -337,27 +436,51 @@ const Parcial = () => {
                           variant="dark"
                         >
                           <Accordion className="acordion-reportes-parciales">
-                            {reportesParciales.slice(1).slice(firstIndex,lastIndex).map((item, index) => (
-                              <Accordion.Item eventKey={index.toString()} key={index}>
-                                <Accordion.Header>
-                                  Reporte {reportesParciales.length - firstIndex - index - 1} 
-                                  &nbsp;&nbsp;-&nbsp;&nbsp;
-                                  {item ? <span>{item.fechaReporte.toDate().toLocaleString()}</span> : <span>Cargando...</span>}
-                                </Accordion.Header>
-                                <Accordion.Body>
-                                  <div>
-                                    <pre className="descripcion-bug parrafo">{item.comentario}</pre>
-                                  </div>
-                                </Accordion.Body>
-                              </Accordion.Item>
-                            ))}
+                            {reportesParciales
+                              .slice(1)
+                              .slice(firstIndex, lastIndex)
+                              .map((item, index) => (
+                                <Accordion.Item
+                                  eventKey={index.toString()}
+                                  key={index}
+                                >
+                                  <Accordion.Header>
+                                    Reporte{" "}
+                                    {reportesParciales.length -
+                                      firstIndex -
+                                      index -
+                                      1}
+                                    &nbsp;&nbsp;-&nbsp;&nbsp;
+                                    {item ? (
+                                      <span>
+                                        {item.fechaReporte
+                                          .toDate()
+                                          .toLocaleString()}
+                                      </span>
+                                    ) : (
+                                      <span>Cargando...</span>
+                                    )}
+                                  </Accordion.Header>
+                                  <Accordion.Body>
+                                    <div>
+                                      <pre className="descripcion-bug parrafo">
+                                        {item.comentario}
+                                      </pre>
+                                    </div>
+                                  </Accordion.Body>
+                                </Accordion.Item>
+                              ))}
                           </Accordion>
 
                           {totalPages > 1 && (
                             <div className="pagination-buttons mt-3">
                               <Button
                                 variant="secondary"
-                                onClick={() => handlePageChange(currentPage === 1 ? 1 : currentPage - 1)}
+                                onClick={() =>
+                                  handlePageChange(
+                                    currentPage === 1 ? 1 : currentPage - 1
+                                  )
+                                }
                                 className="mr-auto"
                               >
                                 Anterior
@@ -365,7 +488,11 @@ const Parcial = () => {
                               <Button
                                 variant="secondary"
                                 onClick={() =>
-                                  handlePageChange(currentPage === totalPages ? totalPages : currentPage + 1)
+                                  handlePageChange(
+                                    currentPage === totalPages
+                                      ? totalPages
+                                      : currentPage + 1
+                                  )
                                 }
                                 className="ml-auto"
                               >

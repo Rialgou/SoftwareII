@@ -24,7 +24,10 @@ const BarraSuperiorUsuario = () => {
             <Stack direction="horizontal" gap={5}>
               <Nav className="Barra-usuario">
                 <RiAccountPinCircleLine size={38} color="#F2F2F2" />
-                <NavDropdown title={"carlos"} id="collasible-nav-dropdown">
+                <NavDropdown
+                  title={"Cecilia Hernandez"}
+                  id="collasible-nav-dropdown"
+                >
                   <NavDropdown.Item as={NavLink} to="/Cuenta">
                     Cuenta
                   </NavDropdown.Item>

@@ -7,9 +7,9 @@ import { Stack, Badge, Modal } from "react-bootstrap";
 import { enviarReporteUsuario } from "../../Funciones/consultas";
 import { motion } from "framer-motion";
 import { obtenerUsuario } from "../../Funciones/consultas";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { HomeContext } from "../../ComponentesGlobales/Contextos/HomeContext";
 import "./Estilos/NuevoReporte.css";
 
 function NuevoReporte() {
@@ -59,9 +59,11 @@ function NuevoReporte() {
     setDatosReporte((prevState) => ({ ...prevState, descripcion }));
   };
 
+  const {cuenta} = useContext(HomeContext);
+
   const [usuario, setUsuario] = useState({});
 
-  const usuarioId = "umlvgp6OkqUwNtDeh1aA"; // Reemplazar con el ID del usuario
+  const usuarioId = cuenta.id; // Reemplazar con el ID del usuario
   useEffect(() => {
     const fetchData = async () => {
       const datosUsuario = await obtenerUsuario(usuarioId);

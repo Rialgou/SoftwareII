@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { Stack, Badge, Button, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { obtenerUsuario } from "../../Funciones/consultas";
-import { useState, useEffect } from "react";
-
+import { useState, useEffect, useContext } from "react";
+import { HomeContext } from "../../ComponentesGlobales/Contextos/HomeContext";
 import ReportesUsuarios from "./Componentes/ReportesUsuarios";
 import BarraSuperiorUsuario from "./Componentes/BarraSuperiorUsuario";
 import FiltroUsuario from "./Componentes/FiltroUsuario";
@@ -13,12 +13,13 @@ function Usuario() {
   const navigate = useNavigate();
 
   const handleNewReportClick = () => {
-    navigate("/usuario/reporte");
+    navigate("/Usuario/reporte");
   };
 
   const [usuario, setUsuario] = useState({});
+  const { cuenta } = useContext(HomeContext);
 
-  const usuarioId = "umlvgp6OkqUwNtDeh1aA";
+  const usuarioId = cuenta.id;
 
   useEffect(() => {
     const fetchData = async () => {

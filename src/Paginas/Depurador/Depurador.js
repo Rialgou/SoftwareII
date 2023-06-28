@@ -1,6 +1,6 @@
 import { Container, Row, Col, Badge } from "react-bootstrap";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import RadioButtonDepurador from "./Componentes/RadioButtonDepurador";
 import BarraSuperiorDepurador from "./Componentes/BarraSuperiorDepurador";
@@ -11,13 +11,16 @@ import AcordeonBugsCompletados from "./Componentes/AcordeonBugsCompletados"
 
 import "./Estilos/Depurador.css";
 import { obtenerDepurador } from "../../Funciones/consultas";
+import { HomeContext } from "../../ComponentesGlobales/Contextos/HomeContext";
 
 function Depurador() {
   const [radioValue, setRadioValue] = useState("1");
   const [showCol, setShowCol] = useState(true); // Mostrar por defecto cuando se carga la página
   const [depurador, setDepurador] = useState({});
+  
+  const {cuenta} = useContext(HomeContext);
 
-  const depuradorId = "qjM7ExaUwt7Zv7ApAVHL";
+  const depuradorId = cuenta.id;
 
   useEffect(() => {
     const fetchData = async () => {

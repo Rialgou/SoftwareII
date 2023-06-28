@@ -32,7 +32,6 @@ function Lista({ estado, reasignacion }) {
   };
 
   return (
-    
     <div className="lista-container">
       <div className="encabezado">
         <ListGroup horizontal={"lg"} className="my-2">
@@ -56,7 +55,6 @@ function Lista({ estado, reasignacion }) {
           </ListGroup.Item>
         </ListGroup>
       </div>
-
 
       <div className="contenido">
         {estado === 4 &&
@@ -174,7 +172,8 @@ function Lista({ estado, reasignacion }) {
               </ListGroup>
             ))}
 
-        {estado !== 2 && estado !== 3 &&
+        {estado !== 2 &&
+          estado !== 3 &&
           estado !== 4 &&
           listaReportes.map((reporte, index) => (
             <ListGroup key={index} horizontal={"lg"} className="my-2">

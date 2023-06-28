@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Container,
   Row,
@@ -11,6 +11,9 @@ import {
 import { BsFillBugFill, BsArrowDown } from "react-icons/bs";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { currentUser, signIn } from "../Funciones/login";
+import { HomeContext } from "./Contextos/HomeContext";
+
 import Usuario from "../Imagenes/Usuario.png";
 
 const Home = () => {
@@ -20,6 +23,8 @@ const Home = () => {
     email: "",
     contrasena: "",
   });
+
+  const { setCuenta } = useContext(HomeContext);
 
   const { email, contrasena } = formulario;
   const [textVisible, setTextVisible] = useState(false);
@@ -33,22 +38,39 @@ const Home = () => {
     setFormulario({ ...formulario, [name]: value });
   };
 
-  const handleSubmit = (event) => {
-    // Realizar acciones con los valores del formulario
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(formulario);
+
+    return new Promise(async (resolve) => {
+      // Realizar acciones con los valores del formulario
+      const newCuenta = await signIn(formulario.email, formulario.contrasena);
+      console.log(newCuenta);
+      resolve(newCuenta);
+    }).then((newCuenta) => {
+      if (newCuenta.accType === 1) handleUserButtonClick(newCuenta);
+      if (newCuenta.accType === 2) handleAdminButtonClick(newCuenta);
+      if (newCuenta.accType === 3) handleDebButtonClick(newCuenta);
+      if (newCuenta.accType === -1) handleError(newCuenta);
+    });
   };
 
-  const handleDebButtonClick = () => {
+  const handleDebButtonClick = (newCuenta) => {
+    setCuenta(newCuenta);
     navigate("/depurador");
   };
 
-  const handleAdminButtonClick = () => {
+  const handleAdminButtonClick = (newCuenta) => {
+    setCuenta(newCuenta);
     navigate("/administrador");
   };
 
-  const handleUserButtonClick = () => {
+  const handleUserButtonClick = (newCuenta) => {
+    setCuenta(newCuenta);
     navigate("/usuario");
+  };
+  const handleError = (newCuenta) => {
+    setCuenta(newCuenta);
+    alert("Cuenta no disponible");
   };
 
   return (
