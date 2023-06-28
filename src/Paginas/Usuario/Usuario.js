@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import { Stack, Badge, Button } from "react-bootstrap";
+import { Stack, Badge, Button, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { obtenerUsuario } from "../../Funciones/consultas";
 import { useState, useEffect } from "react";
 
 import ReportesUsuarios from "./Componentes/ReportesUsuarios";
 import BarraSuperiorUsuario from "./Componentes/BarraSuperiorUsuario";
+import FiltroUsuario from "./Componentes/FiltroUsuario";
 
 function Usuario() {
   const navigate = useNavigate();
@@ -46,6 +47,12 @@ function Usuario() {
               <strong>Estado</strong> <Badge bg="primary">Reportes</Badge>
             </h2>
           </div>
+
+          <Col className="mx-auto acordeon">
+            <Col className="mb-5">
+              <FiltroUsuario />
+            </Col>
+          </Col>
 
           <div className="mx-auto acordeon">
             <ReportesUsuarios />
