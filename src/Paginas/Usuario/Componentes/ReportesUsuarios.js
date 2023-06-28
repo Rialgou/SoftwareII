@@ -1,31 +1,42 @@
-import React, {useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
-import {getReportesUsuario} from '../../../Funciones/consultas';
-import "../Estilos/ReportesUsuarios.css"
+import Button from 'react-bootstrap/Button';
+import { getReportesUsuario } from '../../../Funciones/consultas';
+import "../Estilos/ReportesUsuarios.css";
 
 const ReportesUsuarios = () => {
-
-  // id del usuario estandar
   const usuarioId = "umlvgp6OkqUwNtDeh1aA";
-
-  // configuracion hooks
-  const [listaReportesUsuario, setListaReportesUsuario] =  useState([]);
-
+  const [listaReportesUsuario, setListaReportesUsuario] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
       const reportesUsuario = await getReportesUsuario(usuarioId);
       setListaReportesUsuario(reportesUsuario);
+      setTotalPages(Math.ceil(reportesUsuario.length / 5));
     };
 
     fetchData();
   }, []);
 
+  const handlePreviousPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const startIndex = (currentPage - 1) * 5;
+  const endIndex = startIndex + 5;
+  const reportesPaginados = listaReportesUsuario.slice(startIndex, endIndex);
+
   return (
     <>
       <Accordion alwaysOpen>
-        {listaReportesUsuario.map((list, index) => (
+        {reportesPaginados.map((list, index) => (
           <Accordion.Item key={index} eventKey={index}>
             <Card>
               <Accordion.Header>
@@ -39,7 +50,7 @@ const ReportesUsuarios = () => {
 
               <Accordion.Body>
                 <strong className="descripcion-titulo">Proyecto: </strong><span>{list.nombreProyecto}</span>
-                <br/>
+                <br />
                 <strong className="descripcion-titulo">Estado del reporte: </strong>
                 {list.estado === -1 && <span>Rechazado</span>}
                 {list.estado === 1 && <span>Pendiente</span>}
@@ -47,27 +58,38 @@ const ReportesUsuarios = () => {
                 {list.estado === 3 && <span>En proceso</span>}
                 {list.estado === 4 && <span>En proceso</span>}
                 {list.estado === 5 && <span>Completado</span>}
-
                 <div>
                   <strong className="descripcion-titulo">Fecha de emisión del reporte: </strong>
                   <span>{list.fechaEmision.toDate().toLocaleString()}</span>
-                  <br/>
+                  <br />
                   <strong className="descripcion-titulo">Fecha estimada  de termino: </strong>
                   {list.fechaEstimadaTermino ? <span>{list.fechaEstimadaTermino.toDate().toLocaleString()}</span> : <span>Por determinar</span>}
-                  <br/>
-                  <br/>
-                    <div>
-                      <strong className="descripcion-titulo">Descripción del Bug: </strong>
-                      <pre className="descripcion-bug">{list.descripcionUsuario}</pre>
-                    </div>
+                  <br />
+                  <br />
+                  <div>
+                    <strong className="descripcion-titulo">Descripción del Bug: </strong>
+                    <pre className="descripcion-bug parrafo2">{list.descripcionUsuario}</pre>
+                  </div>
                 </div>
               </Accordion.Body>
             </Card>
           </Accordion.Item>
         ))}
-      </Accordion> 
-    </> 
-  )
-}
+      </Accordion>
+
+      {totalPages > 1 && (
+        <div className="pagination-buttons mt-3">
+          <Button variant="secondary" onClick={handlePreviousPage} disabled={currentPage === 1}>
+            Anterior
+          </Button>
+          <Button variant="secondary" onClick={handleNextPage} disabled={currentPage === totalPages}>
+            Siguiente
+          </Button>
+        </div>
+      )}
+
+    </>
+  );
+};
 
 export default ReportesUsuarios;

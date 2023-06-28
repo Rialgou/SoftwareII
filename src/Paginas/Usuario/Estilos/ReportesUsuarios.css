@@ -12,3 +12,32 @@
 pre{
     font-family: serif;
 }
+
+.parrafo2 {
+    word-wrap: break-word;
+    margin: 0;
+    text-align: left;
+    max-height: 50vh !important; /* Altura máxima antes de habilitar el scroll */
+    overflow-y: auto; /* Habilitar el scroll vertical cuando se supera la altura máxima */
+}
+  
+.parrafo2-placeholder {
+    opacity: 0.5; /* Ejemplo de transparencia */
+/* Otros estilos para los campos no seleccionados */
+}
+
+.parrafo2::-webkit-scrollbar {
+    width: 8px; /* Ancho del scrollbar */
+}
+  
+.parrafo2::-webkit-scrollbar-track {
+background: #f1f1f1; /* Color de fondo del track */
+}
+  
+.parrafo2::-webkit-scrollbar-thumb {
+background: #888; /* Color del thumb (barra deslizante) */
+}
+  
+.parrafo2::-webkit-scrollbar-thumb:hover {
+background: #555; /* Color del thumb en hover */
+}
