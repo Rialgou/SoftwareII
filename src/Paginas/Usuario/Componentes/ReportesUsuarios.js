@@ -42,7 +42,7 @@ const ReportesUsuarios = () => {
               <Accordion.Header>
                 <div>
                   <span className="bug-info">
-                    <span> Bug {index + 1} </span>
+                    <span> Bug {startIndex + index + 1} </span>
                     <span> Título: {list.asunto}</span>
                   </span>
                 </div>
@@ -87,7 +87,7 @@ const ReportesUsuarios = () => {
           </Button>
         </div>
       )}
-
+      
     </>
   );
 };
