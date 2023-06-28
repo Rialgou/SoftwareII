@@ -17,7 +17,7 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useContext } from "react";
 import { motion } from "framer-motion";
-
+import { reasignarDepurador, reasignarDepuradorOtroMomento, rechazarReporteFinal } from "../../../Funciones/consultas";
 
 import "../Estilos/ReasignacionDepurador.css";
 import "../Estilos/VisualizarReportesParciales.css"
@@ -52,8 +52,13 @@ const ReasignacionDepurador = () => {
   const [depuradorSeleccionado, setDepuradorSeleccionado] = useState(null);
   const [showDepurador, setShowDepurador] = useState(false);
   const [modalShow, setModalShow] = useState(false);
+  
   const handleCloseDepurador = () => setShowDepurador(false);
+
   const handleShowDepurador = () => setShowDepurador(true);
+
+
+ 
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -83,6 +88,7 @@ const ReasignacionDepurador = () => {
   const [show, setShow] = useState(false);
   const [textareaValue, setTextareaValue] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [showModalReasignar, setShowModalReasignar] = useState(false);
   const [actualizarComponente, setActualizarComponente] = useState(false);
   const handleClose = () => {
     setShow(false);
@@ -99,13 +105,52 @@ const ReasignacionDepurador = () => {
     setTextareaValue(event.target.value);
   };
 
+  const handleSendClick = async() =>{
+    if(await rechazarReporteFinal(reporte.id)){
+      handleClose();
+    }
+    else{
+      console.log("hubo un error");
+      alert("fallou");
+    }
+  }
+
+  const handleReasignar = async () => {
+    if(depuradorSeleccionado !== null){
+      if(await reasignarDepurador(depuradorSeleccionado.id,reporte.id)){
+        handleCloseListaDepurador();
+      }
+      else{
+        console.log("hubo un error");
+        alert("fallo");
+      }
+    }
+    else{
+      alert("selecciona un depurador");
+    }
+  }
+  const handleCloseListaDepurador = () =>{
+    setShowDepurador(false);
+    setShowModalReasignar(true);
+    
+  }
+  const handleModalCloseReasignar = () =>{
+    setShowModalReasignar(false);
+    navigate("/administrador");
+  }
+
   const handleModalClose = () =>{
     setShowModal(false);
     setActualizarComponente(true);
+    navigate("/administrador");
   }
   const navigate = useNavigate();
-  const handleNav = () => {
-    navigate("/administrador")
+  const handleNav = async() => {
+    if(await reasignarDepuradorOtroMomento(reporte.id))
+      navigate("/administrador");
+    else{
+      console.log("error");
+    }
   }
 
   return (
@@ -305,6 +350,7 @@ const ReasignacionDepurador = () => {
           <Button
             variant="success"
             disabled={textareaValue.trim() === ''}
+            onClick={()=> handleSendClick()}
           >
             Enviar
           </Button>
@@ -345,7 +391,7 @@ const ReasignacionDepurador = () => {
                 <Modal.Body>
                   <Container className="cards-container">
                     <DynamicCard
-                      listadeDepuradores={depuradores}
+                      listadeDepuradores={depuradores.filter((dep) => dep.nombre !== depurador.nombre )}
                       depuradorSeleccionado={depuradorSeleccionado}
                       setDepuradorSeleccionado={setDepuradorSeleccionado}
                     />
@@ -355,11 +401,26 @@ const ReasignacionDepurador = () => {
                   <Button variant="secondary" onClick={handleNav}>
                     Asignar en otro momento
                   </Button>
-                  <Button variant="primary" onClick={handleCloseDepurador}>
+                  <Button variant="primary" onClick={handleReasignar}>
                     Reasignar
                   </Button>
                 </Modal.Footer>
               </Modal>
+              <Modal centered className="modal-basic" show={showModalReasignar} onHide={() => setShowModalReasignar(false)}>
+                    <Modal.Header closeButton>
+                      <Modal.Title>
+                        Depurador reasignado con éxito
+                      </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                    El depurador se ha reasignado con éxito
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button variant="secondary" onClick={() => handleModalCloseReasignar()}>
+                        Cerrar
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
             </div>
           </Col>
         </Row>

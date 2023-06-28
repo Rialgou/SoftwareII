@@ -624,3 +624,45 @@ export const rechazarReporteFinal = async(reporteId) =>{
     return false;
   }
 }
+
+export const reasignarDepurador = async(depuradorSeleccionado,reporte) =>{
+  try{
+    console.log("reasignarDepurador");
+    const db = getFirestore();
+    const reporteRef = doc(db,"reportes",reporte);
+    const depuradorRef = doc(db,"depuradores",depuradorSeleccionado);
+    const nuevoDepurador = {
+      depurador: depuradorRef,
+      reasignacion: false,
+    }
+
+    await updateDoc(reporteRef,nuevoDepurador);
+    return true;
+  }catch(error){
+    console.log(error);
+    return false;
+  }
+}
+
+export const reasignarDepuradorOtroMomento = async(reporteId) =>{
+  try{
+    console.log("reasignarDepuradorOtroMomento");
+    const db = getFirestore();
+    const reporteRef = doc(db, "reportes", reporteId);
+
+    const cambioEstado = {
+      estado: 1,
+      depurador: null,
+      fechaEstimadaTermino: null,
+      prioridad: null,
+      descripcionAdministrador: null,
+      mensaje: null,
+      reasignacion: false,
+    }
+    await updateDoc(reporteRef,cambioEstado);
+    return true;
+  }catch(error){
+    console.log(error);
+    return false;
+  }
+}
