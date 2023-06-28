@@ -625,6 +625,25 @@ export const rechazarReporteFinal = async(reporteId) =>{
   }
 }
 
+export const rechazarReasignacion = async(reporteId) =>{
+  try{
+    console.log("aceptarBugFinal");
+    const db = getFirestore();
+    const reporteRef = doc(db, "reportes", reporteId);
+
+    const cambioEstado = {
+      estado: 3,
+      reasignacion:false,
+    }
+    await updateDoc(reporteRef,cambioEstado);
+    return true;
+
+  }catch(error){
+    console.log(error);
+    return false;
+  }
+}
+
 export const reasignarDepurador = async(depuradorSeleccionado,reporte) =>{
   try{
     console.log("reasignarDepurador");

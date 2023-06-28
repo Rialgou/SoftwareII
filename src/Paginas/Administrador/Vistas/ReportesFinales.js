@@ -42,7 +42,7 @@ const ReasignacionDepurador = () => {
   const firstIndex = lastIndex - itemsPerPage;
 
 
-  const totalPages = Math.ceil((reportesParciales.length - 1) / itemsPerPage); // Se resta 1 para omitir el primer elemento
+  const totalPages = Math.ceil((reportesParciales.length) / itemsPerPage); // Se resta 1 para omitir el primer elemento
   const pageNumbers = [];
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
@@ -379,7 +379,7 @@ const ReasignacionDepurador = () => {
                           variant="dark"
                         >
                           <Accordion className="acordion-reportes-parciales">
-                            {reportesParciales.map((item, index) =>(
+                            {reportesParciales.slice(firstIndex,lastIndex).map((item, index) =>(
                               <Accordion.Item eventKey={index.toString()} key={index}>
                                 <Accordion.Header>
                                   Reporte {reportesParciales.length - firstIndex - index } 

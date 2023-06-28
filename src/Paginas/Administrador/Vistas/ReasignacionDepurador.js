@@ -17,7 +17,7 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useContext } from "react";
 import { motion } from "framer-motion";
-import { reasignarDepurador, reasignarDepuradorOtroMomento, rechazarReporteFinal } from "../../../Funciones/consultas";
+import { reasignarDepurador, reasignarDepuradorOtroMomento, rechazarReasignacion } from "../../../Funciones/consultas";
 
 import "../Estilos/ReasignacionDepurador.css";
 import "../Estilos/VisualizarReportesParciales.css"
@@ -106,7 +106,7 @@ const ReasignacionDepurador = () => {
   };
 
   const handleSendClick = async() =>{
-    if(await rechazarReporteFinal(reporte.id)){
+    if(await rechazarReasignacion(reporte.id)){
       handleClose();
     }
     else{

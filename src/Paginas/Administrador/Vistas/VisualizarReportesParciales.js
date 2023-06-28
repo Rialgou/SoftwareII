@@ -337,7 +337,7 @@ const Parcial = () => {
                           variant="dark"
                         >
                           <Accordion className="acordion-reportes-parciales">
-                            {reportesParciales.slice(1).map((item, index) => (
+                            {reportesParciales.slice(1).slice(firstIndex,lastIndex).map((item, index) => (
                               <Accordion.Item eventKey={index.toString()} key={index}>
                                 <Accordion.Header>
                                   Reporte {reportesParciales.length - firstIndex - index - 1} 
